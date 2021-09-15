@@ -24,6 +24,8 @@
 void all_unfolding_data(string var_name = "", string var_gen = "", string region = "", string year = "2016")
 {
 
+    gStyle->SetOptStat(0);
+
 //----obetener_toda_la_informacion_de_entrada--------??
 
     TChain *chreco_ttbar_semi = new TChain("AnalysisTree","");
@@ -419,6 +421,107 @@ Ttbar_1_lfstats2Down->Write();
 Ttbar_2_lfstats2Down->Write();
 Ttbar_1_jesDown->Write();
 Ttbar_2_jesDown->Write();
+
+
+auto c1    = new TCanvas("c1","c1",600,400);
+c1->cd();
+Migration_Matrix->GetYaxis()->SetTitle("#Delta #cbar y_{gen} #cbar");   
+Migration_Matrix->GetXaxis()->SetTitle("#Delta #cbar y_{rec} #cbar");
+Migration_Matrix->Draw("COLZ");
+
+TLatex latex;
+latex.SetTextSize(0.045);
+latex.SetTextAlign(11);  //align at top
+latex.DrawLatex(-1.9,2.05,"CMS preliminary");
+
+TLatex latex2;
+latex2.SetTextSize(0.045);
+latex2.SetTextAlign(11);  //align at top
+latex2.DrawLatex(0.9,2.05,"36.77 fb^{-1} (13 TeV)");
+
+c1->Print("Migration_Matrix.pdf");
+
+
+    TH2F *Stability_Matrix = new TH2F("Stability_Matrix","",binnum_gen,bins_gen,binnum_gen,bins_gen);
+    TH2F *Purity_Matrix = new TH2F("Purity_Matrix","",binnum_gen,bins_gen,binnum_gen,bins_gen);
+
+   for(int a=1;a<=binnum_gen;a++){
+       for(Int_t b=1;b<=binnum_gen;b++){
+            Stability_Matrix->SetBinContent(a,b,Migration_Matrix->GetBinContent(a,b)/Migration_Matrix->Integral(1,binnum_gen,b,b));
+            Purity_Matrix->SetBinContent(a,b,Migration_Matrix->GetBinContent(a,b)/Migration_Matrix->Integral(a,a,1,binnum_gen));
+            Stability_Matrix->SetBinError(a,b,Migration_Matrix->GetBinError(a,b)/Migration_Matrix->Integral(1,binnum_gen,b,b));
+            Purity_Matrix->SetBinError(a,b,Migration_Matrix->GetBinError(a,b)/Migration_Matrix->Integral(a,a,1,binnum_gen));
+       }
+   }
+
+// Purity && Stability
+
+   TH1F *Stability = new TH1F("Stability","",binnum_gen,bins_gen);
+   TH1F *Purity = new TH1F("Purity","",binnum_gen,bins_gen);
+
+   for(Int_t m=1;m<=binnum_gen;m++){
+       Stability->SetBinContent(m,Stability_Matrix->GetBinContent(m,m));
+       Purity->SetBinContent(m,Purity_Matrix->GetBinContent(m,m));
+       Stability->SetBinError(m,Stability_Matrix->GetBinError(m,m));
+       Purity->SetBinError(m,Purity_Matrix->GetBinError(m,m));
+   }
+
+   Stability->GetYaxis()->SetRangeUser(0,1);
+   Stability->GetYaxis()->SetTitle("P&S");
+   Stability->GetXaxis()->SetTitle("#Delta #cbar y_{rec} #cbar");
+   Purity->SetLineColor(kRed);
+   Purity->SetLineWidth(2);
+   Stability->SetLineColor(kBlue);
+   Stability->SetLineWidth(2);
+
+   TCanvas* cc = new TCanvas("cc","",2400,1200);
+   cc->Divide(1,1);
+   cc->cd(1);
+   Stability->Draw("samei e");
+   Purity->Draw("same e");
+
+   Float_t a = Stability->GetMaximum();
+
+   TLegend leg(.55, .55, .75, .75, "");
+   leg.SetFillColor(0);
+   leg.AddEntry(Purity, "Purity");
+   leg.AddEntry(Stability, "Stability");
+   leg.SetBorderSize(0);
+   leg.Draw("Same");
+
+   TLatex latex3;
+   latex3.SetTextSize(0.045);
+   latex3.SetTextAlign(11);
+   latex3.DrawLatex(-1.9,1.02,"CMS preliminary");
+
+   TLatex latex4;
+   latex4.SetTextSize(0.045);
+   latex4.SetTextAlign(11);
+   latex4.DrawLatex(1.1,1.02,"36.77 fb^{-1} (13 TeV)");
+
+   cc->Print("PS.pdf");
+
+   TMatrix H(8,8);
+   for (Int_t irow = 0; irow < 2; irow++){
+   for (Int_t icol = 0; icol < 2; icol++){
+      H[icol][irow] = Migration_Matrix->GetBinContent(irow+1,icol+1);
+   }
+   }
+   cout << H.Determinant() << endl;
+
+   TVectorD rowsum(2);
+   TVectorD fSig(2);
+   for (Int_t irow = 0; irow < 2; irow++){
+   for (Int_t icol = 0; icol < 2; icol++){
+   rowsum(irow-1) += H(irow,icol);
+   }
+   }
+   TDecompSVD lu(H);
+   TVectorD sig = lu.GetSig();
+   for (Int_t irow = 0; irow < 2; irow++){
+    cout << sig[irow] << endl;
+   }
+
   
 }
 

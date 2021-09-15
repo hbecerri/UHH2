@@ -13,11 +13,11 @@ var_gen='TMath::Abs(0.5*TMath::Log((GenParticles.m_energy[2] + GenParticles.m_pt
 declare -a StringArray=("DeltaY")
 declare -a StringArray2=("rec_chi2 < 30 && Mttbar > 900")
 
-for var in ${StringArray[@]}; do
-        echo ${var}
-	python script/Input_file.py ${var}
-        python script/Get_UF_OF.py ${var}
-done
+#for var in ${StringArray[@]}; do
+#        echo ${var}
+#	python script/Input_file.py ${var}
+#        python script/Get_UF_OF.py ${var}
+#done
 
 
 for var in ${StringArray[@]}; do
@@ -25,18 +25,18 @@ for var in ${StringArray[@]}; do
 done
 
 
-cp script2/pdf.root .
-cp script2/q2.root .
+#cp script2/pdf.root .
+#cp script2/q2.root .
 
-cp script2/pdf_ttbar1.root .
-cp script2/q2_ttbar1.root .
+#cp script2/pdf_ttbar1.root .
+#cp script2/q2_ttbar1.root .
 
-cp script2/pdf_ttbar2.root .
-cp script2/q2_ttbar2.root .
+#cp script2/pdf_ttbar2.root .
+#cp script2/q2_ttbar2.root .
 
-hadd DeltaY.root DeltaY_muon.root Input_undfolding_data_.root pdf.root  pdf_ttbar1.root q2_ttbar1.root pdf_ttbar2.root q2_ttbar2.root 
+#hadd DeltaY.root DeltaY_muon.root Input_undfolding_data_.root pdf.root  pdf_ttbar1.root q2_ttbar1.root pdf_ttbar2.root q2_ttbar2.root 
 
-python datacard.py
+#python datacard.py
 
 #source setup_combine.sh
 

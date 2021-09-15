@@ -28,7 +28,6 @@ void Gen_Ac()
     gStyle->SetOptStat(0);
 
     TChain *chreco_ttbar = new TChain("AnalysisTree","");
-//    chreco_ttbar->Add("/nfs/dust/cms/user/hugobg/ZPrime_102X/presel_output/uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2018.root/AnalysisTree");
     chreco_ttbar->Add("/pnfs/desy.de/cms/tier2/store/user/akaravdi/RunII_102X_v1_TEST/TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/crab_TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8/190327_085021/0000/Ntuple_1*.root/AnalysisTree");
     TTree *treereco_ttbar = (TTree*) chreco_ttbar;
 
@@ -45,7 +44,9 @@ void Gen_Ac()
     string var_gen = "";
     var_gen = "TMath::Abs(0.5*TMath::Log((GenParticles.m_energy[2] + GenParticles.m_pt[2]*TMath::SinH(GenParticles.m_eta[2]))/(GenParticles.m_energy[2] - GenParticles.m_pt[2]*TMath::SinH(GenParticles.m_eta[2])))) - TMath::Abs(0.5*TMath::Log((GenParticles.m_energy[3] + GenParticles.m_pt[3]*TMath::SinH(GenParticles.m_eta[3]))/(GenParticles.m_energy[3] - GenParticles.m_pt[3]*TMath::SinH(GenParticles.m_eta[3]))))";
 
-    treereco_ttbar->Project("Var_gen",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_gen.c_str()),Form("%s >= 0  && %s < 500",InvMass.c_str(),InvMass.c_str())); 
+    treereco_ttbar->Project("Var_gen",Form("%s",var_gen.c_str()),Form("%s > 900",InvMass.c_str()));  
+
+//    treereco_ttbar->Project("Var_gen",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_gen.c_str()),Form("%s >= 0  && %s < 500",InvMass.c_str(),InvMass.c_str())); 
 
     for(int i=1;i<=binnum_gen;i++){
          cout << Var_gen->GetBinContent(i) << endl; //     " << Var_gen->GetBinError(i) << endl;

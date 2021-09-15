@@ -1,10 +1,10 @@
 #!/bin/bash
 
 
-rm -f -r *.root 
-rm -f -r *.txt
-rm -f -r *.png
-rm -f -r *.json
+#rm -f -r *.root 
+#rm -f -r *.txt
+#rm -f -r *.pdf
+#rm -f -r *.json
 
 year='2016'
 var_gen='TMath::Abs(0.5*TMath::Log((GenParticles.m_energy[2] + GenParticles.m_pt[2]*TMath::SinH(GenParticles.m_eta[2]))/(GenParticles.m_energy[2] - GenParticles.m_pt[2]*TMath::SinH(GenParticles.m_eta[2])))) - TMath::Abs(0.5*TMath::Log((GenParticles.m_energy[3] + GenParticles.m_pt[3]*TMath::SinH(GenParticles.m_eta[3]))/(GenParticles.m_energy[3] - GenParticles.m_pt[3]*TMath::SinH(GenParticles.m_eta[3]))))'
@@ -22,21 +22,18 @@ for var in ${StringArray[@]}; do
         root -l -b -q "script/all_unfolding_data.C(\"${var}\",\"${var_gen}\")"
 done
 
-cp script2/pdf.root .
-cp script2/q2.root .
+#cp script3/pdf.root .
+#cp script2/q2.root .
 
-cp script2/pdf_ttbar1.root .
-cp script2/q2_ttbar1.root .
+cp script3/pdf_ttbar1.root .
+cp script3/q2_ttbar1.root .
 
-cp script2/pdf_ttbar2.root .
-cp script2/q2_ttbar2.root .
+cp script3/pdf_ttbar2.root .
+cp script3/q2_ttbar2.root .
 
-hadd DeltaY.root DeltaY_muon.root Input_undfolding_data_.root pdf.root  pdf_ttbar1.root q2_ttbar1.root pdf_ttbar2.root q2_ttbar2.root 
-
+hadd -f DeltaY.root DeltaY_muon.root Input_undfolding_data_.root pdf_ttbar1.root q2_ttbar1.root pdf_ttbar2.root q2_ttbar2.root
 
 python datacard.py
 
-source setup_combine.sh
-
-text2workspace.py muon_2016.txt -o muon_2016.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -m 125 --PO map='.*/Ttbar_1:r_neg[1,0,20]' --PO map='.*/Ttbar_2:r_pos=expr;;r_pos("(1.008)*7053.01/7156.152*@0*(100+@1)/(100-@1)",r_neg,r_Asym[-2,-5,0])' --PO verbose
+#text2workspace.py muon_2016.txt -o muon_2016.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -m 125 --PO map='.*/Ttbar_1:r_neg[1,0,20]' --PO map='.*/Ttbar_2:r_pos=expr;;r_pos("7053.01/7156.152*@0*1.02*(100+@1)/(100-@1)",r_neg,r_Asym[-2,-5,0])' --PO verbose
 

@@ -6,15 +6,23 @@ declare -a POIS=(
   "r_Asym"
 )
 
-export WORKSPACE=muon.root
+export WORKSPACE=Ac.root
 export VERBOSITY=0
-export SetParameters="rgx{r.+}=1,r_Asym=1.28"
-export SetParametersExplicit="r_neg=1,r_Asym=1.28"
+
+export SetParameters="rgx{r.+}=1,r_Asym=0.8"
+export SetParametersExplicit="r_neg=1,r_Asym=0.8"
 export SetParameterRanges="rgx{r.+}=0.5,2:r_Asym=-10,5"
 export redefineSignalPOIs="r_Asym,r_neg"
-#export ASIMOV="-t -1"
+
+#export SetParameters="rgx{r.+}=1,r_pos=1"
+#export SetParametersExplicit="r_neg=1,r_pos=1"
+#export SetParameterRanges="rgx{r.+}=0.5,2:r_pos=0.5,2"
+#export redefineSignalPOIs="r_pos,r_neg"
+
+
+export ASIMOV="-t -1"
 #export ASIMOV="-t 100 --saveToys"
-export ASIMOV=""
+#export ASIMOV=""
 
 
 
