@@ -8,7 +8,9 @@ array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
 #ct_top = '(weight)*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
-ct_top = 'weight*(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)'
+#ct_top = 'weight*(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)'
+ct_top = 'weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
+
 systematic_direction_ttbar={'nominal':ct_top,
                             'q2ttbarMuRdnMuFdn__plus':ct_top+'*(weight_murmuf_downdown)',
                             'q2ttbarMuRupMuFup__plus':ct_top+'*(weight_murmuf_upup)',
@@ -67,7 +69,7 @@ for cat in categories:
                         mytree.Draw("invmass>>temp",cut)
                         temp.SetName(syst)
                         temp.SetBinContent(1,temp.GetBinContent(0)+temp.GetBinContent(1))
-                        temp.SetBinContent(14,temp.GetBinContent(15)+temp.GetBinContent(14))
+                        temp.SetBinContent(2,temp.GetBinContent(2)+temp.GetBinContent(3))
                         print "Rebinning T1 nom:", str(temp.GetNbinsX())
                         gDirectory.WriteObject(temp,syst)
                         del temp
@@ -76,6 +78,6 @@ for cat in categories:
                         mytree.Draw("invmass>>temp2sys",cut)
                         temp2sys.SetName(syst)
                         temp2sys.SetBinContent(1,temp2sys.GetBinContent(0)+temp2sys.GetBinContent(1))
-                        temp2sys.SetBinContent(14,temp2sys.GetBinContent(15)+temp2sys.GetBinContent(14))
+                        temp2sys.SetBinContent(2,temp2sys.GetBinContent(2)+temp2sys.GetBinContent(3))
                         gDirectory.WriteObject(temp2sys,syst)
                         del temp2sys

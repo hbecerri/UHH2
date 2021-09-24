@@ -24,7 +24,7 @@
 void all_unfolding_data(string var_name = "", string var_gen = "", string region = "", string year = "2018")
 {
 
-        gStyle->SetOptStat(0);
+    gStyle->SetOptStat(0);
 
 //----obetener_toda_la_informacion_de_entrada--------??
 
@@ -32,9 +32,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     chreco_ttbar_semi->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/muon/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str()));
     TTree *treereco_ttbar_semi = (TTree*) chreco_ttbar_semi;
 
-/*
     //jec
-    TChain *chreco_ttbar_semi_jecup = new TChain("AnalysisTree","");
+/*    TChain *chreco_ttbar_semi_jecup = new TChain("AnalysisTree","");
     chreco_ttbar_semi_jecup->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/muon/workdir_Zprime_Analysis_%s_muon_CHS_JECup/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
     TTree *treereco_ttbar_semi_jecup = (TTree*) chreco_ttbar_semi_jecup;
 
@@ -50,7 +49,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TChain *chreco_ttbar_semi_jerdown = new TChain("AnalysisTree","");
     chreco_ttbar_semi_jerdown->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/muon/workdir_Zprime_Analysis_%s_muon_CHS_JERdown/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
     TTree *treereco_ttbar_semi_jerdown = (TTree*) chreco_ttbar_semi_jerdown;
-
+*/
     //hdamp
 
     TChain *chreco_ttbar_semi_hdampup = new TChain("AnalysisTree","");
@@ -61,7 +60,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     chreco_ttbar_semi_hdampdown->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/muon/hdamp_down/uhh2.AnalysisModuleRunner.MC.*.root/AnalysisTree",year.c_str()));
     TTree *treereco_ttbar_semi_hdampdown = (TTree*) chreco_ttbar_semi_hdampdown;
 
-*/
+
 //array for variable 
 
     int len = 0; int len_rec = 0;
@@ -94,7 +93,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TH2F *Migration_Matrix_FSRUp = new TH2F("Migration_Matrix_FSRUp","",newrec,new_rec,binnum_gen,bins_gen);
 //    TH2F *Migration_Matrix_jecUp = new TH2F("Migration_Matrix_jecUp","",newrec,new_rec,binnum_gen,bins_gen);
 //    TH2F *Migration_Matrix_jerUp = new TH2F("Migration_Matrix_jerUp","",newrec,new_rec,binnum_gen,bins_gen);
-//    TH2F *Migration_Matrix_hdampUp = new TH2F("Migration_Matrix_hdampUp","",newrec,new_rec,binnum_gen,bins_gen);
+    TH2F *Migration_Matrix_hdampUp = new TH2F("Migration_Matrix_hdampUp","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_cferr1Up = new TH2F("Migration_Matrix_cferr1Up","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_cferr2Up = new TH2F("Migration_Matrix_cferr2Up","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_hfUp = new TH2F("Migration_Matrix_hfUp","",newrec,new_rec,binnum_gen,bins_gen);
@@ -117,7 +116,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TH2F *Migration_Matrix_FSRDown = new TH2F("Migration_Matrix_FSRDown","",newrec,new_rec,binnum_gen,bins_gen);
 //    TH2F *Migration_Matrix_jecDown = new TH2F("Migration_Matrix_jecDown","",newrec,new_rec,binnum_gen,bins_gen);
 //    TH2F *Migration_Matrix_jerDown = new TH2F("Migration_Matrix_jerDown","",newrec,new_rec,binnum_gen,bins_gen);
-//    TH2F *Migration_Matrix_hdampDown = new TH2F("Migration_Matrix_hdampDown","",newrec,new_rec,binnum_gen,bins_gen);
+    TH2F *Migration_Matrix_hdampDown = new TH2F("Migration_Matrix_hdampDown","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_cferr1Down = new TH2F("Migration_Matrix_cferr1Down","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_cferr2Down = new TH2F("Migration_Matrix_cferr2Down","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_hfDown = new TH2F("Migration_Matrix_hfDown","",newrec,new_rec,binnum_gen,bins_gen);
@@ -170,8 +169,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
 //    string  jecDown = "(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)";
 //    string  jerUp = "(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)";
 //    string  jerDown = "(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)";
-//    string  hdampUp = "(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*0.84";
-//    string  hdampDown = "(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*0.84";
+    string  hdampUp = "(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*0.84";
+    string  hdampDown = "(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*0.84";
 
     Float_t mistag_nominal = 1.;
 
@@ -191,7 +190,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     treereco_ttbar_semi->Project("Migration_Matrix_FSRUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",FSRUp.c_str(),selcuts_boosted_central.c_str()));
 //    treereco_ttbar_semi_jecup->Project("Migration_Matrix_jecUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jecUp.c_str(),selcuts_boosted_central.c_str()));
 //    treereco_ttbar_semi_jerup->Project("Migration_Matrix_jerUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jerUp.c_str(),selcuts_boosted_central.c_str()));
-//    treereco_ttbar_semi_hdampup->Project("Migration_Matrix_hdampUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",hdampUp.c_str(),selcuts_boosted_central.c_str()));
+    treereco_ttbar_semi_hdampup->Project("Migration_Matrix_hdampUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",hdampUp.c_str(),selcuts_boosted_central.c_str()));
 
 ///btagging 
  
@@ -219,7 +218,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     treereco_ttbar_semi->Project("Migration_Matrix_FSRDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",FSRDown.c_str(),selcuts_boosted_central.c_str()));
 //    treereco_ttbar_semi_jecdown->Project("Migration_Matrix_jecDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jecDown.c_str(),selcuts_boosted_central.c_str()));
 //    treereco_ttbar_semi_jerdown->Project("Migration_Matrix_jerDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jerDown.c_str(),selcuts_boosted_central.c_str()));
-//    treereco_ttbar_semi_hdampdown->Project("Migration_Matrix_hdampDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",hdampDown.c_str(),selcuts_boosted_central.c_str()));
+    treereco_ttbar_semi_hdampdown->Project("Migration_Matrix_hdampDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",hdampDown.c_str(),selcuts_boosted_central.c_str()));
 
 
 //btagging
@@ -260,8 +259,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
 //    TH1F *Ttbar_2_jecUp = new TH1F("Ttbar_2_jecUp","",newrec,new_rec);    Ttbar_2_jecUp->SetBinContent(1,Migration_Matrix_jecUp->GetBinContent(1,2)); Ttbar_2_jecUp->SetBinContent(2,Migration_Matrix_jecUp->GetBinContent(2,2));
 //    TH1F *Ttbar_1_jerUp = new TH1F("Ttbar_1_jerUp","",newrec,new_rec);   Ttbar_1_jerUp->SetBinContent(1,Migration_Matrix_jerUp->GetBinContent(1,1)); Ttbar_1_jerUp->SetBinContent(2,Migration_Matrix_jerUp->GetBinContent(2,1));
 //    TH1F *Ttbar_2_jerUp = new TH1F("Ttbar_2_jerUp","",newrec,new_rec);   Ttbar_2_jerUp->SetBinContent(1,Migration_Matrix_jerUp->GetBinContent(1,2)); Ttbar_2_jerUp->SetBinContent(2,Migration_Matrix_jerUp->GetBinContent(2,2));
-//    TH1F *Ttbar_1_hdampUp = new TH1F("Ttbar_1_hdampUp","",newrec,new_rec);   Ttbar_1_hdampUp->SetBinContent(1,Migration_Matrix_hdampUp->GetBinContent(1,1)); Ttbar_1_hdampUp->SetBinContent(2,Migration_Matrix_hdampUp->GetBinContent(2,1));
-//    TH1F *Ttbar_2_hdampUp = new TH1F("Ttbar_2_hdampUp","",newrec,new_rec);   Ttbar_2_hdampUp->SetBinContent(1,Migration_Matrix_hdampUp->GetBinContent(1,2)); Ttbar_2_hdampUp->SetBinContent(2,Migration_Matrix_hdampUp->GetBinContent(2,2));
+    TH1F *Ttbar_1_hdampUp = new TH1F("Ttbar_1_hdampUp","",newrec,new_rec);   Ttbar_1_hdampUp->SetBinContent(1,Migration_Matrix_hdampUp->GetBinContent(1,1)); Ttbar_1_hdampUp->SetBinContent(2,Migration_Matrix_hdampUp->GetBinContent(2,1));
+    TH1F *Ttbar_2_hdampUp = new TH1F("Ttbar_2_hdampUp","",newrec,new_rec);   Ttbar_2_hdampUp->SetBinContent(1,Migration_Matrix_hdampUp->GetBinContent(1,2)); Ttbar_2_hdampUp->SetBinContent(2,Migration_Matrix_hdampUp->GetBinContent(2,2));
     TH1F *Ttbar_1_cferr1Up = new TH1F("Ttbar_1_cferr1Up","",newrec,new_rec);   Ttbar_1_cferr1Up->SetBinContent(1,Migration_Matrix_cferr1Up->GetBinContent(1,1)); Ttbar_1_cferr1Up->SetBinContent(2,Migration_Matrix_cferr1Up->GetBinContent(2,1));
     TH1F *Ttbar_2_cferr1Up = new TH1F("Ttbar_2_cferr1Up","",newrec,new_rec);   Ttbar_2_cferr1Up->SetBinContent(1,Migration_Matrix_cferr1Up->GetBinContent(1,2)); Ttbar_2_cferr1Up->SetBinContent(2,Migration_Matrix_cferr1Up->GetBinContent(2,2));
     TH1F *Ttbar_1_cferr2Up = new TH1F("Ttbar_1_cferr2Up","",newrec,new_rec);   Ttbar_1_cferr2Up->SetBinContent(1,Migration_Matrix_cferr2Up->GetBinContent(1,1)); Ttbar_1_cferr2Up->SetBinContent(2,Migration_Matrix_cferr2Up->GetBinContent(2,1));
@@ -307,8 +306,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
 //    TH1F *Ttbar_2_jecDown = new TH1F("Ttbar_2_jecDown","",newrec,new_rec);    Ttbar_2_jecDown->SetBinContent(1,Migration_Matrix_jecDown->GetBinContent(1,2)); Ttbar_2_jecDown->SetBinContent(2,Migration_Matrix_jecDown->GetBinContent(2,2));
 //    TH1F *Ttbar_1_jerDown = new TH1F("Ttbar_1_jerDown","",newrec,new_rec);   Ttbar_1_jerDown->SetBinContent(1,Migration_Matrix_jerDown->GetBinContent(1,1)); Ttbar_1_jerDown->SetBinContent(2,Migration_Matrix_jerDown->GetBinContent(2,1));
 //    TH1F *Ttbar_2_jerDown = new TH1F("Ttbar_2_jerDown","",newrec,new_rec);   Ttbar_2_jerDown->SetBinContent(1,Migration_Matrix_jerDown->GetBinContent(1,2)); Ttbar_2_jerDown->SetBinContent(2,Migration_Matrix_jerDown->GetBinContent(2,2));
-//    TH1F *Ttbar_1_hdampDown = new TH1F("Ttbar_1_hdampDown","",newrec,new_rec);   Ttbar_1_hdampDown->SetBinContent(1,Migration_Matrix_hdampDown->GetBinContent(1,1)); Ttbar_1_hdampDown->SetBinContent(2,Migration_Matrix_hdampDown->GetBinContent(2,1));
-//    TH1F *Ttbar_2_hdampDown = new TH1F("Ttbar_2_hdampDown","",newrec,new_rec);   Ttbar_2_hdampDown->SetBinContent(1,Migration_Matrix_hdampDown->GetBinContent(1,2)); Ttbar_2_hdampDown->SetBinContent(2,Migration_Matrix_hdampDown->GetBinContent(2,2));
+    TH1F *Ttbar_1_hdampDown = new TH1F("Ttbar_1_hdampDown","",newrec,new_rec);   Ttbar_1_hdampDown->SetBinContent(1,Migration_Matrix_hdampDown->GetBinContent(1,1)); Ttbar_1_hdampDown->SetBinContent(2,Migration_Matrix_hdampDown->GetBinContent(2,1));
+    TH1F *Ttbar_2_hdampDown = new TH1F("Ttbar_2_hdampDown","",newrec,new_rec);   Ttbar_2_hdampDown->SetBinContent(1,Migration_Matrix_hdampDown->GetBinContent(1,2)); Ttbar_2_hdampDown->SetBinContent(2,Migration_Matrix_hdampDown->GetBinContent(2,2));
     TH1F *Ttbar_1_cferr1Down = new TH1F("Ttbar_1_cferr1Down","",newrec,new_rec);   Ttbar_1_cferr1Down->SetBinContent(1,Migration_Matrix_cferr1Down->GetBinContent(1,1)); Ttbar_1_cferr1Down->SetBinContent(2,Migration_Matrix_cferr1Down->GetBinContent(2,1));
     TH1F *Ttbar_2_cferr1Down = new TH1F("Ttbar_2_cferr1Down","",newrec,new_rec);   Ttbar_2_cferr1Down->SetBinContent(1,Migration_Matrix_cferr1Down->GetBinContent(1,2)); Ttbar_2_cferr1Down->SetBinContent(2,Migration_Matrix_cferr1Down->GetBinContent(2,2));
     TH1F *Ttbar_1_cferr2Down = new TH1F("Ttbar_1_cferr2Down","",newrec,new_rec);   Ttbar_1_cferr2Down->SetBinContent(1,Migration_Matrix_cferr2Down->GetBinContent(1,1)); Ttbar_1_cferr2Down->SetBinContent(2,Migration_Matrix_cferr2Down->GetBinContent(2,1));
@@ -357,8 +356,8 @@ Ttbar_2_FSRUp->Write();
 //Ttbar_2_jecUp->Write();
 //Ttbar_1_jerUp->Write();
 //Ttbar_2_jerUp->Write();
-//Ttbar_1_hdampUp->Write();
-//Ttbar_2_hdampUp->Write();
+Ttbar_1_hdampUp->Write();
+Ttbar_2_hdampUp->Write();
 
 Ttbar_1_cferr1Up->Write();
 Ttbar_2_cferr1Up->Write();
@@ -401,8 +400,8 @@ Ttbar_2_FSRDown->Write();
 //Ttbar_2_jecDown->Write();
 //Ttbar_1_jerDown->Write();
 //Ttbar_2_jerDown->Write();
-//Ttbar_1_hdampDown->Write();
-//Ttbar_2_hdampDown->Write();
+Ttbar_1_hdampDown->Write();
+Ttbar_2_hdampDown->Write();
 
 Ttbar_1_cferr1Down->Write();
 Ttbar_2_cferr1Down->Write();
@@ -422,24 +421,26 @@ Ttbar_1_lfstats2Down->Write();
 Ttbar_2_lfstats2Down->Write();
 Ttbar_1_jesDown->Write();
 Ttbar_2_jesDown->Write();
- 
-   auto c1    = new TCanvas("c1","c1",600,400);
-   c1->cd();
-   Migration_Matrix->GetYaxis()->SetTitle("#Delta #cbar y_{gen} #cbar");   
-   Migration_Matrix->GetXaxis()->SetTitle("#Delta #cbar y_{rec} #cbar");
-   Migration_Matrix->Draw("COLZ");
 
-   TLatex latex;
-   latex.SetTextSize(0.045);
-   latex.SetTextAlign(11);  //align at top
-   latex.DrawLatex(-1.9,2.05,"CMS preliminary");
 
-   TLatex latex2;
-   latex2.SetTextSize(0.045);
-   latex2.SetTextAlign(11);  //align at top
-   latex2.DrawLatex(0.9,2.05,"58.8 fb^{-1} (13 TeV)");
+auto c1    = new TCanvas("c1","c1",600,400);
+c1->cd();
+Migration_Matrix->GetYaxis()->SetTitle("#Delta #cbar y_{gen} #cbar");   
+Migration_Matrix->GetXaxis()->SetTitle("#Delta #cbar y_{rec} #cbar");
+Migration_Matrix->Draw("COLZ");
 
-   c1->Print("Migration_Matrix.pdf");
+TLatex latex;
+latex.SetTextSize(0.045);
+latex.SetTextAlign(11);  //align at top
+latex.DrawLatex(-1.9,2.05,"CMS preliminary");
+
+TLatex latex2;
+latex2.SetTextSize(0.045);
+latex2.SetTextAlign(11);  //align at top
+latex2.DrawLatex(0.9,2.05,"36.77 fb^{-1} (13 TeV)");
+
+c1->Print("Migration_Matrix.pdf");
+
 
     TH2F *Stability_Matrix = new TH2F("Stability_Matrix","",binnum_gen,bins_gen,binnum_gen,bins_gen);
     TH2F *Purity_Matrix = new TH2F("Purity_Matrix","",binnum_gen,bins_gen,binnum_gen,bins_gen);
@@ -452,7 +453,6 @@ Ttbar_2_jesDown->Write();
             Purity_Matrix->SetBinError(a,b,Migration_Matrix->GetBinError(a,b)/Migration_Matrix->Integral(a,a,1,binnum_gen));
        }
    }
-
 
 // Purity && Stability
 
@@ -497,7 +497,7 @@ Ttbar_2_jesDown->Write();
    TLatex latex4;
    latex4.SetTextSize(0.045);
    latex4.SetTextAlign(11);
-   latex4.DrawLatex(1.1,1.02,"58.8 fb^{-1} (13 TeV)");
+   latex4.DrawLatex(1.1,1.02,"36.77 fb^{-1} (13 TeV)");
 
    cc->Print("PS.pdf");
 
@@ -522,7 +522,7 @@ Ttbar_2_jesDown->Write();
     cout << sig[irow] << endl;
    }
 
- 
+  
 }
 
 

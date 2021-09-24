@@ -19,20 +19,17 @@ for i in range(0,100):
     else:
         systematic_direction_ttbar['wgtMC__PDF_'+str(i)] = ct_top+pdfstring
 
-inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2017_CHS/electron/"
+inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2016_CHS/electron/"
 samplelist = {
+'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2016.root',
 'ttbar_others':'uhh2.AnalysisModuleRunner.MC.TTToOthers.root',
-'singletop':'uhh2.AnalysisModuleRunner.MC.ST_2017v2.root',
-'dy':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_M-50_HT_2017v2.root',
-'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2017v2.root',
+'singletop':'uhh2.AnalysisModuleRunner.MC.ST_2016.root',
 }
 
 categories=['T1']
 fout = TFile('mu_Test_4cat_PDF_SR1T.root', 'recreate')
 
 fout.mkdir("SR1T")
-fout.mkdir("SR1T/ttbar_semi")
-fout.mkdir("SR1T/dy")
 fout.mkdir("SR1T/ttbar_others")
 fout.mkdir("SR1T/wjets")
 fout.mkdir("SR1T/singletop")

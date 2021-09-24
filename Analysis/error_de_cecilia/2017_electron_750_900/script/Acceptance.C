@@ -28,10 +28,10 @@ void Acceptance()
     gStyle->SetOptStat(0);
 
     TChain *chreco_ttbar = new TChain("AnalysisTree","");
-    chreco_ttbar->Add("/nfs/dust/cms/user/hugobg/ZPrime_102X/presel_output/Acc_2017/Selection/uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2017v2_0.root/AnalysisTree");
+    chreco_ttbar->Add("/nfs/dust/cms/user/hugobg/ZPrime_102X/presel_output/Acc_2016v3_CHS/selection/uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2016v3_0.root/AnalysisTree");
     TTree *treereco_ttbar = (TTree*) chreco_ttbar;
 
-    TFile* file = TFile::Open("/nfs/dust/cms/user/hugobg/ZPrime_102X/presel_output/Acc_2017/uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2017v2_0.root");
+    TFile* file = TFile::Open("/nfs/dust/cms/user/hugobg/ZPrime_102X/presel_output/Acc_2016v3_CHS/uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2016v3_24.root");
     TH1 *DeltaY = (TH1*)file->Get("Input_Generator/DeltaY");
 
     
@@ -45,6 +45,7 @@ void Acceptance()
     Int_t  binnum_rec = sizeof(bins_gen)/sizeof(Float_t) - 1;
 
     TH1F *Var_gen = new TH1F("Var_gen","",binnum_gen,bins_gen);
+    TH1F *Acc = new TH1F("Acc","",binnum_rec,rec_gen);
 
     string var_gen = "";
     var_gen = "TMath::Abs(0.5*TMath::Log((GenParticles.m_energy[2] + GenParticles.m_pt[2]*TMath::SinH(GenParticles.m_eta[2]))/(GenParticles.m_energy[2] - GenParticles.m_pt[2]*TMath::SinH(GenParticles.m_eta[2])))) - TMath::Abs(0.5*TMath::Log((GenParticles.m_energy[3] + GenParticles.m_pt[3]*TMath::SinH(GenParticles.m_eta[3]))/(GenParticles.m_energy[3] - GenParticles.m_pt[3]*TMath::SinH(GenParticles.m_eta[3]))))";
@@ -54,6 +55,11 @@ void Acceptance()
 
     cout << Var_gen->GetBinContent(1)/(DeltaY->GetBinContent(1) + DeltaY->GetBinContent(2) + DeltaY->GetBinContent(3) + DeltaY->GetBinContent(4)) << endl;
     cout << Var_gen->GetBinContent(2)/(DeltaY->GetBinContent(5) + DeltaY->GetBinContent(6) + DeltaY->GetBinContent(7) + DeltaY->GetBinContent(8)) << endl;
+
+     auto c1 = new TCanvas("c1","c1",600,400);
+     Acc->SetMarkerStyle(3);
+     Acc->Draw("P");
+     c1->Print("Acc_Resolved.pdf");
 
 
 }

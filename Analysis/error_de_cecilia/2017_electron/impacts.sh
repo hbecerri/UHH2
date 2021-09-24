@@ -8,8 +8,8 @@ declare -a POIS=(
 
 export WORKSPACE=electron_2017.root
 export VERBOSITY=0
-export SetParameters="rgx{r.+}=1,r_Asym=1.28"
-export SetParametersExplicit="r_neg=1,r_Asym=1.28"
+export SetParameters="rgx{r.+}=1,r_Asym=2.17"
+export SetParametersExplicit="r_neg=1,r_Asym=2.17"
 export SetParameterRanges="rgx{r.+}=0.5,2:r_Asym=-10,5"
 export redefineSignalPOIs="r_Asym,r_neg"
 export ASIMOV="-t -1"

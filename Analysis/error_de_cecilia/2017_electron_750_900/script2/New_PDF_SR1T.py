@@ -11,7 +11,7 @@ sigmas = []
 for i in range(140):
     values_per_bin_ttbar[str(i)]  = []
 #get values per bin
-proc = ['ttbar_others', 'wjets', 'dy', 'singletop']
+proc = ['ttbar_others', 'wjets', 'singletop']
 h_bkg = {}
 h_tmp_PDF = {}
 h_PDF = {}

@@ -18,12 +18,12 @@ systematic_direction_ttbar={'nominal':ct_top,
                             'q2ttbarMuRctMuFup__plus':ct_top+'*(weight_murmuf_noneup)'
                            }
 
-inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2017_CHS/muon/"
+inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2016_CHS/muon/"
 samplelist = {
-'singletop':'uhh2.AnalysisModuleRunner.MC.ST_2017.root',
-'dy':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_M-50_HT_2017.root',
-'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2017.root',
-'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2017.root',
+#'singletop':'uhh2.AnalysisModuleRunner.MC.ST_2016.root',
+#'dy':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_M-50_HT_2016.root',
+'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2016.root',
+#'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2016.root',
 'ttbar_others':'uhh2.AnalysisModuleRunner.MC.TTToOthers.root',
 }
 

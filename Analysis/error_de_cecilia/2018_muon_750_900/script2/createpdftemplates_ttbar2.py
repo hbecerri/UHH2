@@ -16,9 +16,9 @@ for i in range(0,100):
     pdfstring  = '*(wgtMC__PDF['+str(i)+'])'
     systematic_direction_ttbar['wgtMC__PDF_'+str(i)] = ct_top+pdfstring
 
-inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/"
+inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2017_CHS/muon/"
 samplelist = {
-'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2018.root',
+'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2017.root',
 }
 
 categories=['T1']
@@ -65,7 +65,7 @@ for cat in categories:
                         mytree.Draw("invmass>>temp",cut)
                         temp.SetName(syst)
                         temp.SetBinContent(1,temp.GetBinContent(0)+temp.GetBinContent(1))
-                        temp.SetBinContent(14,temp.GetBinContent(15)+temp.GetBinContent(14))
+                        temp.SetBinContent(2,temp.GetBinContent(2)+temp.GetBinContent(3))
                         print "Rebinning T1 nom:", str(temp.GetNbinsX())
                         gDirectory.WriteObject(temp,syst)
                         del temp
@@ -74,7 +74,7 @@ for cat in categories:
                         mytree.Draw("invmass>>temp2sys",cut)
                         temp2sys.SetName(syst)
                         temp2sys.SetBinContent(1,temp2sys.GetBinContent(0)+temp2sys.GetBinContent(1))
-                        temp2sys.SetBinContent(14,temp2sys.GetBinContent(15)+temp2sys.GetBinContent(14))
+                        temp2sys.SetBinContent(2,temp2sys.GetBinContent(2)+temp2sys.GetBinContent(3))
                         gDirectory.WriteObject(temp2sys,syst)
                         del temp2sys
 

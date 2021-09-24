@@ -7,8 +7,8 @@ import string
 array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
-#ct_top = '(weight)*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
-ct_top = 'weight*(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)'
+ct_top = 'weight*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
+
 systematic_direction_ttbar={
                             'q2MuRdnMuFdnDown':ct_top+'*(weight_murmuf_downdown)',
                             'q2MuRdnMuFdnUp':ct_top,

@@ -7,8 +7,8 @@ import string
 array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
-#ct_top = '(weight)*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
-ct_top = 'weight*(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)'
+#ct_top = '(weight)*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
+ct_top = 'weight*(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)'
 
 systematic_direction_ttbar={'nominal':ct_top}
 
@@ -16,9 +16,9 @@ for i in range(0,100):
     pdfstring  = '*(wgtMC__PDF['+str(i)+'])'
     systematic_direction_ttbar['wgtMC__PDF_'+str(i)] = ct_top+pdfstring
 
-inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/"
+inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2016_CHS/muon/"
 samplelist = {
-'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2018.root',
+'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2016.root',
 }
 
 categories=['T1']

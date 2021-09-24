@@ -44,7 +44,6 @@ jec shape 1 1 1 1 1 1 1
 ISR shape 1 1 - - - - - 
 FSR shape 1 1 - - - - - 
 hdamp shape 1 1 - - - - - 
-q2 shape 1 1 - - - - - 
 PDF_1 shape 1 1 - - - - - 
 PDF_2 shape 1 1 - - - - - 
 PDF_3 shape 1 1 - - - - - 
@@ -144,4 +143,10 @@ PDF_96 shape 1 1 - - - - -
 PDF_97 shape 1 1 - - - - - 
 PDF_98 shape 1 1 - - - - - 
 PDF_99 shape 1 1 - - - - - 
+q2MuRdnMuFdn shape 1 1 - - - - - 
+q2MuRctMuFdn shape 1 1 - - - - - 
+q2MuRupMuFct shape 1 1 - - - - - 
+q2MuRupMuFup shape 1 1 - - - - - 
+q2MuRctMuFup shape 1 1 - - - - - 
+q2MuRdnMuFct shape 1 1 - - - - - 
 * autoMCStats 1000000 1

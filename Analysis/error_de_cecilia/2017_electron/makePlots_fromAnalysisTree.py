@@ -18,7 +18,7 @@ padGap = 0.01
 
 plotDirectory = "data_pre_plots"
 
-_fileDir ="/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2017_CHS/electron/"
+_fileDir ="/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2016_CHS/electron/all/"
 
 gROOT.SetBatch(True)
 
@@ -61,8 +61,8 @@ if not HasCMSStyle:
 ROOT.gROOT.ForceStyle()
 
 #stackList = { "TTbar":[kRed], "DYJets":[kGreen], "QCD":[kYellow],"WJets":[kBlue], "ST":[kOrange], "Diboson":[kTeal]}
-#stackList = { "TTToSemiLeptonic_2017v2_2":[kRed]} 
-stackList = {"TTToHadronic_2017v2":[kRed-3], "TTToOthers":[kRed+2], "TTToSemiLeptonic_2017v2":[kRed],"DYJetsToLL_M-50_HT_2017v2":[kBlue], "QCD_HT_2017v2":[kTeal], "WJetsToLNu_2017v2":[kGreen], "ST_2017v2":[kYellow], "WW_WZ_ZZ_2017v2":[kOrange]}
+#stackList = { "TTToSemiLeptonic_2016_2":[kRed]} 
+stackList = {"TTToHadronic_2016":[kRed-3], "TTToOthers":[kRed+2], "TTToSemiLeptonic_2016":[kRed],"DYJetsToLL_M-50_HT_2016":[kBlue], "QCD_HT_2016":[kTeal], "WJetsToLNu_2016":[kGreen], "ST_2016":[kYellow], "WW_WZ_ZZ_2016":[kOrange]}
 
 print stackList
 #print stackList[2]
@@ -106,7 +106,7 @@ legend = TLegend(2*legendStart - legendEnd , 0.99 - (T/H)/(1.-padRatio+padOverla
 legend.SetNColumns(2)
 
 
-legendR = TLegend(2*legendStart - legendEnd , 0.99 - (T/H)/(1.-padRatio+padOverlap) - 0.7*legendHeightPer/(1.-padRatio+padOverlap)*round((len(legList)+1)/2.)-0.1, legendEnd, 0.99-(T/H)/(1.-padRatio+padOverlap))
+legendR = TLegend(2*legendStart - legendEnd , 0.99 - (T/H)/(1.-padRatio+padOverlap) - 0.67*legendHeightPer/(1.-padRatio+padOverlap)*round((len(legList)+1)/2.)-0.1, legendEnd, 0.99-(T/H)/(1.-padRatio+padOverlap))
 
 legendR.SetNColumns(3)
 
@@ -232,7 +232,7 @@ histograms = {
 #              "ptrel_mu_jet":["p_{T}^{rel}(#mu1, jet)", "Events",50, [0, 500]],
 }
 
-sample_names = ["DYJetsToLL_M-50_HT_2017v2", "QCD_HT_2017v2", "WJetsToLNu_2017v2", "ST_2017v2", "WW_WZ_ZZ_2017v2", "TTToSemiLeptonic_2017v2","TTToOthers"]
+sample_names = ["DYJetsToLL_M-50_HT_2016", "QCD_HT_2016", "WJetsToLNu_2016", "ST_2016", "WW_WZ_ZZ_2016", "TTToSemiLeptonic_2016","TTToOthers"]
 
 for sample in sample_names:
         	print sample, histName
@@ -240,20 +240,20 @@ for sample in sample_names:
         	print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir,sample)
 		tree_MC[sample]=_file[sample].Get("AnalysisTree")
                 tree_MC_up[sample]=_file[sample].Get("AnalysisTree")   
-	        tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfelec_TightID*weight_sfelec_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*weight_sfelec_Rec*0.87*(ttagN <= 1 && wtagN <= 1 && btagN>=1 && rec_chi2 < 30 && Mttbar > 900)")
+	        tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfelec_TightID*weight_sfelec_Trigger*weight_pu*weight_sfelec_Rec*weight_toptagSF_*0.8*(ttagN <= 1 && wtagN <= 1 && btagN>=1 && rec_chi2 < 30 && Mttbar > 900)")
                 hist1_[sample] = tree_MC[sample].GetHistogram()                
       	  	hist1_[sample].SetFillColor(stackList[sample][0])
         	hist1_[sample].SetLineColor(stackList[sample][0])
 		legendR.AddEntry(hist1_[sample],sample,'f')       
         	hist1_[sample].SetYTitle(histograms[histName][1])        
                 stack.Add(hist1_[sample])
-                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfelec_TightID_up*weight_sfelec_Trigger_up*weight_pu_up*weight_toptagSF_up_*0.84*weight_sfelec_Rec*(ttagN <= 1 && wtagN <= 1 && btagN>=1 && rec_chi2 < 30 && Mttbar > 900)")
+                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfelec_TightID_up*weight_sfelec_Trigger_up*weight_pu_up*weight_toptagSF_up_*weight_sfelec_Rec*0.85*(ttagN <= 1 && wtagN <= 1 && btagN>=1 && rec_chi2 < 30 && Mttbar > 900)")
                 hist1_up[sample] = tree_MC_up[sample].GetHistogram()
                 stack_up.Add(hist1_up[sample])
 
 
 
-_file["Data"] = TFile("%s/uhh2.AnalysisModuleRunner.DATA.DATA_EGamma_Run2017v2.root"%(_fileDir),"read")
+_file["Data"] = TFile("%s/uhh2.AnalysisModuleRunner.DATA.DATA_EGamma_Run2016.root"%(_fileDir),"read")
 print "%s/uhh2.AnalysisModuleRunner.DATA.DATA.root"%(_fileDir)
 
 tree = _file["Data"].Get("AnalysisTree")

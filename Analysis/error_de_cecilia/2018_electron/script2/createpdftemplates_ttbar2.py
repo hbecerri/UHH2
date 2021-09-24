@@ -14,11 +14,14 @@ systematic_direction_ttbar={'nominal':ct_top}
 
 for i in range(0,100):
     pdfstring  = '*(wgtMC__PDF['+str(i)+'])'
-    systematic_direction_ttbar['wgtMC__PDF_'+str(i)] = ct_top+pdfstring
+    if(i==0):
+        systematic_direction_ttbar['wgtMC__PDF_'+str(i)] = ct_top
+    else:
+        systematic_direction_ttbar['wgtMC__PDF_'+str(i)] = ct_top+pdfstring
 
-inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/electron/"
+inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2016_CHS/electron/"
 samplelist = {
-'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2018.root',
+'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2016.root',
 }
 
 categories=['T1']

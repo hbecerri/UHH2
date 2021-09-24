@@ -7,8 +7,8 @@ import string
 array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
-#ct_top = '(weight)*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
-ct_top = 'weight*(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)'
+#ct_top = '(weight)*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
+ct_top = 'weight*(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)'
 systematic_direction_ttbar={'nominal':ct_top,
                             'q2ttbarMuRdnMuFdn__plus':ct_top+'*(weight_murmuf_downdown)',
                             'q2ttbarMuRupMuFup__plus':ct_top+'*(weight_murmuf_upup)',
@@ -18,12 +18,12 @@ systematic_direction_ttbar={'nominal':ct_top,
                             'q2ttbarMuRctMuFup__plus':ct_top+'*(weight_murmuf_noneup)'
                            }
 
-inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/"
+inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2016_CHS/muon/"
 samplelist = {
-'singletop':'uhh2.AnalysisModuleRunner.MC.ST_2018.root',
-'dy':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_M-50_HT_2018.root',
-'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2018.root',
-'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2018.root',
+#'singletop':'uhh2.AnalysisModuleRunner.MC.ST_2016.root',
+#'dy':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_M-50_HT_2016.root',
+'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2016.root',
+#'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2016.root',
 'ttbar_others':'uhh2.AnalysisModuleRunner.MC.TTToOthers.root',
 }
 
@@ -39,7 +39,7 @@ fout.mkdir("SR1T/singletop")
 gROOT.SetBatch(kTRUE)
                                
 for cat in categories:
-    cut_string_GL='(Mttbar>750 & Mttbar<900 &'
+    cut_string_GL='(Mttbar>750 & Mttbar < 900 &'
     if cat == 'T1':
         cut_string = cut_string_GL+' rec_chi2<30  '
         a=0

@@ -170,7 +170,7 @@ jerdowndir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbar
 jerupdir = "/nfs/dust/cms/user/karavdia/ttbar_semilep_13TeV/RunII_80X_v3/ttbarLJAnalysis/TTbarLJAnalysisLiteModule_NOTBLINDED_20180331_JERhybrid_topptReweight_oldMuonSF_toptagMLE3_addTTBarRecDebugVars_dRlepAK8_removeAK8_jer_up/T1_v06/muon/"
 
 
-samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA_SingleMuon_Run2018_BLINDED.root',
+samplelist = {'DATA':'uhh2.AnalysisModuleRunner.DATA.DATA_SingleMuon_Run2016_BLINDED.root',
 'singletop':'uhh2.AnalysisModuleRunner.MC.ST.root',
 'QCD':'uhh2.AnalysisModuleRunner.MC.QCD_Pt.root',
 'DY':'uhh2.AnalysisModuleRunner.MC.DY.root',

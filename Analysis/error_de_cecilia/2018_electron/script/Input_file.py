@@ -5,9 +5,30 @@ from sys import *
 import numpy
 
 Bin = []
+#MTtbar
+#if argv[1] == 'Mttbar':
+#    Bin = [880.,1050.,1300.,1500.,1800.,2200.,2600.,4000.]
+#pT_Ttbar
+if argv[1] == 'pT_ttbar':
+    Bin = [0.,200.,400.,600.,800.,1200.]
 #DeltaY
 if argv[1] == 'DeltaY':
     Bin = [-2.,0.,2.]
+#Delta_phi
+if argv[1] == 'DeltaPhi_thad_lepton':
+    Bin = [0,0.5,1.0,1.5,2.0,2.5,3.0,3.5]
+#Cos_theta
+if argv[1] == 'Cos_theta_thad_tlep':
+    Bin = [-1.,-0.75,-0.5,-0.25,0,0.25,0.5,0.75,1.]
+#Rapidity_ttbar
+if argv[1] == 'Rapidity_ttbar':
+    Bin = [-2.4,-2.,-1.6,-1.2,-0.8,-0.4,0.0,0.4,0.8,1.2,1.6,2,2.4]
+#Rapidity_thad
+if argv[1] == 'Rapidity_had':
+    Bin = [-2.4,-2.,-1.6,-1.2,-0.8,-0.4,0.0,0.4,0.8,1.2,1.6,2,2.4]
+#Rapidity_ttbar
+if argv[1] == 'Rapidity_lep':
+    Bin = [-2.4,-2.,-1.6,-1.2,-0.8,-0.4,0.0,0.4,0.8,1.2,1.6,2,2.4]
 
 nb = len(Bin)-1
 ct = '(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)'
@@ -92,15 +113,19 @@ systematic_direction_otherbkgs={
                             'ele_recDown':'(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec_down)*(weight_HT_HT)',
                             'HTUp':'(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT_up)',
                             'HTDown':'(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT_down)',
+#                            'jecUp':'(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)',
+#                            'jecDown':'(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)',
+#                            'jerUp':'(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)',
+#                            'jerDown':'(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)',
 }
 
 
-jecdowndir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/workdir_Zprime_Analysis_2018_muon_CHS_JECdown/"
-jecupdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/workdir_Zprime_Analysis_2018_muon_CHS_JECup/"
-jerupdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/workdir_Zprime_Analysis_2018_muon_CHS_JERup/"
-jerdowndir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/workdir_Zprime_Analysis_2018_muon_CHS_JERdown/"
-hdampupdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/hdamp_up/uhh2.AnalysisModuleRunner.MC.TTToSemileptonic_hdampup_2018.root"
-hdampdowndir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/hdamp_down/uhh2.AnalysisModuleRunner.MC.TTToSemileptonic_hdampdown_2018.root"
+jecdowndir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/electron/workdir_Zprime_Analysis_2018_electron_CHS_JECdown/"
+jecupdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/electron/workdir_Zprime_Analysis_2018_electron_CHS_JECup/"
+jerupdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/electron/workdir_Zprime_Analysis_2018_electron_CHS_JERup/"
+jerdowndir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/electron/workdir_Zprime_Analysis_2018_electron_CHS_JERdown/"
+hdampupdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/electron/hdamp_up/uhh2.AnalysisModuleRunner.MC.TTToSemileptonic_hdampup_2018v3.root"
+hdampdowndir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/electron/hdamp_down/uhh2.AnalysisModuleRunner.MC.TTToSemileptonic_hdampdown_2018v3.root"
  
 
 inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/electron/"
@@ -117,7 +142,7 @@ fout = TFile('/nfs/dust/cms/user/hugobg/UHH2_v2/CMSSW_10_2_17/src/UHH2/Analysis/
  
 type = ['SR1T']
 
-process  = ['Ttbar','singletop','data_obs','qcd','wjets','dy','ttbar_others']
+process  = ['singletop','data_obs','qcd','wjets','dy','ttbar_others']
 
 gROOT.SetBatch(kTRUE)
 
