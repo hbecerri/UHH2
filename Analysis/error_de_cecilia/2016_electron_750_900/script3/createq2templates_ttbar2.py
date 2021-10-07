@@ -7,7 +7,7 @@ import string
 array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
-ct_top = 'weight*weight_sfelec_TightID*weight_sfelec_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*weight_sfelec_Rec*(weight_HT_HT)'
+ct_top = 'weight*weight_sfelec_TightID*weight_sfelec_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*weight_sfelec_Rec*(weight_HT_HT)*0.86'
 
 systematic_direction_ttbar={
                             'q2MuRdnMuFdnDown':ct_top+'*(weight_murmuf_downdown)',

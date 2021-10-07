@@ -37,5 +37,5 @@ hadd -f DeltaY.root DeltaY_muon.root Input_undfolding_data_.root pdf_ttbar1.root
 python datacard.py
 
 
-#text2workspace.py electron_2018_750_900.txt -o electron_2018_750_900.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -m 125 --PO map='.*/Ttbar_1:r_neg[1,0,20]' --PO map='.*/Ttbar_2:r_pos=expr;;r_pos("2132/2179*@0*(100+@1)/(100-@1)",r_neg,r_Asym[-2,-5,0])' --PO verbose
+#text2workspace.py electron_2018_750_900.txt -o electron_2018_750_900.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -m 125 --PO map='.*/Ttbar_1:r_neg[1,0,20]' --PO map='.*/Ttbar_2:r_pos=expr;;r_pos("2132/2179*@0*(100+@1)/(100-@1)",r_neg,Ac[-2,-5,0])' --PO verbose
 

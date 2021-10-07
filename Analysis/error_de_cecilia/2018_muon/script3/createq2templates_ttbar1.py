@@ -8,7 +8,7 @@ import string
 array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
-ct_top = 'weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
+ct_top = 'weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
 
 systematic_direction_ttbar={
                             'q2MuRdnMuFdnDown':ct_top+'*(weight_murmuf_downdown)',
@@ -62,7 +62,7 @@ for cat in categories:
                         mytree.Draw("invmass>>temp2sys",cut)
                         temp2sys.SetName(syst)
                         temp2sys.SetBinContent(1,temp2sys.GetBinContent(0)+temp2sys.GetBinContent(1))
-                        temp2sys.SetBinContent(14,temp2sys.GetBinContent(15)+temp2sys.GetBinContent(14))
+                        temp2sys.SetBinContent(2,temp2sys.GetBinContent(2)+temp2sys.GetBinContent(3))
                         gDirectory.cd('mu_Test_4cat_q2_SR1T.root:/')
                         gDirectory.WriteObject(temp2sys,'Ttbar_1_'+syst)
                         del temp2sys

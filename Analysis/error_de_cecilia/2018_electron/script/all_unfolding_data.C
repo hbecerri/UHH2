@@ -172,7 +172,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     string  hdampUp = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*0.84";
     string  hdampDown = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*0.84";
 
-    Float_t mistag_nominal = 1.;
+    Float_t mistag_nominal = 0.86;
 
     string selcuts_boosted_central = Form("(ttagN <= 1 && btagN >= 1 && wtagN <= 1 && rec_chi2 < 30 && Mttbar > 900)*%f",mistag_nominal);
 

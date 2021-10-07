@@ -33,13 +33,13 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TTree *treereco_ttbar_semi = (TTree*) chreco_ttbar_semi;
 
     //jec
-    TChain *chreco_ttbar_semi_jecup = new TChain("AnalysisTree","");
-    chreco_ttbar_semi_jecup->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/electron/workdir_Zprime_Analysis_%s_electron_CHS_JECup/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
-    TTree *treereco_ttbar_semi_jecup = (TTree*) chreco_ttbar_semi_jecup;
+    TChain *chreco_ttbar_semi_jecTimePtEtaup = new TChain("AnalysisTree","");
+    chreco_ttbar_semi_jecTimePtEtaup->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/electron/workdir_Zprime_Analysis_%s_electron_CHS_JECup_Timepteta/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
+    TTree *treereco_ttbar_semi_jecTimePtEtaup = (TTree*) chreco_ttbar_semi_jecTimePtEtaup;
 
-    TChain *chreco_ttbar_semi_jecdown = new TChain("AnalysisTree","");
-    chreco_ttbar_semi_jecdown->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/electron/workdir_Zprime_Analysis_%s_electron_CHS_JECdown/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
-    TTree *treereco_ttbar_semi_jecdown = (TTree*) chreco_ttbar_semi_jecdown;
+    TChain *chreco_ttbar_semi_jecTimePtEtadown = new TChain("AnalysisTree","");
+    chreco_ttbar_semi_jecTimePtEtadown->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/electron/workdir_Zprime_Analysis_%s_electron_CHS_JECdown_Timepteta/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
+    TTree *treereco_ttbar_semi_jecTimePtEtadown = (TTree*) chreco_ttbar_semi_jecTimePtEtadown;
 
     //jer
     TChain *chreco_ttbar_semi_jerup = new TChain("AnalysisTree","");
@@ -91,7 +91,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TH2F *Migration_Matrix_ele_recUp = new TH2F("Migration_Matrix_ele_recUp","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_ISRUp = new TH2F("Migration_Matrix_ISRUp","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_FSRUp = new TH2F("Migration_Matrix_FSRUp","",newrec,new_rec,binnum_gen,bins_gen);
-    TH2F *Migration_Matrix_jecUp = new TH2F("Migration_Matrix_jecUp","",newrec,new_rec,binnum_gen,bins_gen);
+    TH2F *Migration_Matrix_jecTimePtEtaUp = new TH2F("Migration_Matrix_jecTimePtEtaUp","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_jerUp = new TH2F("Migration_Matrix_jerUp","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_hdampUp = new TH2F("Migration_Matrix_hdampUp","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_cferr1Up = new TH2F("Migration_Matrix_cferr1Up","",newrec,new_rec,binnum_gen,bins_gen);
@@ -114,7 +114,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TH2F *Migration_Matrix_ele_recDown = new TH2F("Migration_Matrix_ele_recDown","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_ISRDown = new TH2F("Migration_Matrix_ISRDown","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_FSRDown = new TH2F("Migration_Matrix_FSRDown","",newrec,new_rec,binnum_gen,bins_gen);
-    TH2F *Migration_Matrix_jecDown = new TH2F("Migration_Matrix_jecDown","",newrec,new_rec,binnum_gen,bins_gen);
+    TH2F *Migration_Matrix_jecTimePtEtaDown = new TH2F("Migration_Matrix_jecTimePtEtaDown","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_jerDown = new TH2F("Migration_Matrix_jerDown","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_hdampDown = new TH2F("Migration_Matrix_hdampDown","",newrec,new_rec,binnum_gen,bins_gen);
     TH2F *Migration_Matrix_cferr1Down = new TH2F("Migration_Matrix_cferr1Down","",newrec,new_rec,binnum_gen,bins_gen);
@@ -165,14 +165,14 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     string  ISRDown = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*ISRdown";
     string  FSRUp = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*FSRup";
     string  FSRDown = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*FSRdown";
-    string  jecUp = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)";
-    string  jecDown = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)";
+    string  jecTimePtEtaUp = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)";
+    string  jecTimePtEtaDown = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)";
     string  jerUp = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)";
     string  jerDown = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)";
-    string  hdampUp = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*0.84";
-    string  hdampDown = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*0.84";
+    string  hdampUp = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)";
+    string  hdampDown = "(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)";
 
-    Float_t mistag_nominal = 1.;
+    Float_t mistag_nominal = 0.86;
 
     string selcuts_boosted_central = Form("(ttagN <= 1 && btagN >= 1 && wtagN <= 1 && rec_chi2 < 30 && Mttbar > 900)*%f",mistag_nominal);
 
@@ -188,7 +188,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     treereco_ttbar_semi->Project("Migration_Matrix_ele_recUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",ele_recUp.c_str(),selcuts_boosted_central.c_str()));
     treereco_ttbar_semi->Project("Migration_Matrix_ISRUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",ISRUp.c_str(),selcuts_boosted_central.c_str()));
     treereco_ttbar_semi->Project("Migration_Matrix_FSRUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",FSRUp.c_str(),selcuts_boosted_central.c_str()));
-    treereco_ttbar_semi_jecup->Project("Migration_Matrix_jecUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jecUp.c_str(),selcuts_boosted_central.c_str()));
+    treereco_ttbar_semi_jecTimePtEtaup->Project("Migration_Matrix_jecTimePtEtaUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jecTimePtEtaUp.c_str(),selcuts_boosted_central.c_str()));
     treereco_ttbar_semi_jerup->Project("Migration_Matrix_jerUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jerUp.c_str(),selcuts_boosted_central.c_str()));
     treereco_ttbar_semi_hdampup->Project("Migration_Matrix_hdampUp",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",hdampUp.c_str(),selcuts_boosted_central.c_str()));
 
@@ -216,7 +216,7 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     treereco_ttbar_semi->Project("Migration_Matrix_ele_recDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",ele_recDown.c_str(),selcuts_boosted_central.c_str()));
     treereco_ttbar_semi->Project("Migration_Matrix_ISRDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",ISRDown.c_str(),selcuts_boosted_central.c_str()));
     treereco_ttbar_semi->Project("Migration_Matrix_FSRDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",FSRDown.c_str(),selcuts_boosted_central.c_str()));
-    treereco_ttbar_semi_jecdown->Project("Migration_Matrix_jecDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jecDown.c_str(),selcuts_boosted_central.c_str()));
+    treereco_ttbar_semi_jecTimePtEtadown->Project("Migration_Matrix_jecTimePtEtaDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jecTimePtEtaDown.c_str(),selcuts_boosted_central.c_str()));
     treereco_ttbar_semi_jerdown->Project("Migration_Matrix_jerDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",jerDown.c_str(),selcuts_boosted_central.c_str()));
     treereco_ttbar_semi_hdampdown->Project("Migration_Matrix_hdampDown",Form("%s < %f ? %f : (%s > %f ? %f : %s) : %s < %f ? %f : (%s > %f ? %f : %s)",var_gen.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_gen.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_gen.c_str(),var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str()),Form("weight*%s*%s",hdampDown.c_str(),selcuts_boosted_central.c_str()));
 
@@ -255,8 +255,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TH1F *Ttbar_2_ISRUp = new TH1F("Ttbar_2_ISRUp","",newrec,new_rec);   Ttbar_2_ISRUp->SetBinContent(1,Migration_Matrix_ISRUp->GetBinContent(1,2)); Ttbar_2_ISRUp->SetBinContent(2,Migration_Matrix_ISRUp->GetBinContent(2,2));
     TH1F *Ttbar_1_FSRUp = new TH1F("Ttbar_1_FSRUp","",newrec,new_rec);    Ttbar_1_FSRUp->SetBinContent(1,Migration_Matrix_FSRUp->GetBinContent(1,1)); Ttbar_1_FSRUp->SetBinContent(2,Migration_Matrix_FSRUp->GetBinContent(2,1));
     TH1F *Ttbar_2_FSRUp = new TH1F("Ttbar_2_FSRUp","",newrec,new_rec);    Ttbar_2_FSRUp->SetBinContent(1,Migration_Matrix_FSRUp->GetBinContent(1,2)); Ttbar_2_FSRUp->SetBinContent(2,Migration_Matrix_FSRUp->GetBinContent(2,2));
-    TH1F *Ttbar_1_jecUp = new TH1F("Ttbar_1_jecUp","",newrec,new_rec);    Ttbar_1_jecUp->SetBinContent(1,Migration_Matrix_jecUp->GetBinContent(1,1)); Ttbar_1_jecUp->SetBinContent(2,Migration_Matrix_jecUp->GetBinContent(2,1));
-    TH1F *Ttbar_2_jecUp = new TH1F("Ttbar_2_jecUp","",newrec,new_rec);    Ttbar_2_jecUp->SetBinContent(1,Migration_Matrix_jecUp->GetBinContent(1,2)); Ttbar_2_jecUp->SetBinContent(2,Migration_Matrix_jecUp->GetBinContent(2,2));
+    TH1F *Ttbar_1_jecTimePtEtaUp = new TH1F("Ttbar_1_jecTimePtEtaUp","",newrec,new_rec);    Ttbar_1_jecTimePtEtaUp->SetBinContent(1,Migration_Matrix_jecTimePtEtaUp->GetBinContent(1,1)); Ttbar_1_jecTimePtEtaUp->SetBinContent(2,Migration_Matrix_jecTimePtEtaUp->GetBinContent(2,1));
+    TH1F *Ttbar_2_jecTimePtEtaUp = new TH1F("Ttbar_2_jecTimePtEtaUp","",newrec,new_rec);    Ttbar_2_jecTimePtEtaUp->SetBinContent(1,Migration_Matrix_jecTimePtEtaUp->GetBinContent(1,2)); Ttbar_2_jecTimePtEtaUp->SetBinContent(2,Migration_Matrix_jecTimePtEtaUp->GetBinContent(2,2));
     TH1F *Ttbar_1_jerUp = new TH1F("Ttbar_1_jerUp","",newrec,new_rec);   Ttbar_1_jerUp->SetBinContent(1,Migration_Matrix_jerUp->GetBinContent(1,1)); Ttbar_1_jerUp->SetBinContent(2,Migration_Matrix_jerUp->GetBinContent(2,1));
     TH1F *Ttbar_2_jerUp = new TH1F("Ttbar_2_jerUp","",newrec,new_rec);   Ttbar_2_jerUp->SetBinContent(1,Migration_Matrix_jerUp->GetBinContent(1,2)); Ttbar_2_jerUp->SetBinContent(2,Migration_Matrix_jerUp->GetBinContent(2,2));
     TH1F *Ttbar_1_hdampUp = new TH1F("Ttbar_1_hdampUp","",newrec,new_rec);   Ttbar_1_hdampUp->SetBinContent(1,Migration_Matrix_hdampUp->GetBinContent(1,1)); Ttbar_1_hdampUp->SetBinContent(2,Migration_Matrix_hdampUp->GetBinContent(2,1));
@@ -302,8 +302,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TH1F *Ttbar_2_ISRDown = new TH1F("Ttbar_2_ISRDown","",newrec,new_rec);   Ttbar_2_ISRDown->SetBinContent(1,Migration_Matrix_ISRDown->GetBinContent(1,2)); Ttbar_2_ISRDown->SetBinContent(2,Migration_Matrix_ISRDown->GetBinContent(2,2));
     TH1F *Ttbar_1_FSRDown = new TH1F("Ttbar_1_FSRDown","",newrec,new_rec);    Ttbar_1_FSRDown->SetBinContent(1,Migration_Matrix_FSRDown->GetBinContent(1,1)); Ttbar_1_FSRDown->SetBinContent(2,Migration_Matrix_FSRDown->GetBinContent(2,1));
     TH1F *Ttbar_2_FSRDown = new TH1F("Ttbar_2_FSRDown","",newrec,new_rec);    Ttbar_2_FSRDown->SetBinContent(1,Migration_Matrix_FSRDown->GetBinContent(1,2)); Ttbar_2_FSRDown->SetBinContent(2,Migration_Matrix_FSRDown->GetBinContent(2,2));
-    TH1F *Ttbar_1_jecDown = new TH1F("Ttbar_1_jecDown","",newrec,new_rec);    Ttbar_1_jecDown->SetBinContent(1,Migration_Matrix_jecDown->GetBinContent(1,1)); Ttbar_1_jecDown->SetBinContent(2,Migration_Matrix_jecDown->GetBinContent(2,1));
-    TH1F *Ttbar_2_jecDown = new TH1F("Ttbar_2_jecDown","",newrec,new_rec);    Ttbar_2_jecDown->SetBinContent(1,Migration_Matrix_jecDown->GetBinContent(1,2)); Ttbar_2_jecDown->SetBinContent(2,Migration_Matrix_jecDown->GetBinContent(2,2));
+    TH1F *Ttbar_1_jecTimePtEtaDown = new TH1F("Ttbar_1_jecTimePtEtaDown","",newrec,new_rec);    Ttbar_1_jecTimePtEtaDown->SetBinContent(1,Migration_Matrix_jecTimePtEtaDown->GetBinContent(1,1)); Ttbar_1_jecTimePtEtaDown->SetBinContent(2,Migration_Matrix_jecTimePtEtaDown->GetBinContent(2,1));
+    TH1F *Ttbar_2_jecTimePtEtaDown = new TH1F("Ttbar_2_jecTimePtEtaDown","",newrec,new_rec);    Ttbar_2_jecTimePtEtaDown->SetBinContent(1,Migration_Matrix_jecTimePtEtaDown->GetBinContent(1,2)); Ttbar_2_jecTimePtEtaDown->SetBinContent(2,Migration_Matrix_jecTimePtEtaDown->GetBinContent(2,2));
     TH1F *Ttbar_1_jerDown = new TH1F("Ttbar_1_jerDown","",newrec,new_rec);   Ttbar_1_jerDown->SetBinContent(1,Migration_Matrix_jerDown->GetBinContent(1,1)); Ttbar_1_jerDown->SetBinContent(2,Migration_Matrix_jerDown->GetBinContent(2,1));
     TH1F *Ttbar_2_jerDown = new TH1F("Ttbar_2_jerDown","",newrec,new_rec);   Ttbar_2_jerDown->SetBinContent(1,Migration_Matrix_jerDown->GetBinContent(1,2)); Ttbar_2_jerDown->SetBinContent(2,Migration_Matrix_jerDown->GetBinContent(2,2));
     TH1F *Ttbar_1_hdampDown = new TH1F("Ttbar_1_hdampDown","",newrec,new_rec);   Ttbar_1_hdampDown->SetBinContent(1,Migration_Matrix_hdampDown->GetBinContent(1,1)); Ttbar_1_hdampDown->SetBinContent(2,Migration_Matrix_hdampDown->GetBinContent(2,1));
@@ -352,8 +352,8 @@ Ttbar_1_ISRUp->Write();
 Ttbar_2_ISRUp->Write();
 Ttbar_1_FSRUp->Write();
 Ttbar_2_FSRUp->Write();
-Ttbar_1_jecUp->Write();
-Ttbar_2_jecUp->Write();
+Ttbar_1_jecTimePtEtaUp->Write();
+Ttbar_2_jecTimePtEtaUp->Write();
 Ttbar_1_jerUp->Write();
 Ttbar_2_jerUp->Write();
 Ttbar_1_hdampUp->Write();
@@ -396,8 +396,8 @@ Ttbar_1_ISRDown->Write();
 Ttbar_2_ISRDown->Write();
 Ttbar_1_FSRDown->Write();
 Ttbar_2_FSRDown->Write();
-Ttbar_1_jecDown->Write();
-Ttbar_2_jecDown->Write();
+Ttbar_1_jecTimePtEtaDown->Write();
+Ttbar_2_jecTimePtEtaDown->Write();
 Ttbar_1_jerDown->Write();
 Ttbar_2_jerDown->Write();
 Ttbar_1_hdampDown->Write();

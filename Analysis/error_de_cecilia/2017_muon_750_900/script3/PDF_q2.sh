@@ -12,11 +12,11 @@ python createq2templates_ttbar2.py 1 1 "${var_gen}"
 mv mu_Test_4cat_q2_SR1T.root q2_ttbar2.root
 
  
-#python createpdftemplates_ttbar1.py 1 1 "${var_gen}" -b
-#mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar1.root 
+python createpdftemplates_ttbar1.py 1 1 "${var_gen}" -b
+mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar1.root 
 
-#python createpdftemplates_ttbar2.py 1 1 "${var_gen}" -b
-#mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar2.root
+python createpdftemplates_ttbar2.py 1 1 "${var_gen}" -b
+mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar2.root
 
 
 

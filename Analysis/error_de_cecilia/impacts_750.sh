@@ -3,16 +3,16 @@ date
 
 declare -a POIS=(
   "r_neg"
-  "r_Asym"
+  "Ac"
 )
 
 export WORKSPACE=Ac_750.root
 export VERBOSITY=0
 
-export SetParameters="rgx{r.+}=1,r_Asym=0.53"
-export SetParametersExplicit="r_neg=1,r_Asym=0.53"
-export SetParameterRanges="rgx{r.+}=0.5,2:r_Asym=-10,5"
-export redefineSignalPOIs="r_Asym,r_neg"
+export SetParameters="rgx{r.+}=1,Ac=0.45"
+export SetParametersExplicit="r_neg=1,Ac=0.45"
+export SetParameterRanges="rgx{r.+}=0.5,2:Ac=-10,5"
+export redefineSignalPOIs="Ac,r_neg"
 
 #export SetParameters="rgx{r.+}=1,r_pos=1"
 #export SetParametersExplicit="r_neg=1,r_pos=1"

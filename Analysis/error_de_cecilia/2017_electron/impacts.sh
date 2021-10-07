@@ -3,15 +3,15 @@ date
 
 declare -a POIS=(
   "r_neg"
-  "r_Asym"
+  "Ac"
 )
 
 export WORKSPACE=electron_2017.root
 export VERBOSITY=0
-export SetParameters="rgx{r.+}=1,r_Asym=2.17"
-export SetParametersExplicit="r_neg=1,r_Asym=2.17"
-export SetParameterRanges="rgx{r.+}=0.5,2:r_Asym=-10,5"
-export redefineSignalPOIs="r_Asym,r_neg"
+export SetParameters="rgx{r.+}=1,Ac=2.17"
+export SetParametersExplicit="r_neg=1,Ac=2.17"
+export SetParameterRanges="rgx{r.+}=0.5,2:Ac=-10,5"
+export redefineSignalPOIs="Ac,r_neg"
 export ASIMOV="-t -1"
 #export ASIMOV="-t 100 --saveToys"
 #export ASIMOV=""

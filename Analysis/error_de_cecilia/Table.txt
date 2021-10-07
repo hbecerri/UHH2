@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+\fontsize{10}{10}\selectfont
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|} \hline
+ Process &  $\mu_{2018}$ & $\mu_{2017}$ & $\mu_{2016}$ & $e_{2018}$ & $e_{2017}$ & $e_{2016}$ \\[0.1cm]
+  \hline  \rule{-2pt}{11pt}
+$t\bar{t}_{semi}$ & 	20382\pm4595	 &	15391\pm3497	 &	12122\pm3867	 &	5709\pm1816	 &	4361\pm1241	 &	4527\pm1292	\\
+ \hline  \rule{-2pt}{11pt}
+$t\bar{t}_{others}$ & 	3280\pm791	 &	2213\pm572	 &	1437\pm220	 &	988\pm319	 &	676\pm249	 &	435\pm93	\\
+ \hline  \rule{-2pt}{11pt}
+$\Wjets$ & 	1297\pm290	 &	154\pm82	 &	723\pm83	 &	361\pm125	 &	322\pm136	 &	252\pm45	\\
+ \hline  \rule{-2pt}{11pt}
+Single Top & 	1845\pm216	 &	2052\pm378	 &	895\pm99	 &	599\pm145	 &	695\pm224	 &	381\pm74	\\
+ \hline  \rule{-2pt}{11pt}
+Drell-Yan & 	124\pm42	 &	85\pm30	 &	64\pm9	 &	29\pm14	 &	12\pm7	 &	12\pm4	\\
+ \hline  \rule{-2pt}{11pt}
+Multi-Jet & 	1121\pm268	 &	898\pm227	 &	452\pm74	 &	13\pm9	 &	23\pm15	 &	23\pm47	\\
+ \hline  \rule{-2pt}{11pt}
+Total & 	28049\pm4684	 &	20793\pm3572	 &	15693\pm3876	 &	7699\pm1854	 &	6089\pm1293	 &	5745\pm1299	\\
+ \hline  \rule{-2pt}{11pt}
+DATA & 	27298.0	 &	21358.0	 &	14157.0	 &	8361.0	 &	6066.0	 &	5385.0	\\
+ \hline  \rule{-2pt}{11pt}
+\end{tabular}
+\vspace{.5cm}
+\caption{Event yields for each of the six channels used in the analysis ($\mujets$, $\ejets$ and 3 years: 2018, 2017 and 2016) for events that pass the signal sample selection. The errors shown include both MC statistical and total systematic uncertainty. \label{tab:yields}}
+\end{center}
+\end{table}

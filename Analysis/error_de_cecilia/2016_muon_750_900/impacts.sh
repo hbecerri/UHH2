@@ -3,15 +3,15 @@ date
 
 declare -a POIS=(
   "r_neg"
-  "r_Asym"
+  "Ac"
 )
 
 export WORKSPACE=muon_2016_750_900.root
 export VERBOSITY=0
-export SetParameters="rgx{r.+}=1,r_Asym=-0.6"
-export SetParametersExplicit="r_neg=1,r_Asym=-0.6"
-export SetParameterRanges="rgx{r.+}=0.5,2:r_Asym=-10,5"
-export redefineSignalPOIs="r_Asym,r_neg"
+export SetParameters="rgx{r.+}=1,Ac=-0.6"
+export SetParametersExplicit="r_neg=1,Ac=-0.6"
+export SetParameterRanges="rgx{r.+}=0.5,2:Ac=-10,5"
+export redefineSignalPOIs="Ac,r_neg"
 
 #export SetParameters="rgx{r.+}=1,r_pos=1"
 #export SetParametersExplicit="r_neg=1,r_pos=1"
