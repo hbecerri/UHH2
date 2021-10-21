@@ -1,0 +1,149 @@
+1 imax
+* jmax
+* kmax
+----------------
+shapes data_obs  *  /nfs/dust/cms/user/hugobg/UHH2_v2/CMSSW_10_2_17/src/UHH2/Analysis/error_de_cecilia/All_ttbar_muon_2016/DeltaY.root $PROCESS
+shapes *         *  /nfs/dust/cms/user/hugobg/UHH2_v2/CMSSW_10_2_17/src/UHH2/Analysis/error_de_cecilia/All_ttbar_muon_2016/DeltaY.root $PROCESS_nominal $PROCESS_$SYSTEMATIC
+----------------
+bin muon_2016
+observation -1
+----------------
+bin muon_2016 muon_2016 muon_2016 muon_2016 muon_2016 muon_2016 
+process Ttbar_1 Ttbar_2 dy qcd singletop wjets 
+process -1 0 1 2 3 4 
+rate -1 -1 -1 -1 -1 -1 
+----------------
+luminosity_2016 lnN 1.009 1.009 1.009 1.009 1.009 1.009 
+luminosity_161718 lnN 1.006 1.006 1.006 1.006 1.006 1.006 
+xsec_Ttbar lnN 1.05 1.05 - - - - 
+xsec_dy lnN - - 1.30 - - - 
+xsec_qcd lnN - - - 1.30 - - 
+xsec_singletop lnN - - - - 1.30 - 
+xsec_wjets lnN - - - - - 1.30 
+---------------------------------------------------
+hfstats1 shape 1 1 1 1 1 1 
+toptag shape 1 1 1 1 1 1 
+muID shape 1 1 1 1 1 1 
+mistag shape 1 1 1 1 1 1 
+lfstats2 shape 1 1 1 1 1 1 
+hf shape 1 1 1 1 1 1 
+pileup shape 1 1 1 1 1 1 
+muHLT shape 1 1 1 1 1 1 
+lf shape 1 1 1 1 1 1 
+Top_pT_rew shape 1 1 - - - - 
+hfstats2 shape 1 1 1 1 1 1 
+lfstats1 shape 1 1 1 1 1 1 
+cferr1 shape 1 1 1 1 1 1 
+cferr2 shape 1 1 1 1 1 1 
+jes shape 1 1 1 1 1 1 
+HT shape - - 1 1 1 1 
+muon_rec shape 1 1 1 1 1 1 
+ISR shape 1 1 - - - - 
+FSR shape 1 1 - - - - 
+hdamp shape 1 1 - - - - 
+PDF_1 shape - - - - - - 
+PDF_2 shape - - - - - - 
+PDF_3 shape - - - - - - 
+PDF_4 shape - - - - - - 
+PDF_5 shape - - - - - - 
+PDF_6 shape - - - - - - 
+PDF_7 shape - - - - - - 
+PDF_8 shape - - - - - - 
+PDF_9 shape - - - - - - 
+PDF_10 shape - - - - - - 
+PDF_11 shape - - - - - - 
+PDF_12 shape - - - - - - 
+PDF_13 shape - - - - - - 
+PDF_14 shape - - - - - - 
+PDF_15 shape - - - - - - 
+PDF_16 shape - - - - - - 
+PDF_17 shape - - - - - - 
+PDF_18 shape - - - - - - 
+PDF_19 shape - - - - - - 
+PDF_20 shape - - - - - - 
+PDF_21 shape - - - - - - 
+PDF_22 shape - - - - - - 
+PDF_23 shape - - - - - - 
+PDF_24 shape - - - - - - 
+PDF_25 shape - - - - - - 
+PDF_26 shape - - - - - - 
+PDF_27 shape - - - - - - 
+PDF_28 shape - - - - - - 
+PDF_29 shape - - - - - - 
+PDF_30 shape - - - - - - 
+PDF_31 shape - - - - - - 
+PDF_32 shape - - - - - - 
+PDF_33 shape - - - - - - 
+PDF_34 shape - - - - - - 
+PDF_35 shape - - - - - - 
+PDF_36 shape - - - - - - 
+PDF_37 shape - - - - - - 
+PDF_38 shape - - - - - - 
+PDF_39 shape - - - - - - 
+PDF_40 shape - - - - - - 
+PDF_41 shape - - - - - - 
+PDF_42 shape - - - - - - 
+PDF_43 shape - - - - - - 
+PDF_44 shape - - - - - - 
+PDF_45 shape - - - - - - 
+PDF_46 shape - - - - - - 
+PDF_47 shape - - - - - - 
+PDF_48 shape - - - - - - 
+PDF_49 shape - - - - - - 
+PDF_50 shape - - - - - - 
+PDF_51 shape - - - - - - 
+PDF_52 shape - - - - - - 
+PDF_53 shape - - - - - - 
+PDF_54 shape - - - - - - 
+PDF_55 shape - - - - - - 
+PDF_56 shape - - - - - - 
+PDF_57 shape - - - - - - 
+PDF_58 shape - - - - - - 
+PDF_59 shape - - - - - - 
+PDF_60 shape - - - - - - 
+PDF_61 shape - - - - - - 
+PDF_62 shape - - - - - - 
+PDF_63 shape - - - - - - 
+PDF_64 shape - - - - - - 
+PDF_65 shape - - - - - - 
+PDF_66 shape - - - - - - 
+PDF_67 shape - - - - - - 
+PDF_68 shape - - - - - - 
+PDF_69 shape - - - - - - 
+PDF_70 shape - - - - - - 
+PDF_71 shape - - - - - - 
+PDF_72 shape - - - - - - 
+PDF_73 shape - - - - - - 
+PDF_74 shape - - - - - - 
+PDF_75 shape - - - - - - 
+PDF_76 shape - - - - - - 
+PDF_77 shape - - - - - - 
+PDF_78 shape - - - - - - 
+PDF_79 shape - - - - - - 
+PDF_80 shape - - - - - - 
+PDF_81 shape - - - - - - 
+PDF_82 shape - - - - - - 
+PDF_83 shape - - - - - - 
+PDF_84 shape - - - - - - 
+PDF_85 shape - - - - - - 
+PDF_86 shape - - - - - - 
+PDF_87 shape - - - - - - 
+PDF_88 shape - - - - - - 
+PDF_89 shape - - - - - - 
+PDF_90 shape - - - - - - 
+PDF_91 shape - - - - - - 
+PDF_92 shape - - - - - - 
+PDF_93 shape - - - - - - 
+PDF_94 shape - - - - - - 
+PDF_95 shape - - - - - - 
+PDF_96 shape - - - - - - 
+PDF_97 shape - - - - - - 
+PDF_98 shape - - - - - - 
+PDF_99 shape - - - - - - 
+q2MuRdnMuFdn shape - - - - - - 
+q2MuRctMuFdn shape - - - - - - 
+q2MuRupMuFct shape - - - - - - 
+q2MuRupMuFup shape - - - - - - 
+q2MuRctMuFup shape - - - - - - 
+q2MuRdnMuFct shape - - - - - - 
+* autoMCStats 1000000 1

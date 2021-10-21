@@ -58,7 +58,7 @@ systematic_direction_Ttbar={
                             'lfstats1Down':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_lfstats1down)*(muonrecSF_nominal)*(weight_HT_HT)*0.86',
                             'lfstats2Up':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_lfstats2up)*(muonrecSF_nominal)*(weight_HT_HT)*0.86',
                             'lfstats2Down':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_lfstats2down)*(muonrecSF_nominal)*(weight_HT_HT)*0.86',
-                            'Top_pT_rewUp':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(1)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*0.86',
+                            'Top_pT_rewUp':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*0.86',
                             'Top_pT_rewDown':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_down_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*0.86',
                             'mistagUp':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*1.01*(weight_HT_HT)*0.86',
                             'mistagDown':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*0.99*(weight_HT_HT)*0.86',

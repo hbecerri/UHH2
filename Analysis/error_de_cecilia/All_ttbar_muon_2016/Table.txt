@@ -1,0 +1,8 @@
+Ttbar_2_nominal	6104\pm2865
+qcd_nominal	452\pm293
+wjets_nominal	723\pm627
+Ttbar_1_nominal	6018\pm2865
+ttbar_others_nominal	1437\pm1968
+dy_nominal	64\pm39
+singletop_nominal	895\pm584
+DATA	14157.0

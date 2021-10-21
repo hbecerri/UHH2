@@ -61,7 +61,10 @@ ROOT.gROOT.ForceStyle()
 
 #stackList = { "TTbar":[kRed], "DYJets":[kGreen], "QCD":[kYellow],"WJets":[kBlue], "ST":[kOrange], "Diboson":[kTeal]}
 #stackList = { "TTToSemiLeptonic_2016_2":[kRed]} 
-stackList = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2016":[kRed], "DYJetsToLL_M-50_HT_2016":[kBlue], "QCD_HT_2016":[kTeal], "WJetsToLNu_2016":[kGreen], "ST_2016":[kYellow], "WW_WZ_ZZ_2016":[kOrange]}
+#stackList = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2016":[kRed], "DYJetsToLL_M-50_HT_2016":[kBlue], "QCD_HT_2016":[kTeal], "WJetsToLNu_2016":[kGreen], "ST_2016":[kYellow], "WW_WZ_ZZ_2016":[kOrange]}
+
+
+stackList = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2016":[kRed], "Others":[kBlue], "WJetsToLNu_2016":[kGreen]}
 
 print stackList
 #print stackList[2]
@@ -195,6 +198,7 @@ hist1_={}
 histo={}
 
 histograms = {
+              "rec_chi2" : ["rec_chi2", "Events", 30, [0,300]],
               "met_pt"   : ["missing E_{T} [GeV]", "Events", 10, [50,1500]],
               "Mttbar": ["Mttbar", "Events", 20, [900, 2500]], 
               "DeltaY": ["DeltaY", "Events", 12, [-2,2]], 
@@ -209,24 +213,30 @@ histograms = {
               "Mu_phi": ["Mu_phi", "Events", 20, [-3.2, 3.2]],
               "Mu_pt": ["Mu_pt", "Events", 20, [50, 800]],
               "ak8jet1_eta": ["ak8jet1_eta", "Events", 20, [-2.5, 2.5]],
-              "ak8jet1_pt": ["ak8jet1_pt", "Events", 20, [0, 1400]],
+              "ak8jet1_pt": ["ak8jet1_pt", "Events", 20, [0, 1400]], 
 }
 
-sample_names = ["DYJetsToLL_M-50_HT_2016", "QCD_HT_2016", "WJetsToLNu_2016", "ST_2016", "WW_WZ_ZZ_2016","TTToSemiLeptonic_2016","TTToOthers"]
+sample_names = ["DYJetsToLL_M-50_HT_2016", "QCD_HT_2016", "ST_2016",  "WJetsToLNu_2016","TTToSemiLeptonic_2016","TTToOthers"]
 
 for sample in sample_names:
         	print sample, histName
 		_file[sample] = TFile("%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir,sample),"read")
         	print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir,sample)
 		tree2_MC[sample]=_file[sample].Get("AnalysisTree")
-	        tree2_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN <= 1 && wtagN <=1 && btagN >= 1 && Mttbar > 900 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)*0.9")
+	        tree2_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(1)*weight*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)*0.86")
                 hist1_[sample] = tree2_MC[sample].GetHistogram()
-                
-      	  	hist1_[sample].SetFillColor(stackList[sample][0])
-        	hist1_[sample].SetLineColor(stackList[sample][0])
-                
-		legendR.AddEntry(hist1_[sample],sample,'f')       
-        	hist1_[sample].SetYTitle(histograms[histName][1])        
+
+                if(sample == "DYJetsToLL_M-50_HT_2016" or sample == "QCD_HT_2016" or sample == "ST_2016"):
+                    hist1_[sample].SetFillColor(stackList["Others"][0])
+                    hist1_[sample].SetLineColor(stackList["Others"][0])
+                    if(sample == "ST_2016"):
+                        legendR.AddEntry(hist1_[sample],"Others",'f')       
+  
+                else:              
+      	  	    hist1_[sample].SetFillColor(stackList[sample][0])
+        	    hist1_[sample].SetLineColor(stackList[sample][0])           
+		    legendR.AddEntry(hist1_[sample],sample,'f')       
+        	    hist1_[sample].SetYTitle(histograms[histName][1])        
 		stack.Add(hist1_[sample])     
 
 
@@ -234,7 +244,7 @@ _file["Data"] = TFile("%s/uhh2.AnalysisModuleRunner.DATA.DATA_SingleMuon_Run2016
 print "%s/uhh2.AnalysisModuleRunner.DATA.DATA.root"%(_fileDir)
 
 tree = _file["Data"].Get("AnalysisTree")
-tree.Draw("%s>>dat_hist(%i,%i,%f)"%(histName,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"ttagN <= 1 && wtagN <=1 && btagN >= 1 && Mttbar > 900 && rec_chi2<30")
+tree.Draw("%s>>dat_hist(%i,%i,%f)"%(histName,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"1")
 dataHist=tree.GetHistogram()
 print "total:",dataHist.Integral()
 print "bins:",dataHist.GetNbinsX()
