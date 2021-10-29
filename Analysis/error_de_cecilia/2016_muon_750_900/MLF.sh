@@ -19,7 +19,8 @@ for var in ${StringArray[@]}; do
 done
 
 for var in ${StringArray[@]}; do
-        root -l -b -q "script/all_unfolding_data.C(\"${var}\",\"${var_gen}\")"
+        root -l -b -q "script/all_unfolding_data_750.C(\"${var}\",\"${var_gen}\")"
+        root -l -b -q "script/all_unfolding_data_900.C(\"${var}\",\"${var_gen}\")"        
 done
 
 #cp script2/pdf.root .
@@ -31,7 +32,13 @@ cp script3/q2_ttbar1.root .
 cp script3/pdf_ttbar2.root .
 cp script3/q2_ttbar2.root .
 
-hadd DeltaY.root DeltaY_muon.root Input_undfolding_data_.root pdf_ttbar1.root q2_ttbar1.root pdf_ttbar2.root q2_ttbar2.root
+cp script3/pdf_ttbar3.root .
+cp script3/q2_ttbar3.root .
+
+cp script3/pdf_ttbar4.root .
+cp script3/q2_ttbar4.root .
+
+hadd -f DeltaY.root DeltaY_muon.root Input_undfolding_data_750.root Input_undfolding_data_900.root pdf_ttbar1.root q2_ttbar1.root pdf_ttbar2.root q2_ttbar2.root pdf_ttbar3.root q2_ttbar3.root pdf_ttbar4.root q2_ttbar4.root
 
 python datacard.py
  

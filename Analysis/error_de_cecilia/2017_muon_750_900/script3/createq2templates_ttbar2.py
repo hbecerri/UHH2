@@ -1,5 +1,6 @@
 from ROOT import *
 import sys
+from sys import argv
 import numpy
 from array import array
 import string
@@ -7,7 +8,15 @@ import string
 array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
+
 ct_top = 'weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
+
+Mttbar_gen_energia = 'TMath::Power(GenParticles.m_energy[2] + GenParticles.m_energy[3],2)'
+Mttbar_gen_p1 = 'TMath::Power(GenParticles.m_pt[2]*TMath::Cos(GenParticles.m_phi[2]) + GenParticles.m_pt[3]*TMath::Cos(GenParticles.m_phi[3]),2)'
+Mttbar_gen_p2 = 'TMath::Power(GenParticles.m_pt[2]*TMath::Sin(GenParticles.m_phi[2]) + GenParticles.m_pt[3]*TMath::Sin(GenParticles.m_phi[3]),2)'
+Mttbar_gen_p3 = 'TMath::Power(GenParticles.m_pt[2]*TMath::SinH(GenParticles.m_eta[2]) + GenParticles.m_pt[3]*TMath::SinH(GenParticles.m_eta[3]),2)'
+
+Mttbar_gen = 'TMath::Sqrt({e} - {p1} - {p2} - {p3})'.format(e=Mttbar_gen_energia,p1=Mttbar_gen_p1,p2=Mttbar_gen_p2,p3=Mttbar_gen_p3)
 
 systematic_direction_ttbar={
                             'q2MuRdnMuFdnDown':ct_top+'*(weight_murmuf_downdown)',
@@ -32,6 +41,7 @@ samplelist = {
 categories=['T1']
 fout = TFile('mu_Test_4cat_q2_SR1T.root', 'recreate')
 
+
 gROOT.SetBatch(kTRUE)
                                
 for cat in categories:
@@ -49,7 +59,7 @@ for cat in categories:
                 cut = str(cut_string+' & ttagN==1 & btagN>=0)')
             else:
                 for syst in systematic_direction_ttbar:
-                    cut = str(cut_string+' & ttagN<=%s & btagN>=1 & wtagN<=%s & %s >= 0)*1.00*'%(sys.argv[1],sys.argv[2],sys.argv[3])+systematic_direction_ttbar[syst])
+                    cut = str(cut_string+' & ttagN<=%s & btagN>=1 & wtagN<=%s & %s > 0 & %s < 900)*1.00*'%(sys.argv[1],sys.argv[2],argv[3],Mttbar_gen)+systematic_direction_ttbar[syst])
                     print("--------------------------------------")
                     print "Processing: ",key_sample
                     print "Applying cut:",cut

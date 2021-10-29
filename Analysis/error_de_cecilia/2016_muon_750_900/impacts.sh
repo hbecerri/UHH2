@@ -1,27 +1,33 @@
 #!/usr/bin/env bash
 date
 
+#declare -a POIS=(
+#  "r_neg"
+#  "Ac"
+#)
+
 declare -a POIS=(
-  "r_neg"
-  "Ac"
+  "r_1"
+  "r_2"
+  "r_3"
+  "r_4"
 )
 
 export WORKSPACE=muon_2016_750_900.root
 export VERBOSITY=0
-export SetParameters="rgx{r.+}=1,Ac=-0.6"
-export SetParametersExplicit="r_neg=1,Ac=-0.6"
-export SetParameterRanges="rgx{r.+}=0.5,2:Ac=-10,5"
-export redefineSignalPOIs="Ac,r_neg"
 
-#export SetParameters="rgx{r.+}=1,r_pos=1"
-#export SetParametersExplicit="r_neg=1,r_pos=1"
-#export SetParameterRanges="rgx{r.+}=0.5,2:r_pos=0.5,2"
-#export redefineSignalPOIs="r_pos,r_neg"
+#export SetParameters="rgx{r.+}=1,Ac=0.7"
+#export SetParametersExplicit="r_neg=1,Ac=0.7"
+#export SetParameterRanges="rgx{r.+}=0.5,2:Ac=-10,5"
+#export redefineSignalPOIs="Ac,r_neg"
+
+export SetParametersExplicit="r_1=1,r_2=1,r_3=1,r_4=1"
+export SetParameterRanges="r_1=0.6,1.4:r_2=0.6,1.6:r_3=0.6,1.6:r_4=0.6,1.6"
+export redefineSignalPOIs="r_1,r_2,r_3,r_4"
 
 export ASIMOV="-t -1"
 #export ASIMOV="-t 100 --saveToys"
 #export ASIMOV=""
-
 
 
 ###IMPACTS
@@ -30,7 +36,7 @@ echo
 echo "DO INITIAL FIT"
 echo
 echo
-combineTool.py -M Impacts -d $WORKSPACE -v $VERBOSITY --doInitialFit --robustFit 1 -m 125 --redefineSignalPOIs $redefineSignalPOIs --setParameters $SetParameters --setParameterRanges $SetParameterRanges --cminDefaultMinimizerStrategy 0 --saveWorkspace $ASIMOV
+combineTool.py -M Impacts -d $WORKSPACE -v $VERBOSITY --doInitialFit --robustFit 1 -m 125 --redefineSignalPOIs $redefineSignalPOIs --setParameters $SetParametersExplicit --setParameterRanges $SetParameterRanges --cminDefaultMinimizerStrategy 0 --saveWorkspace $ASIMOV
 
 
 
