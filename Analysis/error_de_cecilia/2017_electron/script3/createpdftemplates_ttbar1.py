@@ -25,7 +25,8 @@ for i in range(1,100):
 
 inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2017_CHS/electron/"
 samplelist = {
-'ttbar_semi':'uhh2.AnalysisModuleRunner.MC.TTToSemiLeptonic_2017v2.root',
+'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2017v2.root',
+'ttbar_others':'uhh2.AnalysisModuleRunner.MC.TTToOthers.root',
 }
 
 categories=['T1']

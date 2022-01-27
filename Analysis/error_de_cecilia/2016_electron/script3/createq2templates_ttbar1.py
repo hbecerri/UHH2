@@ -9,8 +9,6 @@ array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
 ct_top = 'weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*0.86'
- 
-#ct_top = 'weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
 
 Mttbar_gen_energia = 'TMath::Power(GenParticles.m_energy[2] + GenParticles.m_energy[3],2)'
 Mttbar_gen_p1 = 'TMath::Power(GenParticles.m_pt[2]*TMath::Cos(GenParticles.m_phi[2]) + GenParticles.m_pt[3]*TMath::Cos(GenParticles.m_phi[3]),2)'

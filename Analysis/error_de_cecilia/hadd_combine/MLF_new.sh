@@ -15,12 +15,12 @@ cp electron_750/electron_750.txt .
  
 #combineCards.py muon_900=muon_900.txt electron_900=electron_900.txt > Ac_900.txt
 #combineCards.py muon_750=muon_750.txt electron_750=electron_750.txt  > Ac_750.txt #electron_750=electron_750.txt > Ac_750.txt
-combineCards.py muon_900=muon_900.txt electron_900=electron_900.txt muon_750=muon_750.txt electron_750=electron_750.txt > Ac.txt
+combineCards.py muon_900=muon_900.txt electron_900=electron_900.txt > Ac.txt
 
 #text2workspace.py Ac_900.txt -o Ac_900.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -m 125 --PO map='.*/Ttbar_1:r_1[1,0,20]' --PO map='.*/Ttbar_2:r_2[1,0,20]' --PO map='.*/Ttbar_3:r_3[1,0,20]' --PO map='.*/Ttbar_4:r_4[1,0,20]'   --PO verbose
 #text2workspace.py Ac_750.txt -o Ac_750.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -m 125 --PO map='.*/Ttbar_1:r_1[1,0,20]' --PO map='.*/Ttbar_2:r_2[1,0,20]' --PO map='.*/Ttbar_3:r_3[1,0,20]' --PO map='.*/Ttbar_4:r_4[1,0,20]'   --PO verbose
 
-text2workspace.py Ac.txt -o Ac.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -m 125 --PO map='.*/Ttbar_1:r_1[1,0,20]' --PO map='.*/Ttbar_2:r_2[1,0,20]' --PO map='.*/Ttbar_3:r_3[1,0,20]' --PO map='.*/Ttbar_4:r_4[1,0,20]'   --PO verbose
+text2workspace.py Ac.txt -o Ac.root  -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel -m 125 --PO map='.*/Ttbar_1:r_1[1,0,3]' --PO map='.*/Ttbar_2:r_2[1,0,3]' --PO map='.*/Ttbar_3:r_3[1,0,2]' --PO map='.*/Ttbar_4:r_4[1,0,2]'   --PO verbose
 
 bash impacts_new.sh
 mv r_1.pdf r_1_900.pdf

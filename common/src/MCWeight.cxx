@@ -333,7 +333,8 @@ MCToptaggSF::MCToptaggSF(uhh2::Context & ctx,
   float wgt = 1.;
 
  //2018
-/*  float mergedTop_nominal_1 = 0.998216957;  float mergedTop_nominal_2 = 0.99866605;  float mergedTop_nominal_3 = 0.98657537;  float mergedTop_nominal_4 = 0.94760686;  float mergedTop_nominal_5 = 0.94760686;
+/*
+  float mergedTop_nominal_1 = 0.998216957;  float mergedTop_nominal_2 = 0.99866605;  float mergedTop_nominal_3 = 0.98657537;  float mergedTop_nominal_4 = 0.94760686;  float mergedTop_nominal_5 = 0.94760686;
   float mergedTop_up_1 = 1.0100830;  float mergedTop_up_2 = 1.0841380;  float mergedTop_up_3 = 1.0128756;  float mergedTop_up_4 = 0.9817470;  float mergedTop_up_5 = 1.0247426;
   float mergedTop_down_1 = 0.95425612;  float mergedTop_down_2 = 0.97232574;  float mergedTop_down_3 = 0.96027511;  float mergedTop_down_4 = 0.90903896;  float mergedTop_down_5 = 0.87047106;
 
@@ -1032,7 +1033,11 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
         h_btag_weight_bc_up_    (ctx.declare_event_output<float>("weight_btag_bc_up"+weights_name_postfix)),
         h_btag_weight_bc_down_  (ctx.declare_event_output<float>("weight_btag_bc_down"+weights_name_postfix)),
         h_btag_weight_udsg_up_  (ctx.declare_event_output<float>("weight_btag_udsg_up"+weights_name_postfix)),
-        h_btag_weight_udsg_down_(ctx.declare_event_output<float>("weight_btag_udsg_down"+weights_name_postfix))
+        h_btag_weight_udsg_down_(ctx.declare_event_output<float>("weight_btag_udsg_down"+weights_name_postfix)),
+        h_btag_weight_bc_up_un_    (ctx.declare_event_output<float>("weight_btag_bc_up_un"+weights_name_postfix)),
+        h_btag_weight_bc_down_un_  (ctx.declare_event_output<float>("weight_btag_bc_down_un"+weights_name_postfix)),
+        h_btag_weight_udsg_up_un_  (ctx.declare_event_output<float>("weight_btag_udsg_up_un"+weights_name_postfix)),
+        h_btag_weight_udsg_down_un_(ctx.declare_event_output<float>("weight_btag_udsg_down_un"+weights_name_postfix))
         {
           auto dataset_type = ctx.get("dataset_type");
           bool is_mc = dataset_type == "MC";
@@ -1061,10 +1066,13 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
           BTagCalibration calib_data(btag_.GetTagger(), ctx.get(xml_calib_name));
           BTagEntry::OperatingPoint op = (BTagEntry::OperatingPoint) btag_.GetWorkingPoint();
 
-          calib_up_.reset(new BTagCalibrationReader(op, "up"));
+          calib_up_.reset(new BTagCalibrationReader(op, "up_correlated"));
           calib_.reset(new BTagCalibrationReader(op, "central"));
-          calib_down_.reset(new BTagCalibrationReader(op, "down"));
-
+          calib_down_.reset(new BTagCalibrationReader(op, "down_correlated"));
+//Nuevp!!!!!!!!!!
+          calib_up_un_.reset(new BTagCalibrationReader(op, "up_uncorrelated"));
+          calib_down_un_.reset(new BTagCalibrationReader(op, "down_uncorrelated"));
+//!!!!!!!!!!!!!
           calib_up_->load(calib_data, BTagEntry::FLAV_B, measType_bc);
           calib_up_->load(calib_data, BTagEntry::FLAV_C, measType_bc);
           calib_up_->load(calib_data, BTagEntry::FLAV_UDSG, measType_udsg);
@@ -1074,7 +1082,16 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
           calib_down_->load(calib_data, BTagEntry::FLAV_B, measType_bc);
           calib_down_->load(calib_data, BTagEntry::FLAV_C, measType_bc);
           calib_down_->load(calib_data, BTagEntry::FLAV_UDSG, measType_udsg);
-        }
+//!!!!!!!
+          calib_up_un_->load(calib_data, BTagEntry::FLAV_B, measType_bc);
+          calib_up_un_->load(calib_data, BTagEntry::FLAV_C, measType_bc);
+          calib_up_un_->load(calib_data, BTagEntry::FLAV_UDSG, measType_udsg);
+          calib_down_un_->load(calib_data, BTagEntry::FLAV_B, measType_bc);
+          calib_down_un_->load(calib_data, BTagEntry::FLAV_C, measType_bc);
+          calib_down_un_->load(calib_data, BTagEntry::FLAV_UDSG, measType_udsg);
+//!!!!!!!!
+
+       }
 
         bool MCBTagScaleFactor::process(Event & event) {
 
@@ -1086,17 +1103,21 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
             event.set(h_btag_weight_bc_down_,   1.);
             event.set(h_btag_weight_udsg_up_,   1.);
             event.set(h_btag_weight_udsg_down_, 1.);
+            event.set(h_btag_weight_bc_up_un_,     1.);
+            event.set(h_btag_weight_bc_down_un_,   1.);
+            event.set(h_btag_weight_udsg_up_un_,   1.);
+            event.set(h_btag_weight_udsg_down_un_, 1.);
             return true;
           }
 
-          float weight, weightErrBC, weightErrUDSG;
+          float weight, weightErrBC, weightErrUDSG, weightErrBC_un, weightErrUDSG_un;
           if (event.is_valid(h_topjets_)) {
-            std::tie(weight, weightErrBC, weightErrUDSG) = get_weight_btag(event.get(h_topjets_), event);
+            std::tie(weight, weightErrBC, weightErrUDSG, weightErrBC_un, weightErrUDSG_un) = get_weight_btag(event.get(h_topjets_), event);
           } else {
             assert(event.is_valid(h_jets_));
             TopJet tj;
             tj.set_subjets(event.get(h_jets_));
-            std::tie(weight, weightErrBC, weightErrUDSG) = get_weight_btag(vector<TopJet>({tj}), event);
+            std::tie(weight, weightErrBC, weightErrUDSG, weightErrBC_un, weightErrUDSG_un) = get_weight_btag(vector<TopJet>({tj}), event);
           }
           float weightErr = sqrt(weightErrBC*weightErrBC + weightErrUDSG*weightErrUDSG);
 
@@ -1107,6 +1128,12 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
           float weight_udsg_up   = weight + weightErrUDSG;
           float weight_udsg_down = weight - weightErrUDSG;
 
+          float weight_bc_up_un     = weight + weightErrBC_un;
+          float weight_bc_down_un   = weight - weightErrBC_un;
+          float weight_udsg_up_un   = weight + weightErrUDSG_un;
+          float weight_udsg_down_un = weight - weightErrUDSG_un;
+
+
           event.set(h_btag_weight_,           weight);
           event.set(h_btag_weight_up_,        weight_up);
           event.set(h_btag_weight_down_,      weight_down);
@@ -1114,6 +1141,12 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
           event.set(h_btag_weight_bc_down_,   weight_bc_down);
           event.set(h_btag_weight_udsg_up_,   weight_udsg_up);
           event.set(h_btag_weight_udsg_down_, weight_udsg_down);
+
+          event.set(h_btag_weight_bc_up_un_,     weight_bc_up_un);
+          event.set(h_btag_weight_bc_down_un_,   weight_bc_down_un);
+          event.set(h_btag_weight_udsg_up_un_,   weight_udsg_up_un);
+          event.set(h_btag_weight_udsg_down_un_, weight_udsg_down_un);
+
 
           if (sysType_ == "up")        {event.weight *= weight_up;}
           else if (sysType_ == "down")      {event.weight *= weight_down;}
@@ -1128,7 +1161,7 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
 
 
         // originally taken from https://twiki.cern.ch/twiki/pub/CMS/BTagSFMethods/Method1aExampleCode_CSVM.cc.txt
-        std::tuple<float, float, float> MCBTagScaleFactor::get_weight_btag(const vector<TopJet> &jets, Event & event) {
+        std::tuple<float, float, float, float, float> MCBTagScaleFactor::get_weight_btag(const vector<TopJet> &jets, Event & event) {
 
           float mcTag = 1.;
           float mcNoTag = 1.;
@@ -1139,6 +1172,11 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
           float err2 = 0.;
           float err3 = 0.;
           float err4 = 0.;
+
+          float err1_un = 0.;
+          float err2_un = 0.;
+          float err3_un = 0.;
+          float err4_un = 0.;
 
           //Here we loop over all selected jets
           for (const auto & topjet : jets) { for (const auto & jet : topjet.subjets()) {
@@ -1169,30 +1207,44 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
             pt_for_eff = (pt_for_eff < pt_high_edge) ? pt_for_eff : pt_high_edge - 1.;
             float eff = eff_hist->GetBinContent(eff_hist->FindFixBin(pt_for_eff, abs_eta));
 
-            float SF = 1., SFerr = 0.;
+            float SF = 1., SFerr = 0., SFerr_un = 0.;
             std::tie(SF, SFerr) = get_SF_btag(pt, abs_eta, hadronFlavor);
+            std::tie(SF, SFerr_un) = get_SF_btag_un(pt, abs_eta, hadronFlavor);
 
             if (btag_(jet, event)) {
               mcTag *= eff;
               dataTag *= eff*SF;
 
-              if(hadronFlavor==5 || hadronFlavor ==4)  err1 += SFerr/SF; ///correlated for b/c
-              else err3 += SFerr/SF; //correlated for light
-
+              if(hadronFlavor==5 || hadronFlavor ==4) { 
+              err1 += SFerr/SF; ///correlated for b/c
+              err1_un += SFerr_un/SF;
+              }
+              else{ 
+		err3 += SFerr/SF; //correlated for light
+		err3_un += SFerr_un/SF;
+              }
             }else{
               mcNoTag *= (1- eff);
               dataNoTag *= (1- eff*SF);
 
-              if(hadronFlavor==5 || hadronFlavor ==4 ) err2 += (-eff*SFerr)/(1-eff*SF); /// /correlated for b/c
-              else err4 +=  (-eff*SFerr)/(1-eff*SF);  ////correlated for light
-
+              if(hadronFlavor==5 || hadronFlavor ==4 ){
+		 err2 += (-eff*SFerr)/(1-eff*SF);
+		 err2_un += (-eff*SFerr_un)/(1-eff*SF); /// /correlated for b/c
+              }else{
+  		 err4 +=  (-eff*SFerr)/(1-eff*SF);  ////correlated for light
+                 err4_un +=  (-eff*SFerr_un)/(1-eff*SF);  ////correlated for light
+	      }	
             }
 
           }}
 
           float wtbtag = (dataNoTag * dataTag ) / ( mcNoTag * mcTag );
+
           float wtbtagErrBC = fabs(err1+err2) * wtbtag;
           float wtbtagErrUDSG = fabs(err3+err4) * wtbtag;
+          float wtbtagErrBC_un = fabs(err1_un+err2_un) * wtbtag;
+          float wtbtagErrUDSG_un = fabs(err3_un+err4_un) * wtbtag;
+
 
           string errStr = " is NaN in MCBTagScaleFactor::get_weight_btag. Please check that all efficiency-bins are greater than 0.";
           if (isnan(wtbtag)) {
@@ -1204,8 +1256,13 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
           if (isnan(wtbtagErrUDSG)) {
             throw runtime_error("wtbtagErrUDSG" + errStr);
           }
-
-          return std::make_tuple(wtbtag, wtbtagErrBC, wtbtagErrUDSG);
+          if (isnan(wtbtagErrBC_un)) {
+            throw runtime_error("wtbtagErrBC" + errStr);
+          }
+          if (isnan(wtbtagErrUDSG_un)) {
+            throw runtime_error("wtbtagErrUDSG" + errStr);
+          }
+          return std::make_tuple(wtbtag, wtbtagErrBC, wtbtagErrUDSG, wtbtagErrBC_un, wtbtagErrUDSG_un);
         }
 
 
@@ -1232,11 +1289,10 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
             float SF_up   = calib_up_->eval(btagentry_flav, abs_eta, pt_for_eval);
             float SF      = calib_->eval(btagentry_flav, abs_eta, pt_for_eval);
             float SF_down = calib_down_->eval(btagentry_flav, abs_eta, pt_for_eval);
-
             float SFerr_up_ = fabs(SF - SF_up);
             float SFerr_down_ = fabs(SF - SF_down);  // positive value!!
-
             float SFerr = SFerr_up_ > SFerr_down_ ? SFerr_up_ : SFerr_down_;
+
 
             if (is_out_of_bounds) {
               SFerr *= 2;
@@ -1252,6 +1308,50 @@ MCMuonScaleFactor::MCMuonScaleFactor(uhh2::Context & ctx,
               SFerr = 0.;
             }
             return std::make_pair(SF, SFerr);
+          }
+
+
+//nuevo
+        std::pair<float, float> MCBTagScaleFactor::get_SF_btag_un(float pt, float abs_eta, int flav) {
+
+          auto btagentry_flav = flav == 5 ? BTagEntry::FLAV_B : (
+            flav == 4 ? BTagEntry::FLAV_C :
+            BTagEntry::FLAV_UDSG);
+
+            auto sf_bounds = calib_->min_max_pt(btagentry_flav, abs_eta);
+
+            float pt_for_eval = pt;
+            bool is_out_of_bounds = false;
+            if (pt < sf_bounds.first) {
+              pt_for_eval = sf_bounds.first + 1e-5;
+              is_out_of_bounds = true;
+            } else if (pt > sf_bounds.second) {
+              pt_for_eval = sf_bounds.second - 0.1;
+              is_out_of_bounds = true;
+            }
+
+            float SF      = calib_->eval(btagentry_flav, abs_eta, pt_for_eval);
+            float SF_up_un   = calib_up_un_->eval(btagentry_flav, abs_eta, pt_for_eval);
+            float SF_down_un = calib_down_un_->eval(btagentry_flav, abs_eta, pt_for_eval);
+            float SFerr_up_un_ = fabs(SF - SF_up_un);
+            float SFerr_down_un_ = fabs(SF - SF_down_un);  // positive value!!
+            float SFerr_un = SFerr_up_un_ > SFerr_down_un_ ? SFerr_up_un_ : SFerr_down_un_;
+
+
+            if (is_out_of_bounds) {
+              SFerr_un *= 2;
+            }
+
+            if (SF < 1e-10) {
+              cout << "WARNING: SF vanishes! Will return SF = 1., SFerr = 0., Values: "
+              << "(SF, SFerr, is_out_of_bounds, lowbound, highbound, pt, pt_for_eval, btagentry_flav): "
+              << SF << ", " << SFerr_un << ", " << is_out_of_bounds << ", "
+              << sf_bounds.first << ", " << sf_bounds.second << ", "
+              << pt << ", " << pt_for_eval << ", " << btagentry_flav << endl;
+              SF = 1.;
+              SFerr_un = 0.;
+            }
+            return std::make_pair(SF, SFerr_un);
           }
 
 

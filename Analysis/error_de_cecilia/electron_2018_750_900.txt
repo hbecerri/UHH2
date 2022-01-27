@@ -23,6 +23,16 @@ xsec_singletop lnN - - - - - - 1.30 - -
 xsec_ttbar_others lnN - - - - - - - 1.30 - 
 xsec_wjets lnN - - - - - - - - 1.30 
 ---------------------------------------------------
+hfstats1 shape 1 1 1 1 1 1 1 1 1 
+lfstats2 shape 1 1 1 1 1 1 1 1 1 
+hf shape 1 1 1 1 1 1 1 1 1 
+lf shape 1 1 1 1 1 1 1 1 1 
+hfstats2 shape 1 1 1 1 1 1 1 1 1 
+lfstats1 shape 1 1 1 1 1 1 1 1 1 
+cferr1 shape 1 1 1 1 1 1 1 1 1 
+cferr2 shape 1 1 1 1 1 1 1 1 1 
+jes shape 1 1 1 1 1 1 1 1 1 
+HT shape - - - - 1 1 1 1 1 
 toptag shape 1 1 1 1 1 1 1 1 1 
 eleID shape 1 1 1 1 1 1 1 1 1 
 mistag shape 1 1 1 1 1 1 1 1 1 

@@ -23,8 +23,8 @@ for var in ${StringArray[@]}; do
         root -l -b -q "script/all_unfolding_data_900.C(\"${var}\",\"${var_gen}\")"
 done
 
-#cp script3/pdf.root .
-#cp script3/q2.root .
+cp script3/pdf.root .
+cp script3/q2.root .
 
 cp script3/pdf_ttbar1.root .
 cp script3/q2_ttbar1.root .

@@ -7,8 +7,8 @@ import string
 array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
-#ct_top = '(weight)*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
-ct_top = 'weight*(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)'
+ct_top = 'weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
+
 systematic_direction_ttbar={
                             'q2MuRdnMuFdnDown':ct_top+'*(weight_murmuf_downdown)',
                             'q2MuRdnMuFdnUp':ct_top,
@@ -24,9 +24,9 @@ systematic_direction_ttbar={
                             'q2MuRctMuFupDown':ct_top+'*1',
                            }
 
-inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2016_CHS/muon/"
+inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2017_CHS/muon/"
 samplelist = {
-'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2016.root',
+'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2017.root',
 'ttbar_others':'uhh2.AnalysisModuleRunner.MC.TTToOthers.root',
 }
 
@@ -61,7 +61,7 @@ for cat in categories:
                         mytree.Draw("invmass>>temp2sys",cut)
                         temp2sys.SetName(syst)
                         temp2sys.SetBinContent(1,temp2sys.GetBinContent(0)+temp2sys.GetBinContent(1))
-                        temp2sys.SetBinContent(14,temp2sys.GetBinContent(15)+temp2sys.GetBinContent(14))
+                        temp2sys.SetBinContent(2,temp2sys.GetBinContent(2)+temp2sys.GetBinContent(3))
                         gDirectory.cd('mu_Test_4cat_q2_SR1T.root:/')
                         gDirectory.WriteObject(temp2sys,key_sample+'_'+syst)
                         del temp2sys

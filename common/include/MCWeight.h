@@ -277,7 +277,7 @@ class MCBTagScaleFactor: public uhh2::AnalysisModule {
 			     BTag::wp wp,
                              const std::string & jets_handle_name="jets",
                              const std::string & sysType="central",
-                             const std::string & measType_bc="mujets",
+                             const std::string & measType_bc="incl",
                              const std::string & measType_udsg="incl",
                              const std::string & xml_param_name="MCBtagEfficiencies",
 			     const std::string & weights_name_postfix="",
@@ -287,14 +287,16 @@ class MCBTagScaleFactor: public uhh2::AnalysisModule {
   virtual bool process(uhh2::Event & event) override;
 
  protected:
-  std::tuple<float, float, float> get_weight_btag(const std::vector<TopJet> &jets,
+  std::tuple<float, float, float, float, float> get_weight_btag(const std::vector<TopJet> &jets,
                                                   uhh2::Event & event);
   std::pair<float, float> get_SF_btag(float pt, float abs_eta, int flav);
-
+  std::pair<float, float> get_SF_btag_un(float pt, float abs_eta, int flav);
   BTag btag_;
   std::unique_ptr<BTagCalibrationReader> calib_up_;
   std::unique_ptr<BTagCalibrationReader> calib_;
   std::unique_ptr<BTagCalibrationReader> calib_down_;
+  std::unique_ptr<BTagCalibrationReader> calib_up_un_;
+  std::unique_ptr<BTagCalibrationReader> calib_down_un_;
   std::unique_ptr<TH2> eff_b_;
   std::unique_ptr<TH2> eff_c_;
   std::unique_ptr<TH2> eff_udsg_;
@@ -308,6 +310,10 @@ class MCBTagScaleFactor: public uhh2::AnalysisModule {
   uhh2::Event::Handle<float> h_btag_weight_bc_down_;
   uhh2::Event::Handle<float> h_btag_weight_udsg_up_;
   uhh2::Event::Handle<float> h_btag_weight_udsg_down_;
+  uhh2::Event::Handle<float> h_btag_weight_bc_up_un_;
+  uhh2::Event::Handle<float> h_btag_weight_bc_down_un_;
+  uhh2::Event::Handle<float> h_btag_weight_udsg_up_un_;
+  uhh2::Event::Handle<float> h_btag_weight_udsg_down_un_;
 };
 
 

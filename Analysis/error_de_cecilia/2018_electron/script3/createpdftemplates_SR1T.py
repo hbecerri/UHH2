@@ -7,21 +7,19 @@ import string
 array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
  
-#ct_top = 'weight*(weight_sfelec_TightID)*(weight_sfelec_Trigger)*(weight_pu)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)'
-ct_top = 'weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)'
+ct_top = 'weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*0.86'
 
 systematic_direction_ttbar={'nominal':ct_top}
 
-for i in range(1,10):
+for i in range(1,100):
     pdfstring  = '*(wgtMC__PDF['+str(i)+'])'
     systematic_direction_ttbar['PDF_'+str(i)+'Up'] = ct_top+pdfstring
     systematic_direction_ttbar['PDF_'+str(i)+'Down'] = ct_top
 
-inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2016_CHS/electron/"
+inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/electron/"
 samplelist = {
-'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2016.root',
+'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2018.root',
 'ttbar_others':'uhh2.AnalysisModuleRunner.MC.TTToOthers.root',
-'singletop':'uhh2.AnalysisModuleRunner.MC.ST_2016.root',
 }
 
 categories=['T1']

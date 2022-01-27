@@ -7,22 +7,21 @@ import string
 array_rec = [-2,0,2]
 len_rec = len(array_rec) - 1
 
-#ct_top = '(weight)*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
-ct_top = 'weight*(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)'
+ct_top = 'weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)'
 
 systematic_direction_ttbar={}
 
-for i in range(1,10):
+for i in range(1,100):
     pdfstring  = '*(wgtMC__PDF['+str(i)+'])'
     systematic_direction_ttbar['PDF_'+str(i)+'Up'] = ct_top+pdfstring
     systematic_direction_ttbar['PDF_'+str(i)+'Down'] = ct_top
 
-inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2016_CHS/muon/"
+inputdir = "/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/2018_CHS/muon/"
 samplelist = {
-'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2016.root',
+'wjets':'uhh2.AnalysisModuleRunner.MC.WJetsToLNu_2018.root',
 'ttbar_others':'uhh2.AnalysisModuleRunner.MC.TTToOthers.root',
-'singletop':'uhh2.AnalysisModuleRunner.MC.ST_2016.root',
-'dy':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_M-50_HT_2016.root',
+#'singletop':'uhh2.AnalysisModuleRunner.MC.ST_2016.root',
+#'dy':'uhh2.AnalysisModuleRunner.MC.DYJetsToLL_M-50_HT_2016.root',
 }
 
 categories=['T1']

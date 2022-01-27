@@ -271,7 +271,7 @@ BTagMCEfficiencyHists::BTagMCEfficiencyHists(
   hist_c_passing_(   book<TH2F>("BTagMCEffFlavCPassing",    ";jet pt;jet eta", BTagMCEffBinsPt.size()-1, BTagMCEffBinsPt.data(), BTagMCEffBinsEta.size()-1, BTagMCEffBinsEta.data())),
   hist_c_total_(     book<TH2F>("BTagMCEffFlavCTotal",      ";jet pt;jet eta", BTagMCEffBinsPt.size()-1, BTagMCEffBinsPt.data(), BTagMCEffBinsEta.size()-1, BTagMCEffBinsEta.data())),
   hist_udsg_passing_(book<TH2F>("BTagMCEffFlavUDSGPassing", ";jet pt;jet eta", BTagMCEffBinsPt.size()-1, BTagMCEffBinsPt.data(), BTagMCEffBinsEta.size()-1, BTagMCEffBinsEta.data())),
-  hist_udsg_total_(  book<TH2F>("BTagMCEffFlavUDSGTotal",   ";jet pt;jet eta", BTagMCEffBinsPt.size()-1, BTagMCEffBinsPt.data(), BTagMCEffBinsEta.size()-1, BTagMCEffBinsEta.data())),
+  hist_udsg_total_(  book<TH2F>("BTagMCEffFlavUDSGTotal",   ";jet pt;jet eta", BTagMCEffBinsPt.size()-1, BTagMCEffBinsPt.data(), BTagMCEffBinsEta.size()-1, BTagMCEffBinsEta.data())), 
   h_topjets_(ctx.get_handle<vector<TopJet>>(jets_handle_name)),
   h_jets_(   ctx.get_handle<vector<Jet>>(   jets_handle_name))
 {}

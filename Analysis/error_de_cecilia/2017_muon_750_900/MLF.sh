@@ -24,6 +24,10 @@ for var in ${StringArray[@]}; do
 done
 
 
+
+cp script3/pdf.root .
+cp script3/q2.root .
+
 cp script3/pdf_ttbar1.root .
 cp script3/q2_ttbar1.root .
 
@@ -37,7 +41,7 @@ cp script3/pdf_ttbar4.root .
 cp script3/q2_ttbar4.root .
 
 
-hadd -f DeltaY.root DeltaY_muon.root Input_undfolding_data_750.root Input_undfolding_data_900.root pdf_ttbar1.root q2_ttbar1.root pdf_ttbar2.root q2_ttbar2.root pdf_ttbar3.root q2_ttbar3.root pdf_ttbar4.root q2_ttbar4.root
+hadd -f DeltaY.root DeltaY_muon.root Input_undfolding_data_750.root Input_undfolding_data_900.root pdf_ttbar1.root q2_ttbar1.root pdf_ttbar2.root q2_ttbar2.root pdf_ttbar3.root q2_ttbar3.root pdf_ttbar4.root q2_ttbar4.root q2.root pdf.root 
 
 python datacard.py
  

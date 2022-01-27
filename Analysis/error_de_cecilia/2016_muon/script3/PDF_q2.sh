@@ -10,32 +10,32 @@ var_gen='(TMath::Abs(0.5*TMath::Log((GenParticles.m_energy[2] + GenParticles.m_p
 python createq2templates_SR1T.py 1 1
 mv mu_Test_4cat_q2_SR1T.root q2.root
 
-python createq2templates_ttbar1.py 1 1 "${var_gen}"
-mv mu_Test_4cat_q2_SR1T.root q2_ttbar1.root
+#python createq2templates_ttbar1.py 1 1 "${var_gen}"
+#mv mu_Test_4cat_q2_SR1T.root q2_ttbar1.root
 
-python createq2templates_ttbar2.py 1 1 "${var_gen}"
-mv mu_Test_4cat_q2_SR1T.root q2_ttbar2.root
+#python createq2templates_ttbar2.py 1 1 "${var_gen}"
+#mv mu_Test_4cat_q2_SR1T.root q2_ttbar2.root
 
-python createq2templates_ttbar3.py 1 1 "${var_gen}"
-mv mu_Test_4cat_q2_SR1T.root q2_ttbar3.root
+#python createq2templates_ttbar3.py 1 1 "${var_gen}"
+#mv mu_Test_4cat_q2_SR1T.root q2_ttbar3.root
 
-python createq2templates_ttbar4.py 1 1 "${var_gen}"
-mv mu_Test_4cat_q2_SR1T.root q2_ttbar4.root
+#python createq2templates_ttbar4.py 1 1 "${var_gen}"
+#mv mu_Test_4cat_q2_SR1T.root q2_ttbar4.root
 
 ###PDF#######
 
 python createpdftemplates_SR1T.py 1 1 -b
 mv mu_Test_4cat_PDF_SR1T.root pdf.root 
 
-python createpdftemplates_ttbar1.py 1 1 "${var_gen}" -b
-mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar1.root 
+#python createpdftemplates_ttbar1.py 1 1 "${var_gen}" -b
+#mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar1.root 
 
-python createpdftemplates_ttbar2.py 1 1 "${var_gen}" -b
-mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar2.root
+#python createpdftemplates_ttbar2.py 1 1 "${var_gen}" -b
+#mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar2.root
 
-python createpdftemplates_ttbar3.py 1 1 "${var_gen}" -b
-mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar3.root
+#python createpdftemplates_ttbar3.py 1 1 "${var_gen}" -b
+#mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar3.root
 
-python createpdftemplates_ttbar4.py 1 1 "${var_gen}" -b
-mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar4.root
+#python createpdftemplates_ttbar4.py 1 1 "${var_gen}" -b
+#mv mu_Test_4cat_PDF_SR1T.root pdf_ttbar4.root
 
