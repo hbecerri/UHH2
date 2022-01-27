@@ -1,0 +1,56 @@
+imax 1 number of categories
+jmax * number of samples minus one
+kmax * number of nuisance parameters
+---------------------------------------------------
+shapes * * DeltaY.root $CHANNEL/$PROCESS/nominal $CHANNEL/$PROCESS/$SYSTEMATIC
+---------------------------------------------------
+bin SR1T
+observation -1
+---------------------------------------------------
+bin SR1T SR1T SR1T SR1T SR1T SR1T 
+process 0 1 2 3 4 5 
+process Ttbar dy qcd singletop ttbar_others wjets 
+rate -1 -1 -1 -1 -1 -1 
+---------------------------------------------------
+lumi lnN 1.025 1.025 1.025 1.025 1.025 1.025 
+---------------------------------------------------
+q2 shape 1 0 0 0 1 1 
+toptag shape 1 1 1 1 1 1 
+ISR shape 1 0 0 0 0 0 
+HT shape 1 1 1 1 1 1 
+FSR shape 1 0 0 0 0 0 
+muHLT shape 1 1 1 1 1 1 
+pileup shape 1 1 1 1 1 1 
+lf shape 1 1 1 1 1 1 
+jes shape 1 1 1 1 1 1 
+miswtag shape 1 1 1 1 1 1 
+misttag shape 1 0 0 0 0 0 
+Top_pT_rew_semiresolved shape 0 0 0 0 0 0 
+muon_rec shape 1 1 1 1 1 1 
+Top_pT_rew_boosted shape 1 0 0 0 0 0 
+cferr1 shape 1 1 1 1 1 1 
+cferr2 shape 1 1 1 1 1 1 
+Top_pT_rew_resolved shape 0 0 0 0 0 0 
+hdamp shape 1 0 0 0 0 0 
+hf shape 1 1 1 1 1 1 
+muID shape 1 1 1 1 1 1 
+hfstats1 shape 1 1 1 1 1 1 
+hfstats2 shape 1 1 1 1 1 1 
+lfstats1 shape 1 1 1 1 1 1 
+lfstats2 shape 1 1 1 1 1 1 
+pdf shape 1 1 0 1 1 1 
+---------------------------------------------------
+ttbar_rate rateParam * Ttbar 1
+ttbar_rate param 1.0 0.05
+ttbar_rate rateParam * ttbar_others 1
+ttbar_rate param 1.0 0.05
+wjets_rate rateParam * wjets 1
+wjets_rate param 1.0 0.30
+wjets_rate rateParam * singletop 1
+wjets_rate param 1.0 0.30
+wjets_rate rateParam * dy 1
+wjets_rate param 1.0 0.30
+wjets_rate rateParam * qcd 1
+wjets_rate param 1.0 0.30
+wjets_rate rateParam * vv 1
+wjets_rate param 1.0 0.30

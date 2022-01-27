@@ -27,7 +27,6 @@ for key_sample in samplelist:
         temp = fin.Get(name)
         nb = temp.GetNbinsX()
         temp.SetBinContent(1,temp.GetBinContent(0)+temp.GetBinContent(1)) 		
-	temp.SetBinContent(1,temp.GetBinContent(0)+temp.GetBinContent(1)) 		
         temp.SetBinContent(nb,temp.GetBinContent(nb)+temp.GetBinContent(nb+1))                        
         fout.cd('')
         R.gDirectory.WriteObject(temp,name)

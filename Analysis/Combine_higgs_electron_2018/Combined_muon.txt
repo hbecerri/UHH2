@@ -1,0 +1,63 @@
+Combination of SR1T_muon=SR1T_muonDeltaY.txt  SR0T_muon=SR0T_muonDeltaY.txt  CR1_muon=CR1_muonDeltaY.txt
+imax 3 number of bins
+jmax 5 number of processes minus 1
+kmax 28 number of nuisance parameters
+----------------------------------------------------------------------------------------------------------------------------------
+shapes *          CR1_muon   DeltaY.root CR1/$PROCESS/nominal CR1/$PROCESS/$SYSTEMATIC
+shapes *          SR0T_muon  DeltaY.root SR0T/$PROCESS/nominal SR0T/$PROCESS/$SYSTEMATIC
+shapes *          SR1T_muon  DeltaY.root SR1T/$PROCESS/nominal SR1T/$PROCESS/$SYSTEMATIC
+----------------------------------------------------------------------------------------------------------------------------------
+bin          SR1T_muon  SR0T_muon  CR1_muon 
+observation  -1         -1         -1       
+----------------------------------------------------------------------------------------------------------------------------------
+bin                                          SR1T_muon     SR1T_muon     SR1T_muon     SR1T_muon     SR1T_muon     SR1T_muon     SR0T_muon     SR0T_muon     SR0T_muon     SR0T_muon     SR0T_muon     SR0T_muon     CR1_muon      CR1_muon      CR1_muon      CR1_muon      CR1_muon      CR1_muon    
+process                                      Ttbar         dy            wjets         qcd           ttbar_others  singletop     Ttbar         dy            wjets         qcd           ttbar_others  singletop     Ttbar         dy            wjets         qcd           ttbar_others  singletop   
+process                                      0             1             2             3             4             5             0             1             2             3             4             5             0             1             2             3             4             5           
+rate                                         -1            -1            -1            -1            -1            -1            -1            -1            -1            -1            -1            -1            -1            -1            -1            -1            -1            -1          
+----------------------------------------------------------------------------------------------------------------------------------
+FSR                     shape                1.0           -             -             -             -             -             1.0           -             -             -             -             -             1.0           -             -             -             -             -           
+HT                      shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+ISR                     shape                1.0           -             -             -             -             -             1.0           -             -             -             -             -             1.0           -             -             -             -             -           
+Top_pT_rew_boosted      shape                1.0           -             -             -             -             -             -             -             -             -             -             -             -             -             -             -             -             -           
+Top_pT_rew_resolved     shape                -             -             -             -             -             -             1.0           -             -             -             -             -             -             -             -             -             -             -           
+Top_pT_rew_semiresolved   shape              -             -             -             -             -             -             -             -             -             -             -             -             1.0           -             -             -             -             -           
+cferr1                  shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+cferr2                  shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+eleHLT                  shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+eleID                   shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+elec_rec                shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+hdamp                   shape                1.0           -             -             -             -             -             1.0           -             -             -             -             -             1.0           -             -             -             -             -           
+hf                      shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+hfstats1                shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+hfstats2                shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+jes                     shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+lf                      shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+lfstats1                shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+lfstats2                shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+lumi                    lnN                  1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025         1.025       
+misttag                 shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+miswtag                 shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+pdf                     shape                1.0           1.0           1.0           -             1.0           1.0           1.0           1.0           1.0           -             1.0           1.0           1.0           1.0           1.0           -             1.0           1.0         
+pileup                  shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+q2                      shape                1.0           -             1.0           -             1.0           -             1.0           -             1.0           -             1.0           -             1.0           -             1.0           -             1.0           -           
+toptag                  shape                1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0           1.0         
+wjets_rate    param  1.0 0.30
+ttbar_rate    param  1.0 0.05
+wjets_rate    rateParam SR1T_muon qcd 1  
+ttbar_rate    rateParam SR0T_muon ttbar_others 1  
+ttbar_rate    rateParam SR1T_muon ttbar_others 1  
+wjets_rate    rateParam SR0T_muon qcd 1  
+wjets_rate    rateParam CR1_muon wjets 1  
+wjets_rate    rateParam SR0T_muon dy 1  
+wjets_rate    rateParam CR1_muon singletop 1  
+ttbar_rate    rateParam SR0T_muon Ttbar 1  
+wjets_rate    rateParam SR0T_muon wjets 1  
+ttbar_rate    rateParam SR1T_muon Ttbar 1  
+ttbar_rate    rateParam CR1_muon Ttbar 1  
+wjets_rate    rateParam SR1T_muon wjets 1  
+wjets_rate    rateParam SR1T_muon dy 1  
+wjets_rate    rateParam SR1T_muon singletop 1  
+wjets_rate    rateParam CR1_muon dy 1  
+wjets_rate    rateParam CR1_muon qcd 1  
+wjets_rate    rateParam SR0T_muon singletop 1  
+ttbar_rate    rateParam CR1_muon ttbar_others 1  

@@ -1,18 +1,12 @@
 #!/bin/bash
 
 rm -f *.txt
-
-#declare -a StringArray=("N_Ak4" "N_Ak8" "Mttbar" "lep1_pt" "MET_pt" "Ak8_j1_pt")
-
-declare -a StringArray3=("ttagN==1" "wtagN==1" "btagN==0")
-declare -a StringArray=("Ak8_j1_pt")
+declare -a StringArray=("pT_had" "pT_lep" "pT_ttbar" "TL_M" "TH_M")
+#declare -a StringArray=("N_Ak4" "N_Ak8" "Mttbar" "lep1_pt" "MET_pt" "Ak8_j1_pt" "pT_had" "pT_lep" "pT_ttbar" "TL_M" "TH_M")
+#declare -a StringArray=("DeltaY")
 
 for var in ${StringArray[@]}; do
-for var2 in ${StringArray3[@]}; do
 
-        #python test.py  ${var} -b
-#        python makePlots_fromAnalysisTree.py ${var} -b
+     python makePlots_fromAnalysisTree.py ${var} -b 
+done
 
-      python rec_chi2.py  "${var}"  "${var2}" -b 
-done
-done

@@ -9,9 +9,9 @@ declare -a POIS=(
 export WORKSPACE=Ac_750.root
 export VERBOSITY=0
 
-export SetParameters="rgx{r.+}=1,Ac=0.45"
-export SetParametersExplicit="r_neg=1,Ac=0.45"
-export SetParameterRanges="rgx{r.+}=0.5,2:Ac=-10,5"
+export SetParameters="rgx{r.+}=1,Ac=0.76"
+export SetParametersExplicit="r_neg=1,Ac=0.76"
+export SetParameterRanges="rgx{r.+}=0.5,2:Ac=-5,5"
 export redefineSignalPOIs="Ac,r_neg"
 
 #export SetParameters="rgx{r.+}=1,r_pos=1"
@@ -32,8 +32,8 @@ echo
 echo "DO INITIAL FIT"
 echo
 echo
-combineTool.py -M Impacts -d $WORKSPACE -v $VERBOSITY --doInitialFit --robustFit 1 -m 125 --redefineSignalPOIs $redefineSignalPOIs --setParameters $SetParameters --setParameterRanges $SetParameterRanges --cminDefaultMinimizerStrategy 0 --saveWorkspace $ASIMOV
-
+combine -M MultiDimFit --algo singles -d $WORKSPACE -n .part3E.snapshot -v $VERBOSITY --redefineSignalPOIs $redefineSignalPOIs --setParameterRanges $SetParameterRanges --setParameters $SetParametersExplicit --robustFit 1 --cminDefaultMinimizerStrategy 0 -m 125 --saveWorkspace $ASIMOV
+mv higgsCombine.part3E.snapshot.MultiDimFit.mH125.root higgsCombine_initialFit_Test.MultiDimFit.mH125.root
 
 
 echo
@@ -73,4 +73,3 @@ for POI in ${POIS[@]}; do
 done
 echo
 echo
-

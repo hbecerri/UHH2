@@ -56,6 +56,8 @@ for cat in categories:
                 tempdata = TH1F("tempdata","tempdata",len_rec,array('d',array_rec))
                 mytree.Draw("invmass>>tempdata",cut)
                 tempdata.SetName(key_sample)
+                tempdata.SetBinContent(1,tempdata.GetBinContent(0)+tempdata.GetBinContent(1))
+                tempdata.SetBinContent(14,tempdata.GetBinContent(15)+tempdata.GetBinContent(14))
                 gDirectory.WriteObject(tempdata,'nominal')
                 del tempdata
 #            elif 'ttbar' in key_sample:
@@ -69,6 +71,8 @@ for cat in categories:
                         temp = TH1F("temp","temp",len_rec,array('d',array_rec))
                         mytree.Draw("invmass>>temp",cut)
                         temp.SetName(syst)
+                        temp.SetBinContent(1,temp.GetBinContent(0)+temp.GetBinContent(1))
+                        temp.SetBinContent(14,temp.GetBinContent(15)+temp.GetBinContent(14))
                         print "Rebinning T1 nom:", str(temp.GetNbinsX())
                         gDirectory.WriteObject(temp,syst)
                         del temp
@@ -76,6 +80,8 @@ for cat in categories:
                         temp2sys = TH1F("temp2sys","temp2sys",len_rec,array('d',array_rec))
                         mytree.Draw("invmass>>temp2sys",cut)
                         temp2sys.SetName(syst)
+                        temp2sys.SetBinContent(1,temp2sys.GetBinContent(0)+temp2sys.GetBinContent(1))
+                        temp2sys.SetBinContent(14,temp2sys.GetBinContent(15)+temp2sys.GetBinContent(14))
                         gDirectory.WriteObject(temp2sys,syst)
                         del temp2sys
 

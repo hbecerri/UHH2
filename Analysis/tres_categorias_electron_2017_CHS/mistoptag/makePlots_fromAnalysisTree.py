@@ -208,6 +208,11 @@ histograms = {
               "rec_chi2": ["rec_chi2", "Events", 20, [30,300]],
               "N_Ak8": ["N_Ak8", "Events", 5, [0,5]],
               "N_Ak4": ["N_Ak4", "Events", 10, [0,10]],
+              "TH_M": ["Mass_{t_{h}}", "Events", 40, [120,220]],
+              "TL_M": ["Mass_{t_{l}}", "Events", 40, [120,220]], 
+              "pT_had" : [ "p_{T}^{t_{had}} [GeV]", "Events",50, [0, 1200]],
+              "pT_lep" : [ "p_{T}^{t_{#lep}} [GeV]", "Events",50, [0, 1200]],
+              "pT_ttbar" : [ "p_{T}^{t#bar{t}} [GeV]", "Events",50, [0, 1200]],
 #              "TH_M": ["TH_M", "Events", 40, [20,300]],
 #              "TL_M": ["TL_M", "Events", 40, [20,300]],
 #              "W_tagged_jet":["W_tagged_jet","Events",25,[40,200]], 
@@ -235,14 +240,14 @@ for sample in sample_names:
         	print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir,sample)
 		tree_MC[sample]=_file[sample].Get("AnalysisTree")
                 tree_MC_up[sample]=_file[sample].Get("AnalysisTree")   
-	        tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfelec_TightID*weight_sfelec_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*weight_sfelec_Rec*0.85*(ttagN == 0 && wtagN == 1 && btagN>=1 && rec_chi2 < 30 && Mttbar < 4000)")
+	        tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfelec_TightID*weight_sfelec_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*weight_sfelec_Rec*0.85*(ttagN == 1 && wtagN == 0 && btagN>=1 && rec_chi2 < 30 && Mttbar < 4000)")
                 hist1_[sample] = tree_MC[sample].GetHistogram()                
       	  	hist1_[sample].SetFillColor(stackList[sample][0])
         	hist1_[sample].SetLineColor(stackList[sample][0])
 		legendR.AddEntry(hist1_[sample],sample,'f')       
         	hist1_[sample].SetYTitle(histograms[histName][1])        
                 stack.Add(hist1_[sample])
-                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfelec_TightID_up*weight_sfelec_Trigger_up*weight_pu_up*weight_toptagSF_up_*0.87*weight_sfelec_Rec*(ttagN == 0 && wtagN == 1 && btagN>=1 && rec_chi2 < 30 && Mttbar < 4000)")
+                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfelec_TightID_up*weight_sfelec_Trigger_up*weight_pu_up*weight_toptagSF_up_*0.87*weight_sfelec_Rec*(ttagN == 1 && wtagN == 0 && btagN>=1 && rec_chi2 < 30 && Mttbar < 4000)")
                 hist1_up[sample] = tree_MC_up[sample].GetHistogram()
                 stack_up.Add(hist1_up[sample])
 
@@ -252,7 +257,7 @@ _file["Data"] = TFile("%s/uhh2.AnalysisModuleRunner.DATA.DATA_EGamma_Run2017v2.r
 print "%s/uhh2.AnalysisModuleRunner.DATA.DATA.root"%(_fileDir)
 
 tree = _file["Data"].Get("AnalysisTree")
-tree.Draw("%s>>dat_hist(%i,%i,%f)"%(histName,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN == 1 && btagN>=1 && rec_chi2 < 30 && Mttbar < 4000)")
+tree.Draw("%s>>dat_hist(%i,%i,%f)"%(histName,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 1 && wtagN == 0 && btagN>=1 && rec_chi2 < 30 && Mttbar < 4000)")
 dataHist=tree.GetHistogram()
 print "total:",dataHist.Integral()
 print "bins:",dataHist.GetNbinsX()

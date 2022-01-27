@@ -1,13 +1,49 @@
 #!/bin/bash
+ 
+cd 2016_electron_750_900_FWP_btag/
+bash MLF.sh
+cd ..
 
-rm -f *.root
-rm -f *.pdf 
-rm -f *.json
-rm -f *.txt
+cd 2016_electron_900_FWP_btag/
+bash MLF.sh
+cd ..
 
-bash MLF_muon.sh
-bash MLF_electron.sh
-bash MLF_900.sh
-bash MLF_750.sh
-bash MLF_all.sh
+cd 2016_muon_750_900_FWP_btag/
+bash MLF.sh
+cd ..
 
+cd 2016_muon_900_FWP_btag/
+bash MLF.sh
+cd ..
+
+cd 2017_electron_750_900_FWP_btag/
+bash MLF.sh
+cd ..
+
+cd 2017_electron_900_FWP_btag/
+bash MLF.sh
+cd ..
+
+cd 2017_muon_750_900_FWP_btag/
+bash MLF.sh
+cd ..
+
+cd 2017_muon_900_FWP_btag/
+bash MLF.sh
+cd ..
+
+cd 2018_electron_750_900_FWP_btag/
+bash MLF.sh
+cd ..
+
+cd 2018_electron_900_FWP_btag/
+bash MLF.sh
+cd ..
+
+cd 2018_muon_750_900_FWP_btag/
+bash MLF.sh
+cd ..
+
+cd 2018_muon_900_FWP_btag/
+bash MLF.sh
+cd ..

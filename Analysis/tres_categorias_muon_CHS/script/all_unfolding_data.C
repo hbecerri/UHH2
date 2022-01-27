@@ -56,14 +56,22 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TTree *treereco_QCD = (TTree*) chreco_QCD;
 
     //jec
-    TChain *chreco_ttbar_semi_semi_jec = new TChain("AnalysisTree","");
-    chreco_ttbar_semi_semi_jec->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/muon/workdir_Zprime_Analysis_%s_CHS_jec/jec/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
-    TTree *treereco_ttbar_semi_semi_jec = (TTree*) chreco_ttbar_semi_semi_jec;
+    TChain *chreco_ttbar_semi_jecup = new TChain("AnalysisTree","");
+    chreco_ttbar_semi_jecup->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS_JECup/muon/workdir_Zprime_Analysis_%s_CHS_JECup/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
+    TTree *treereco_ttbar_semi_jecup = (TTree*) chreco_ttbar_semi_jecup;
+
+    TChain *chreco_ttbar_semi_jecdown = new TChain("AnalysisTree","");
+    chreco_ttbar_semi_jecdown->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS_JECdown/muon/workdir_Zprime_Analysis_%s_CHS_JECdown/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
+    TTree *treereco_ttbar_semi_jecdown = (TTree*) chreco_ttbar_semi_jecdown;
 
     //jer
-    TChain *chreco_ttbar_semi_semi_jer = new TChain("AnalysisTree","");
-    chreco_ttbar_semi_semi_jer->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS/muon/workdir_Zprime_Analysis_%s_CHS_jer/jer/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
-    TTree *treereco_ttbar_semi_semi_jer = (TTree*) chreco_ttbar_semi_semi_jer;
+    TChain *chreco_ttbar_semi_jerup = new TChain("AnalysisTree","");
+    chreco_ttbar_semi_jerup->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS_JERup/muon/workdir_Zprime_Analysis_%s_CHS_JERup/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
+    TTree *treereco_ttbar_semi_jerup = (TTree*) chreco_ttbar_semi_jerup;
+
+    TChain *chreco_ttbar_semi_jerdown = new TChain("AnalysisTree","");
+    chreco_ttbar_semi_jerdown->Add(Form("/nfs/dust/cms/user/hugobg/ZPrime_102X/analysis_output/%s_CHS_JECdowm/muon/workdir_Zprime_Analysis_%s_CHS_JERdown/uhh2.AnalysisModuleRunner.MC.TTToS*.root/AnalysisTree",year.c_str(),year.c_str()));
+    TTree *treereco_ttbar_semi_jerdown = (TTree*) chreco_ttbar_semi_jerdown;
 
 //array for variable 
 
@@ -154,42 +162,42 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     TH1F *ttbar_semi_boosted_jec_down  = new TH1F("ttbar_semi_boosted_jec_down","",newrec,new_rec);
     TH1F *ttbar_semi_boosted_jer_down  = new TH1F("ttbar_semi_boosted_jer_down","",newrec,new_rec);
 
-    TH1F *ttbar_semi_semiresolved_pu_up = new TH1F("ttbar_semi_semiresolved_pu_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_pu_down  = new TH1F("ttbar_semi_semiresolved_pu_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_MuonID_up  = new TH1F("ttbar_semi_semiresolved_MuonID_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_MuonID_down  = new TH1F("ttbar_semi_semiresolved_MuonID_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_Trigger_up  = new TH1F("ttbar_semi_semiresolved_Trigger_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_Trigger_down  = new TH1F("ttbar_semi_semiresolved_Trigger_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_mistag_up  = new TH1F("ttbar_semi_semiresolved_mistag_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_mistag_down  = new TH1F("ttbar_semi_semiresolved_mistag_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_cferr1_up  = new TH1F("ttbar_semi_semiresolved_cferr1_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_cferr1_down  = new TH1F("ttbar_semi_semiresolved_cferr1_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_cferr2_up  = new TH1F("ttbar_semi_semiresolved_cferr2_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_cferr2_down  = new TH1F("ttbar_semi_semiresolved_cferr2_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_hf_up  = new TH1F("ttbar_semi_semiresolved_hf_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_hf_down  = new TH1F("ttbar_semi_semiresolved_hf_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_lf_up  = new TH1F("ttbar_semi_semiresolved_lf_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_lf_down  = new TH1F("ttbar_semi_semiresolved_lf_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_hfstats1_up  = new TH1F("ttbar_semi_semiresolved_hfstats1_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_hfstats1_down  = new TH1F("ttbar_semi_semiresolved_hfstats1_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_hfstats2_up  = new TH1F("ttbar_semi_semiresolved_hfstats2_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_hfstats2_down  = new TH1F("ttbar_semi_semiresolved_hfstats2_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_lfstats1_up  = new TH1F("ttbar_semi_semiresolved_lfstats1_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_lfstats1_down  = new TH1F("ttbar_semi_semiresolved_lfstats1_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_lfstats2_up  = new TH1F("ttbar_semi_semiresolved_lfstats2_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_lfstats2_down  = new TH1F("ttbar_semi_semiresolved_lfstats2_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_jes_up  = new TH1F("ttbar_semi_semiresolved_jes_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_jes_down  = new TH1F("ttbar_semi_semiresolved_jes_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_ptrew_up  = new TH1F("ttbar_semi_semiresolved_ptrew_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_ptrew_down  = new TH1F("ttbar_semi_semiresolved_ptrew_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_toptag_up  = new TH1F("ttbar_semi_semiresolved_toptag_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_toptag_down  = new TH1F("ttbar_semi_semiresolved_toptag_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_muonrec_up  = new TH1F("ttbar_semi_semiresolved_muonrec_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_muonrec_down  = new TH1F("ttbar_semi_semiresolved_muonrec_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_jec_up  = new TH1F("ttbar_semi_semiresolved_jec_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_jer_up  = new TH1F("ttbar_semi_semiresolved_jer_up","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_jec_down  = new TH1F("ttbar_semi_semiresolved_jec_down","",newrec,new_rec);
-    TH1F *ttbar_semi_semiresolved_jer_down  = new TH1F("ttbar_semi_semiresolved_jer_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_pu_up = new TH1F("ttbar_semiresolved_pu_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_pu_down  = new TH1F("ttbar_semiresolved_pu_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_MuonID_up  = new TH1F("ttbar_semiresolved_MuonID_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_MuonID_down  = new TH1F("ttbar_semiresolved_MuonID_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_Trigger_up  = new TH1F("ttbar_semiresolved_Trigger_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_Trigger_down  = new TH1F("ttbar_semiresolved_Trigger_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_mistag_up  = new TH1F("ttbar_semiresolved_mistag_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_mistag_down  = new TH1F("ttbar_semiresolved_mistag_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_cferr1_up  = new TH1F("ttbar_semiresolved_cferr1_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_cferr1_down  = new TH1F("ttbar_semiresolved_cferr1_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_cferr2_up  = new TH1F("ttbar_semiresolved_cferr2_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_cferr2_down  = new TH1F("ttbar_semiresolved_cferr2_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_hf_up  = new TH1F("ttbar_semiresolved_hf_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_hf_down  = new TH1F("ttbar_semiresolved_hf_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_lf_up  = new TH1F("ttbar_semiresolved_lf_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_lf_down  = new TH1F("ttbar_semiresolved_lf_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_hfstats1_up  = new TH1F("ttbar_semiresolved_hfstats1_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_hfstats1_down  = new TH1F("ttbar_semiresolved_hfstats1_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_hfstats2_up  = new TH1F("ttbar_semiresolved_hfstats2_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_hfstats2_down  = new TH1F("ttbar_semiresolved_hfstats2_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_lfstats1_up  = new TH1F("ttbar_semiresolved_lfstats1_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_lfstats1_down  = new TH1F("ttbar_semiresolved_lfstats1_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_lfstats2_up  = new TH1F("ttbar_semiresolved_lfstats2_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_lfstats2_down  = new TH1F("ttbar_semiresolved_lfstats2_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_jes_up  = new TH1F("ttbar_semiresolved_jes_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_jes_down  = new TH1F("ttbar_semiresolved_jes_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_ptrew_up  = new TH1F("ttbar_semiresolved_ptrew_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_ptrew_down  = new TH1F("ttbar_semiresolved_ptrew_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_toptag_up  = new TH1F("ttbar_semiresolved_toptag_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_toptag_down  = new TH1F("ttbar_semiresolved_toptag_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_muonrec_up  = new TH1F("ttbar_semiresolved_muonrec_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_muonrec_down  = new TH1F("ttbar_semiresolved_muonrec_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_jec_up  = new TH1F("ttbar_semiresolved_jec_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_jer_up  = new TH1F("ttbar_semiresolved_jer_up","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_jec_down  = new TH1F("ttbar_semiresolved_jec_down","",newrec,new_rec);
+    TH1F *ttbar_semiresolved_jer_down  = new TH1F("ttbar_semiresolved_jer_down","",newrec,new_rec);
 
     TH1F *ttbar_semi_resolved_pu_up = new TH1F("ttbar_semi_resolved_pu_up","",newrec,new_rec);
     TH1F *ttbar_semi_resolved_pu_down  = new TH1F("ttbar_semi_resolved_pu_down","",newrec,new_rec);
@@ -341,56 +349,56 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     treereco_ttbar_semi->Project("ttbar_semi_boosted_muonrec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_down",selcuts_boosted_down.c_str()));
  
 /////jec and jer 
-    treereco_ttbar_semi_semi_jec->Project("ttbar_semi_boosted_jec_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_boosted_central.c_str()));
-    treereco_ttbar_semi_semi_jer->Project("ttbar_semi_boosted_jer_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_boosted_central.c_str()));
+    treereco_ttbar_semi_jecup->Project("ttbar_semi_boosted_jec_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_boosted_central.c_str()));
+    treereco_ttbar_semi_jerup->Project("ttbar_semi_boosted_jer_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_boosted_central.c_str()));
 
-    treereco_ttbar_semi_semi_jec->Project("ttbar_semi_boosted_jec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_boosted_central.c_str()));
-    treereco_ttbar_semi_semi_jer->Project("ttbar_semi_boosted_jer_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_boosted_central.c_str()));
+    treereco_ttbar_semi_jecdown->Project("ttbar_semi_boosted_jec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_boosted_central.c_str()));
+    treereco_ttbar_semi_jerdown->Project("ttbar_semi_boosted_jer_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_boosted_central.c_str()));
 
 //semiresolved
 
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_pu_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu_up*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_pu_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu_down*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_MuonID_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID_up*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_MuonID_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID_down*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_Trigger_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger_up*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_Trigger_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger_down*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_mistag_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger_up*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_mistag_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger_down*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_cferr1_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_cferr1up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_cferr1_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_cferr1down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_cferr2_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_cferr2up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_cferr2_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_cferr2down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_hf_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_btagdisc_hfup*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_hf_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfdown*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_lf_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfup*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_lf_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfdown*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_hfstats1_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfstats1up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_hfstats1_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfstats1down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_hfstats2_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfstats2up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_hfstats2_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfstats2down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_jes_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_jesup*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_jes_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_jesdown*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_lfstats1_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfstats1up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_lfstats1_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfstats1down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_lfstats2_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfstats2up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_lfstats2_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfstats2down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_ptrew_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_ptrew_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_down*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_ptrew_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_up_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_ptrew_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_toptag_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_up_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_toptag_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_muonrec_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_up",selcuts_semiresolved_down.c_str()));
-    treereco_ttbar_semi->Project("ttbar_semi_semiresolved_muonrec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_down",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_pu_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu_up*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_pu_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu_down*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_MuonID_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID_up*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_MuonID_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID_down*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_Trigger_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger_up*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_Trigger_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger_down*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_mistag_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger_up*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_mistag_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger_down*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_cferr1_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_cferr1up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_cferr1_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_cferr1down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_cferr2_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_cferr2up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_cferr2_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_cferr2down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_hf_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_btagdisc_hfup*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_hf_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfdown*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_lf_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfup*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_lf_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfdown*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_hfstats1_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfstats1up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_hfstats1_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfstats1down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_hfstats2_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfstats2up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_hfstats2_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_hfstats2down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_jes_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_jesup*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_jes_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_jesdown*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_lfstats1_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfstats1up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_lfstats1_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfstats1down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_lfstats2_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfstats2up*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_lfstats2_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_lfstats2down*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_ptrew_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_ptrew_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_down*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_ptrew_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_up_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_ptrew_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_toptag_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_up_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_up.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_toptag_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_muonrec_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_up",selcuts_semiresolved_down.c_str()));
+    treereco_ttbar_semi->Project("ttbar_semiresolved_muonrec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_down",selcuts_semiresolved_down.c_str()));
 
 /////jec and jer 
 
-    treereco_ttbar_semi_semi_jec->Project("ttbar_semi_semiresolved_jec_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
-    treereco_ttbar_semi_semi_jer->Project("ttbar_semi_semiresolved_jer_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi_jecup->Project("ttbar_semiresolved_jec_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi_jerup->Project("ttbar_semiresolved_jer_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
 
-    treereco_ttbar_semi_semi_jec->Project("ttbar_semi_semiresolved_jec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
-    treereco_ttbar_semi_semi_jer->Project("ttbar_semi_semiresolved_jer_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi_jecdown->Project("ttbar_semiresolved_jec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
+    treereco_ttbar_semi_jerdown->Project("ttbar_semiresolved_jer_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_semiresolved_central.c_str()));
 
 //resolved
 
@@ -429,10 +437,10 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     treereco_ttbar_semi->Project("ttbar_semi_resolved_muonrec_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_up",selcuts_resolved_down.c_str()));
     treereco_ttbar_semi->Project("ttbar_semi_resolved_muonrec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_down_*weight_pt_rew*weight_btagdisc_central*muonrecSF_down",selcuts_resolved_down.c_str()));
 
-    treereco_ttbar_semi_semi_jec->Project("ttbar_semi_resolved_jec_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_resolved_central.c_str()));
-    treereco_ttbar_semi_semi_jer->Project("ttbar_semi_resolved_jer_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_resolved_central.c_str()));
-    treereco_ttbar_semi_semi_jec->Project("ttbar_semi_resolved_jec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_resolved_central.c_str()));
-    treereco_ttbar_semi_semi_jer->Project("ttbar_semi_resolved_jer_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_resolved_central.c_str()));
+    treereco_ttbar_semi_jecup->Project("ttbar_semi_resolved_jec_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_resolved_central.c_str()));
+    treereco_ttbar_semi_jerup->Project("ttbar_semi_resolved_jer_up",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_resolved_central.c_str()));
+    treereco_ttbar_semi_jecdown->Project("ttbar_semi_resolved_jec_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_resolved_central.c_str()));
+    treereco_ttbar_semi_jerdown->Project("ttbar_semi_resolved_jer_down",Form("%s < %f ? TMath::Max(%f,%s): (%s > %f ? TMath::Min(%f,%s) : %s)",var_name.c_str(),bins_gen[0]+0.01,bins_gen[0]+0.01,var_name.c_str(),var_name.c_str(),bins_gen[binnum_gen]-0.01,bins_gen[binnum_gen]-0.01,var_name.c_str(),var_name.c_str()),Form("%s*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal",selcuts_resolved_central.c_str()));
 
 //-------Migration_Matrix_for_nominal_unfolding------??  
 
@@ -613,42 +621,42 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
     ttbar_semi_jerDown->Add(ttbar_semi_boosted_jer_down);
 
 
-    ttbar_semi_pu_up->Add(ttbar_semi_semiresolved_pu_up);
-    ttbar_semi_pu_down->Add(ttbar_semi_semiresolved_pu_down);
-    ttbar_semi_MuonID_up->Add(ttbar_semi_semiresolved_MuonID_up);
-    ttbar_semi_MuonID_down->Add(ttbar_semi_semiresolved_MuonID_down);
-    ttbar_semi_Trigger_up->Add(ttbar_semi_semiresolved_Trigger_up);
-    ttbar_semi_Trigger_down->Add(ttbar_semi_semiresolved_Trigger_down);
-    ttbar_semi_mistag_up->Add(ttbar_semi_semiresolved_mistag_up);
-    ttbar_semi_mistag_down->Add(ttbar_semi_semiresolved_mistag_down);
-    ttbar_semi_cferr1_up->Add(ttbar_semi_semiresolved_cferr1_up);
-    ttbar_semi_cferr1_down->Add(ttbar_semi_semiresolved_cferr1_down);
-    ttbar_semi_cferr2_up->Add(ttbar_semi_semiresolved_cferr2_up);
-    ttbar_semi_cferr2_down->Add(ttbar_semi_semiresolved_cferr2_down);
-    ttbar_semi_hf_up->Add(ttbar_semi_semiresolved_hf_up);
-    ttbar_semi_hf_down->Add(ttbar_semi_semiresolved_hf_down);
-    ttbar_semi_lf_up->Add(ttbar_semi_semiresolved_lf_up);
-    ttbar_semi_lf_down->Add(ttbar_semi_semiresolved_lf_down);
-    ttbar_semi_hfstats1_up->Add(ttbar_semi_semiresolved_hfstats1_up);
-    ttbar_semi_hfstats1_down->Add(ttbar_semi_semiresolved_hfstats1_down);
-    ttbar_semi_hfstats2_up->Add(ttbar_semi_semiresolved_hfstats2_up);
-    ttbar_semi_hfstats2_down->Add(ttbar_semi_semiresolved_hfstats2_down);
-    ttbar_semi_lfstats1_up->Add(ttbar_semi_semiresolved_lfstats1_up);
-    ttbar_semi_lfstats1_down->Add(ttbar_semi_semiresolved_lfstats1_down);
-    ttbar_semi_lfstats2_up->Add(ttbar_semi_semiresolved_lfstats2_up);
-    ttbar_semi_lfstats2_down->Add(ttbar_semi_semiresolved_lfstats2_down);
-    ttbar_semi_jes_up->Add(ttbar_semi_semiresolved_jes_up);
-    ttbar_semi_jes_down->Add(ttbar_semi_semiresolved_jes_down);
-    ttbar_semi_ptrew_up->Add(ttbar_semi_semiresolved_ptrew_up);
-    ttbar_semi_ptrew_down->Add(ttbar_semi_semiresolved_ptrew_down);
-    ttbar_semi_toptag_up->Add(ttbar_semi_semiresolved_toptag_up);
-    ttbar_semi_toptag_down->Add(ttbar_semi_semiresolved_toptag_down);
-    ttbar_semi_muonrec_up->Add(ttbar_semi_semiresolved_muonrec_up);
-    ttbar_semi_muonrec_down->Add(ttbar_semi_semiresolved_muonrec_down);
-    ttbar_semi_jecUp->Add(ttbar_semi_semiresolved_jec_up);
-    ttbar_semi_jerUp->Add(ttbar_semi_semiresolved_jer_up);
-    ttbar_semi_jecDown->Add(ttbar_semi_semiresolved_jec_down);
-    ttbar_semi_jerDown->Add(ttbar_semi_semiresolved_jer_down);
+    ttbar_semi_pu_up->Add(ttbar_semiresolved_pu_up);
+    ttbar_semi_pu_down->Add(ttbar_semiresolved_pu_down);
+    ttbar_semi_MuonID_up->Add(ttbar_semiresolved_MuonID_up);
+    ttbar_semi_MuonID_down->Add(ttbar_semiresolved_MuonID_down);
+    ttbar_semi_Trigger_up->Add(ttbar_semiresolved_Trigger_up);
+    ttbar_semi_Trigger_down->Add(ttbar_semiresolved_Trigger_down);
+    ttbar_semi_mistag_up->Add(ttbar_semiresolved_mistag_up);
+    ttbar_semi_mistag_down->Add(ttbar_semiresolved_mistag_down);
+    ttbar_semi_cferr1_up->Add(ttbar_semiresolved_cferr1_up);
+    ttbar_semi_cferr1_down->Add(ttbar_semiresolved_cferr1_down);
+    ttbar_semi_cferr2_up->Add(ttbar_semiresolved_cferr2_up);
+    ttbar_semi_cferr2_down->Add(ttbar_semiresolved_cferr2_down);
+    ttbar_semi_hf_up->Add(ttbar_semiresolved_hf_up);
+    ttbar_semi_hf_down->Add(ttbar_semiresolved_hf_down);
+    ttbar_semi_lf_up->Add(ttbar_semiresolved_lf_up);
+    ttbar_semi_lf_down->Add(ttbar_semiresolved_lf_down);
+    ttbar_semi_hfstats1_up->Add(ttbar_semiresolved_hfstats1_up);
+    ttbar_semi_hfstats1_down->Add(ttbar_semiresolved_hfstats1_down);
+    ttbar_semi_hfstats2_up->Add(ttbar_semiresolved_hfstats2_up);
+    ttbar_semi_hfstats2_down->Add(ttbar_semiresolved_hfstats2_down);
+    ttbar_semi_lfstats1_up->Add(ttbar_semiresolved_lfstats1_up);
+    ttbar_semi_lfstats1_down->Add(ttbar_semiresolved_lfstats1_down);
+    ttbar_semi_lfstats2_up->Add(ttbar_semiresolved_lfstats2_up);
+    ttbar_semi_lfstats2_down->Add(ttbar_semiresolved_lfstats2_down);
+    ttbar_semi_jes_up->Add(ttbar_semiresolved_jes_up);
+    ttbar_semi_jes_down->Add(ttbar_semiresolved_jes_down);
+    ttbar_semi_ptrew_up->Add(ttbar_semiresolved_ptrew_up);
+    ttbar_semi_ptrew_down->Add(ttbar_semiresolved_ptrew_down);
+    ttbar_semi_toptag_up->Add(ttbar_semiresolved_toptag_up);
+    ttbar_semi_toptag_down->Add(ttbar_semiresolved_toptag_down);
+    ttbar_semi_muonrec_up->Add(ttbar_semiresolved_muonrec_up);
+    ttbar_semi_muonrec_down->Add(ttbar_semiresolved_muonrec_down);
+    ttbar_semi_jecUp->Add(ttbar_semiresolved_jec_up);
+    ttbar_semi_jerUp->Add(ttbar_semiresolved_jer_up);
+    ttbar_semi_jecDown->Add(ttbar_semiresolved_jec_down);
+    ttbar_semi_jerDown->Add(ttbar_semiresolved_jer_down);
 
     ttbar_semi_pu_up->Add(ttbar_semi_resolved_pu_up);
     ttbar_semi_pu_down->Add(ttbar_semi_resolved_pu_down);
@@ -723,6 +731,15 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
        QCD->SetBinContent(s,QCD->GetBinContent(newrec+1-s));
 
     }  
+
+//////-------------Full phase space ------------------
+
+   float eff[8] = {0.000021,0.000027,0.0000325,0.000035,0.000035,0.0000325,0.000027,0.000021};
+   for(Int_t b=1;b<=binnum_gen;b++){
+       for(int a=1;a<=newrec;a++){
+          Migration_Matrix->SetBinContent(a,b,Migration_Matrix->GetBinContent(a,b)/eff[b-1]);
+       }
+    }
 
 
 //----------Making_input_root_file_for_unfolding-----------?
@@ -802,6 +819,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
        for(Int_t b=1;b<=binnum_gen;b++){
             Stability_Matrix->SetBinContent(a,b,PS->GetBinContent(a,b)/PS->Integral(1,binnum_gen,b,b));
             Purity_Matrix->SetBinContent(a,b,PS->GetBinContent(a,b)/PS->Integral(a,a,1,binnum_gen));
+            Stability_Matrix->SetBinError(a,b,PS->GetBinError(a,b)/PS->Integral(1,binnum_gen,b,b));
+            Purity_Matrix->SetBinError(a,b,PS->GetBinError(a,b)/PS->Integral(a,a,1,binnum_gen));            
        }
    }
 
@@ -814,6 +833,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
    for(Int_t m=1;m<=binnum_gen;m++){
        Stability->SetBinContent(m,Stability_Matrix->GetBinContent(m,m));
        Purity->SetBinContent(m,Purity_Matrix->GetBinContent(m,m));
+       Stability->SetBinError(m,Stability_Matrix->GetBinError(m,m));
+       Purity->SetBinError(m,Purity_Matrix->GetBinError(m,m));
    }
 
    Stability->GetYaxis()->SetRangeUser(0,1);
@@ -827,8 +848,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
    TCanvas* cc = new TCanvas("cc","",2400,1200);
    cc->Divide(1,1);
    cc->cd(1);
-   Stability->Draw("same");
-   Purity->Draw("same");
+   Stability->Draw("samei e");
+   Purity->Draw("same e");
 
    Float_t a = Stability->GetMaximum();
 
@@ -850,5 +871,26 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
    latex4.DrawLatex(1.1,1.04,"58.8 fb^{-1} (13 TeV)");
 
    cc->Print("PS.pdf");
+
+   TMatrix H(8,8);
+   for (Int_t irow = 0; irow < 8; irow++){
+   for (Int_t icol = 0; icol < 8; icol++){
+      H[icol][irow] = PS->GetBinContent(irow+1,icol+1);
+   }
+   }
+   cout << H.Determinant() << endl;
+
+   TVectorD rowsum(8);
+   TVectorD fSig(8);
+   for (Int_t irow = 0; irow < 8; irow++){
+   for (Int_t icol = 0; icol < 8; icol++){
+   rowsum(irow-1) += H(irow,icol);
+   }
+   }
+   TDecompSVD lu(H);
+   TVectorD sig = lu.GetSig();
+   for (Int_t irow = 0; irow < 8; irow++){
+    cout << sig[irow] << endl;
+   }
 
 }

@@ -24,11 +24,11 @@ for region in "${StringArray2[@]}"; do
     cp script2/pdf.root .
     cp script2/q2.root .
  
-    hadd DeltaY_muon_3cat.root DeltaY_muon_3cat_ttag.root DeltaY_muon_3cat_wtag.root DeltaY_muon_3cat_btag.root pdf.root q2.root   
+    hadd DeltaY_muon_3cat.root DeltaY_muon_3cat_ttag.root DeltaY_muon_3cat_wtag.root DeltaY_muon_3cat_btag.root #pdf.root q2.root   
     python script/Get_UF_OF.py ${var}
 
     root -l -b -q "script/all_unfolding_data.C(\"${var}\",\"${var_gen}\",\"${region}\",\"${year}\")"
-    hadd Input_undfolding_data.root Input_undfolding_data_.root DeltaY_muon.root
+    hadd Input_undfolding_data.root Input_undfolding_data_.root DeltaY_muon.root pdf.root q2.root
 
     python script/Unfolding_data.py ${var}
     cp Input_undfolding_data.root up_down

@@ -149,7 +149,7 @@ addUp = [0]*totUnc.GetNbinsX()
 addDown = [0]*totUnc.GetNbinsX()
 
 for name in ["pileup","muHLT", "muID","misttag","miswtag","cferr1","cferr2","hf","lf","hfstats1","hfstats2","lfstats1","lfstats2","jes","toptag","muon_rec","jer","jec"]:
-
+#for name in ["pdf"]:
     print(name)
     tempsysUp = unfolding_input_data.Get("ttbar_semi_"+name+"Up")
     unfold2.SetInput(tempsysUp)
@@ -347,6 +347,13 @@ result.GetYaxis().SetTitleOffset(1.2)
 result.SetMinimum(0.0)
 result.SetAxisRange(0,max(result.GetMaximum(),result.GetMaximum())*1.15,"Y")
 result.GetXaxis().SetTitle("#Delta #cbar y #cbar")
+
+########Full_Phase_space##########
+
+
+
+###################################
+
 result.Draw()
 expectation.Draw('hist same')
 result.Draw("same")
@@ -405,85 +412,3 @@ c4.Print(argv[1]+"_Result_data.pdf")
 print("Result:")
 for i in range (1,9):
 	print result.GetBinContent(i) 
-
-
-'''
-print("###############################")
-
-array_gen = [-2,-1.5,-1,-0.5,0.,0.5,1,1.5,2]
-array_rec = [-2,-1.5,-1.25,-1.0,-0.75,-0.5,-0.25,0,0.25,0.5,0.75,1.,1.25,1.5,2]
-
-len_gen = len(array_gen) - 1
-len_rec = len(array_rec) - 1
-
-error_array = [[0]*len_gen]*1
-final_array = [[0]*len_gen]*1
-
-for i in range(0,1):
-
-    print(i)
-    tempdata = TH1F("tempdata","tempdata",len_rec,array('d',array_rec))
-    gRandom.SetSeed(0);
-
-    for j in range(1,len_rec+1):
-        tempdata.SetBinContent(j,gRandom.Poisson(measurement.GetBinContent(j)))
-        print(tempdata.GetBinContent(j))
-    print(" n ") 
-     
-    unfold_stat = TUnfoldDensity(response,TUnfold.kHistMapOutputVert, TUnfold.kRegModeCurvature, TUnfold.kEConstraintArea, TUnfoldDensity.kDensityModeBinWidth)
-   
-    for name, background in backgrounds.iteritems():
-         unfold_stat.SubtractBackground(background.hist,background.name,background.norm,background.err)
-
-    unfold_stat.SetInput(tempdata)
-    unfold_stat.DoUnfold(0.00);
-    temp_result = unfold_stat.GetOutput("temp_result%s"%i)
- 
-    for k in range(0,len_gen): 
-        final_array[i][k] = temp_result.GetBinContent(k+1) 
-
-
-    # Total covariance matrix
-    mCovInput_stat = unfold_stat.GetEmatrixInput("mCovInput")
-
-    template_stat = temp_result.Clone()
-    template_stat.Reset()
-
-    inputUnc_stat = template_stat.Clone("totUnc")
-
-    for ibin in xrange(1,result.GetNbinsX()+1):
-        inputUnc_stat.SetBinContent(ibin,math.sqrt(mCovInput_stat.GetBinContent(ibin,ibin))/temp_result.GetBinContent(ibin)) 
-    for k in range(0,len_gen):
-        error_array[i][k] = inputUnc_stat.GetBinContent(k+1)
-
-    del tempdata
-    del temp_result
-    del unfold_stat
-
-
-file1 = open("MyFile.txt","a")
-file1.write(str(final_array[0][0])+",")      
-file1.write(str(final_array[0][1])+",")
-file1.write(str(final_array[0][2])+",")
-file1.write(str(final_array[0][3])+",")
-file1.write(str(final_array[0][4])+",")
-file1.write(str(final_array[0][5])+",")
-file1.write(str(final_array[0][6])+",")
-file1.write(str(final_array[0][7])+",")
-file1.write("\n")
-
-file2 = open("MyFile_error.txt","a")
-file2.write(str(error_array[0][0])+",")
-file2.write(str(error_array[0][1])+",")
-file2.write(str(error_array[0][2])+",")
-file2.write(str(error_array[0][3])+",")
-file2.write(str(error_array[0][4])+",")
-file2.write(str(error_array[0][5])+",")
-file2.write(str(error_array[0][6])+",")
-file2.write(str(error_array[0][7])+",")
-file2.write("\n")
-
-
-
-
-'''

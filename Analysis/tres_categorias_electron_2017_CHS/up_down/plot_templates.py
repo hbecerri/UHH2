@@ -4,7 +4,7 @@ import ROOT
 import sys
 import numpy
 
-systematic_direction={'hfstats1','toptag','muID','miswtag','lfstats2','hf','pileup','muHLT','lf','pt_rew','hfstats2','lfstats1','cferr1','cferr2','jes','HT','muon_rec','pdf','q2','jer','jec'}
+systematic_direction={'hfstats1','toptag','muID','miswtag','lfstats2','hf','pileup','muHLT','lf','pt_rew','hfstats2','lfstats1','cferr1','cferr2','jes','HT','muon_rec'}#,'pdf','q2','jer','jec'}
 samplelist = {'wjets','ttbar_others','vv','qcd','singletop','ttbar_semi','dy'}
 fin = TFile('Input_undfolding_data.root', 'open')
 nominalhist = {}
@@ -23,6 +23,8 @@ for samp in samplelist:
         print syst
         if((syst == 'jec' or syst == 'jer' or syst == 'q2' or syst == 'pdf') and (samp != 'ttbar_semi')):
             continue 
+#        if((syst == 'pt_rew') and (samp != 'ttbar_semi' or samp != 'ttbar_others')):
+#            continue        
         nominalhist[samp+syst] = fin.Get(samp+'_nominal')
         canvas_Bkg[samp+syst] = TCanvas("SystVariation_"+samp+syst,"SystVariation_"+samp+syst,800,600)
         legend = TLegend(.7,.70,.9,.9)
@@ -46,6 +48,7 @@ for samp in samplelist:
             continue
         systvarhistDraw[samp+syst+'Up'] = systvarhist[samp+syst+'Up'].DrawClone('ep')
         a = systvarhist[samp+syst+'Up'].GetMaximum()
+        systvarhistDraw[samp+syst+'Up'].GetYaxis().SetRangeUser(0,a*1.05)
         systvarhistDraw[samp+syst+'Up'].GetXaxis().SetTitle("| #Delta y |")
         systvarhistDraw[samp+syst+'Up'].SetMarkerColor(kRed)
         systvarhistDraw[samp+syst+'Up'].SetMarkerStyle(21)
@@ -75,7 +78,7 @@ for samp in samplelist:
         latex2 = ROOT.TLatex()
         latex2.SetTextSize(0.045)
         latex2.SetTextAlign(11)
-        latex2.DrawLatex(1.1,a*1.06,"58.8 fb^{-1} (13 TeV)")
+        latex2.DrawLatex(1.1,a*1.06,"36.73 fb^{-1} (13 TeV)")
                 
         canvas_Bkg[samp+syst].cd();          # Go back to the main canvas before defining pad2
         pad2[samp+syst] = TPad("pad2", "pad2", 0, 0.05, 1, 0.3);

@@ -12,17 +12,17 @@ python createq2templates_SR1T.py 0 1
 python New_q2_SR1T.py
 mv templates_q2_SR1T.root q2_wtag.root
 
-python createpdftemplates_SR1T.py 0 0
-python New_PDF_SR1T.py
-mv templates_pdf_SR1T.root pdf_btag.root
+#python createpdftemplates_SR1T.py 0 0
+#python New_PDF_SR1T.py
+#mv templates_pdf_SR1T.root pdf_btag.root
 
-python createpdftemplates_SR1T.py 1 0
-python New_PDF_SR1T.py
-mv templates_pdf_SR1T.root pdf_ttag.root
+#python createpdftemplates_SR1T.py 1 0
+#python New_PDF_SR1T.py
+#mv templates_pdf_SR1T.root pdf_ttag.root
 
-python createpdftemplates_SR1T.py 0 1
-python New_PDF_SR1T.py
-mv templates_pdf_SR1T.root pdf_wtag.root
+#python createpdftemplates_SR1T.py 0 1
+#python New_PDF_SR1T.py
+#mv templates_pdf_SR1T.root pdf_wtag.root
 
 rm -f -r pdf.root
 rm -f -r q2.root

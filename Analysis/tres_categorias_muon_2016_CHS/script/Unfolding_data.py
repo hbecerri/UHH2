@@ -38,7 +38,7 @@ gROOT.SetBatch(True)
 unfolding_input_data = TFile("Input_undfolding_data.root")
 measurement = unfolding_input_data.Get("Data")
 expectation = unfolding_input_data.Get("Var_gen")
-ttbar = unfolding_input_data.Get("TTbar")
+ttbar = unfolding_input_data.Get("ttbar_semi-nominal")
 ttbar_others = unfolding_input_data.Get("TTbar_others")
 wjets = unfolding_input_data.Get("WJets")
 dy = unfolding_input_data.Get("DY")
@@ -148,7 +148,7 @@ unfold2 = TUnfoldDensity(response,TUnfold.kHistMapOutputVert, TUnfold.kRegModeCu
 addUp = [0]*totUnc.GetNbinsX()
 addDown = [0]*totUnc.GetNbinsX()
 
-for name in ["pileup","muHLT", "muID","misttag","miswtag","cferr1","cferr2","hf","lf","hfstats1","hfstats2","lfstats1","lfstats2","jes","toptag","muon_rec"]:
+for name in ["pileup","muHLT", "muID","misttag","miswtag","cferr1","cferr2","hf","lf","hfstats1","hfstats2","lfstats1","lfstats2","jes","toptag","muon_rec","pdf","q2","jec","jer","ISR","FSR"]:
 
     print(name)
     tempsysUp = unfolding_input_data.Get("ttbar_semi_"+name+"Up")
@@ -174,14 +174,12 @@ for name in ["pileup","muHLT", "muID","misttag","miswtag","cferr1","cferr2","hf"
         addUp[y-1] = addUp[y-1] + errorUp*errorUp
         addDown[y-1] = addDown[y-1] + errorDown*errorDown
     
-     
+        print addUp
     del result2
     del result3
 
 print addUp
 print addDown
-addUp[0] = addUp[7]
-addUp[1] = addUp[6]
 c2 = TCanvas("c2", "", 800, 600)
 c2.SetTopMargin(0.08)
 c2.SetRightMargin(0.05)

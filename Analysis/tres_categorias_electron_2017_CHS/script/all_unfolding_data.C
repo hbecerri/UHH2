@@ -802,6 +802,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
        for(Int_t b=1;b<=binnum_gen;b++){
             Stability_Matrix->SetBinContent(a,b,PS->GetBinContent(a,b)/PS->Integral(1,binnum_gen,b,b));
             Purity_Matrix->SetBinContent(a,b,PS->GetBinContent(a,b)/PS->Integral(a,a,1,binnum_gen));
+            Stability_Matrix->SetBinError(a,b,PS->GetBinError(a,b)/PS->Integral(1,binnum_gen,b,b));
+            Purity_Matrix->SetBinError(a,b,PS->GetBinError(a,b)/PS->Integral(a,a,1,binnum_gen));
        }
    }
 
@@ -814,6 +816,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
    for(Int_t m=1;m<=binnum_gen;m++){
        Stability->SetBinContent(m,Stability_Matrix->GetBinContent(m,m));
        Purity->SetBinContent(m,Purity_Matrix->GetBinContent(m,m));
+       Stability->SetBinError(m,Stability_Matrix->GetBinError(m,m));
+       Purity->SetBinError(m,Purity_Matrix->GetBinError(m,m));
    }
 
    Stability->GetYaxis()->SetRangeUser(0,1);
@@ -827,8 +831,8 @@ void all_unfolding_data(string var_name = "", string var_gen = "", string region
    TCanvas* cc = new TCanvas("cc","",2400,1200);
    cc->Divide(1,1);
    cc->cd(1);
-   Stability->Draw("same");
-   Purity->Draw("same");
+   Stability->Draw("same e");
+   Purity->Draw("same e");
 
    Float_t a = Stability->GetMaximum();
 

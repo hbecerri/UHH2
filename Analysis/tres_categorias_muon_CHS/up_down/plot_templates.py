@@ -23,6 +23,8 @@ for samp in samplelist:
         print syst
         if((syst == 'jec' or syst == 'jer' or syst == 'q2' or syst == 'pdf') and (samp != 'ttbar_semi')):
             continue 
+#        if((syst == 'pt_rew') and (samp != 'ttbar_semi' or samp != 'ttbar_others')):
+#            continue        
         nominalhist[samp+syst] = fin.Get(samp+'_nominal')
         canvas_Bkg[samp+syst] = TCanvas("SystVariation_"+samp+syst,"SystVariation_"+samp+syst,800,600)
         legend = TLegend(.7,.70,.9,.9)
@@ -46,6 +48,7 @@ for samp in samplelist:
             continue
         systvarhistDraw[samp+syst+'Up'] = systvarhist[samp+syst+'Up'].DrawClone('ep')
         a = systvarhist[samp+syst+'Up'].GetMaximum()
+        systvarhistDraw[samp+syst+'Up'].GetYaxis().SetRangeUser(0,a*1.05)
         systvarhistDraw[samp+syst+'Up'].GetXaxis().SetTitle("| #Delta y |")
         systvarhistDraw[samp+syst+'Up'].SetMarkerColor(kRed)
         systvarhistDraw[samp+syst+'Up'].SetMarkerStyle(21)

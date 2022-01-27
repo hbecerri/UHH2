@@ -180,6 +180,16 @@ for name in ["pileup","muHLT", "muID","misttag","miswtag","cferr1","cferr2","hf"
 
 print addUp
 print addDown
+
+addUp[0] =  0.21932740025311636
+addUp[1] = 0.175186598868021
+addUp[2] = 0.16545775214807872
+addUp[3] = 0.1290596474539451
+addUp[4] = 0.1243572085383442
+addUp[5] = 0.16282186927566807
+addUp[6] = 0.175186598868021
+addUp[7] = 0.2112846930354981
+
 addUp[0] = addUp[7]
 addUp[1] = addUp[6]
 c2 = TCanvas("c2", "", 800, 600)

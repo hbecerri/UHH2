@@ -79,6 +79,12 @@ systematic_direction_Ttbar={'nominal':'(weight_sfmu_HighPtID)*(weight_pu)*(weigh
                             'muon_recDown':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_down)*(weight_HT_HT)',
                             'HTUp':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT_up)',
                             'HTDown':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT_down)',
+			    'ISRUp':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*ISRup',
+			    'ISRDown':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*ISRdown',
+			    'FSRUp':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*FSRup',
+			    'FSRDown':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)*FSRdown',
+                            'totalUp':'(weight_sfmu_HighPtID_up)*(weight_pu_up)*(weight_sfmu_MuonTrigger_up)*(weight_toptagSF_up_)*(1)*(weight_btagdisc_central*1.1)*(muonrecSF_nominal_up)*(weight_HT_HT_up)',
+                            'totalDown':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_nominal)*(muonrecSF_down)*(weight_HT_HT)',
 }
 systematic_direction_otherbkgs={'nominal':'(weight_sfmu_HighPtID)*(weight_pu)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)',
                             'pileupUp':'(weight_sfmu_HighPtID)*(weight_pu_up)*(weight_sfmu_MuonTrigger)*(weight_toptagSF_)*(weight_pt_rew)*(weight_btagdisc_central)*(muonrecSF_nominal)*(weight_HT_HT)',

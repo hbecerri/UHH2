@@ -73,7 +73,8 @@ void nJets(string var_name = "", string var_gen = "", string region = "", string
     treereco->SetBranchAddress("rec_chi2",&rec_chi2);
     treereco->SetBranchAddress("Mttbar",&Mttbar);
 
-    for(int i=0; i<1000000; i++){        
+    for(int i=0; i<treereco->GetEntries(); i++){        
+        cout << i << endl;
         treereco->GetEntry(i);
         if(ttagN >= 0 && btagN >= 1 && wtagN >= 0 && rec_chi2 < 30 && Mttbar > 900){
             HT_boosted->Fill(lep1_pt + met_pt,1);

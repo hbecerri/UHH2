@@ -98,7 +98,7 @@ legendHeightPer = 0.04
 legList = stackList.keys() 
 #legList.reverse()
 
-legendStart = 0.69
+legendStart = 0.75
 legendEnd = 0.97-(R/W)
 
 #legend = TLegend(2*legendStart - legendEnd, 1-T/H-0.01 - legendHeightPer*(len(legList)+1), legendEnd, 0.99-(T/H)-0.01)
@@ -201,6 +201,7 @@ histograms = {
               "MET_pt"   : ["missing E_{T} [GeV]", "Events", 10, [50,1500]],
               "lep1_pt":[ "p_{T}^{#lep} [GeV]", "Events",50, [50, 500]],
               "Mttbar": ["Mttbar", "Events", 20, [0, 2000]], 
+              "Ak4_j1_pt": ["Ak4_j1_pt", "Events", 22, [150,1200]],
               "Ak8_j1_pt": ["Ak8_j1_pt", "Events", 25, [400,1200]],
               "Ak8_j1_tau32": ["Ak8_j1_tau32", "Events", 20, [0,1]],
               "Ak8_j1_tau21": ["Ak8_j1_tau21", "Events", 20, [0,1]],
@@ -208,6 +209,11 @@ histograms = {
               "rec_chi2": ["rec_chi2", "Events", 20, [30,300]],
               "N_Ak8": ["N_Ak8", "Events", 5, [0,5]],
               "N_Ak4": ["N_Ak4", "Events", 10, [0,10]],
+              "TH_M": ["Mass_{t_{h}}", "Events", 40, [120,220]],
+              "TL_M": ["Mass_{t_{l}}", "Events", 40, [120,220]], 
+              "pT_had" : [ "p_{T}^{t_{had}} [GeV]", "Events",50, [0, 1200]],
+              "pT_lep" : [ "p_{T}^{t_{#lep}} [GeV]", "Events",50, [0, 1200]],
+              "pT_ttbar" : [ "p_{T}^{t#bar{t}} [GeV]", "Events",50, [0, 1200]],
 #              "TH_M": ["TH_M", "Events", 40, [20,300]],
 #              "TL_M": ["TL_M", "Events", 40, [20,300]],
 #              "W_tagged_jet":["W_tagged_jet","Events",25,[40,200]], 
@@ -238,14 +244,14 @@ for sample in sample_names:
         	print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir,sample)
 		tree_MC[sample]=_file[sample].Get("AnalysisTree")
                 tree_MC_up[sample]=_file[sample].Get("AnalysisTree")   
- 	        tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*0.93*(ttagN == 0 && wtagN == 1 && btagN>=1 && rec_chi2 < 30 && Mttbar < 4000)")
+ 	        tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew*weight_btagdisc_central*muonrecSF_nominal*1.*(ttagN <=1 && wtagN <= 1 && btagN>=1 && rec_chi2 < 30 && Mttbar > 900)")
                 hist1_[sample] = tree_MC[sample].GetHistogram()                
       	  	hist1_[sample].SetFillColor(stackList[sample][0])
         	hist1_[sample].SetLineColor(stackList[sample][0])
 		legendR.AddEntry(hist1_[sample],sample,'f')       
         	hist1_[sample].SetYTitle(histograms[histName][1])        
                 stack.Add(hist1_[sample])
-                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfmu_HighPtID_up*weight_sfmu_Trigger_up*weight_pu_up*weight_toptagSF_up_*0.95*muonrecSF_up*(ttagN == 0 && wtagN == 1 && btagN>=1 && rec_chi2 < 30 && Mttbar < 4000)")
+                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"weight*weight_sfmu_HighPtID_up*weight_sfmu_Trigger_up*weight_pu_up*weight_toptagSF_up_*1.03*muonrecSF_up*(ttagN <= 1 && wtagN <= 1 && btagN>=1 && rec_chi2 < 30 && Mttbar >900)")
                 hist1_up[sample] = tree_MC_up[sample].GetHistogram()
                 stack_up.Add(hist1_up[sample])
 
@@ -255,7 +261,7 @@ _file["Data"] = TFile("%s/uhh2.AnalysisModuleRunner.DATA.DATA_SingleMuon_Run2018
 print "%s/uhh2.AnalysisModuleRunner.DATA.DATA.root"%(_fileDir)
 
 tree = _file["Data"].Get("AnalysisTree")
-tree.Draw("%s>>dat_hist(%i,%i,%f)"%(histName,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN == 1 && btagN>=1 && rec_chi2 < 30 && Mttbar < 4000)")
+tree.Draw("%s>>dat_hist(%i,%i,%f)"%(histName,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN <= 1 && wtagN <= 1 && btagN>=1 && rec_chi2 < 30 && Mttbar > 900)")
 dataHist=tree.GetHistogram()
 print "total:",dataHist.Integral()
 print "bins:",dataHist.GetNbinsX()
@@ -378,9 +384,10 @@ errorband.Divide(temp)
 
 for i in range(1, errorband.GetNbinsX() + 1):
     if(errorban.GetBinContent(i) == 0):
-        errorband.SetBinError(i, 0)
+        errorband.SetBinError(i,0)
     else:
-        errorband.SetBinError(i, errorban.GetBinError(i)/errorban.GetBinContent(i)) 
+        errorband.SetBinError(i, errorban.GetBinError(i)/errorban.GetBinContent(i))
+
 errorband.Draw('e2,same')
 
 
