@@ -180,17 +180,18 @@ def CMS_lumi( pad, iPeriod, iPosX, extraLumiText = "" ):
             latex.SetTextSize(cmsTextSize*t);
             latex.SetTextAlign(align_);
             latex.DrawLatex(posX_, posY_, cmsText);
-            if writeExtraText: 
-                latex.SetTextFont(extraTextFont);
+            if writeExtraText:
+                print('I am here')
+                latex.SetTextFont(52);
                 latex.SetTextAlign(align_);
-                latex.SetTextSize(extraTextSize*t);
-                latex.DrawLatex(posX_, posY_- relExtraDY*cmsTextSize*t, extraText);
+                latex.SetTextSize(cmsTextSize*t*0.95);
+                latex.DrawLatex(posX_, posY_*0.92, extraText);
             if writeChannelText:
-                latex.SetTextFont(channelTextFont);
-                latex.SetTextAlign(channelalign);
-                latex.SetTextSize(extraTextSize*t);
-                latex.DrawLatex(ChanposX, ChanposY, channelText);
-                # if isPreliminary:
+                latex.SetTextFont(42);
+                latex.SetTextAlign(align_);
+                latex.SetTextSize(cmsTextSize*t*0.9);
+                latex.DrawLatex(posX_, posY_*0.86, 'e + jets 2017');                
+# if isPreliminary:
 #                     latex.DrawLatex(posX_, posY_- relExtraDY*cmsTextSize*t, "#splitline{Preliminary}{%s}"%extraText);
 #                 else:
     elif writeExtraText :

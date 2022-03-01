@@ -27,7 +27,7 @@ relExtraDY = 1.2;
 # ratio of "CMS" and extra text size
 extraOverCmsTextSize  = -1.76;
 
-lumi_13TeV = "36.7 fb^{-1}";
+lumi_13TeV = "36.3 fb^{-1}";
 lumi_8TeV  = "19.7 fb^{-1}";
 lumi_7TeV  = "5.1 fb^{-1}";
 lumi_sqrtS = "";
@@ -180,16 +180,17 @@ def CMS_lumi( pad, iPeriod, iPosX, extraLumiText = "" ):
             latex.SetTextSize(cmsTextSize*t);
             latex.SetTextAlign(align_);
             latex.DrawLatex(posX_, posY_, cmsText);
-            if writeExtraText: 
-                latex.SetTextFont(extraTextFont);
+            if writeExtraText:
+                print('I am here')
+                latex.SetTextFont(52);
                 latex.SetTextAlign(align_);
-                latex.SetTextSize(extraTextSize*t);
-                latex.DrawLatex(posX_, posY_- relExtraDY*cmsTextSize*t, extraText);
+                latex.SetTextSize(cmsTextSize*t*0.95);
+                latex.DrawLatex(posX_, posY_*0.92, extraText);
             if writeChannelText:
-                latex.SetTextFont(channelTextFont);
-                latex.SetTextAlign(channelalign);
-                latex.SetTextSize(extraTextSize*t);
-                latex.DrawLatex(ChanposX, ChanposY, channelText);
+                latex.SetTextFont(42);
+                latex.SetTextAlign(align_);
+                latex.SetTextSize(cmsTextSize*t*0.9);
+                latex.DrawLatex(posX_, posY_*0.86, 'e + jets 2016');
                 # if isPreliminary:
 #                     latex.DrawLatex(posX_, posY_- relExtraDY*cmsTextSize*t, "#splitline{Preliminary}{%s}"%extraText);
 #                 else:

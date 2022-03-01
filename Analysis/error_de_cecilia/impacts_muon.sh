@@ -9,8 +9,8 @@ declare -a POIS=(
 export WORKSPACE=Ac_muon.root
 export VERBOSITY=0
 
-export SetParameters="rgx{r.+}=1,Ac=0.73"
-export SetParametersExplicit="r_neg=1,Ac=0.73"
+export SetParameters="rgx{r.+}=1,Ac=0.67"
+export SetParametersExplicit="r_neg=1,Ac=0.67"
 export SetParameterRanges="rgx{r.+}=0.5,2:Ac=-5,5"
 export redefineSignalPOIs="Ac,r_neg"
 
@@ -20,9 +20,9 @@ export redefineSignalPOIs="Ac,r_neg"
 #export redefineSignalPOIs="r_pos,r_neg"
 
 
-export ASIMOV="-t -1"
+#export ASIMOV="-t -1"
 #export ASIMOV="-t 100 --saveToys"
-#export ASIMOV=""
+export ASIMOV=""
 
 
 
@@ -44,16 +44,6 @@ echo
 combineTool.py -M Impacts -d $WORKSPACE --robustFit 1 --doFits -m 125 --redefineSignalPOIs $redefineSignalPOIs  --setParameters $SetParametersExplicit --setParameterRanges $SetParameterRanges --cminDefaultMinimizerStrategy 0 $ASIMOV --parallel 20
 
 
-
-echo
-echo
-echo "STAT ONLY UNCERTAINTY (ALL NUISANCES FROZEN)"
-echo
-echo
-combine -M MultiDimFit --algo singles -d $WORKSPACE -v $VERBOSITY --redefineSignalPOIs $redefineSignalPOIs --setParameterRanges $SetParameterRanges --setParameters $SetParameters --robustFit 1 --cminDefaultMinimizerStrategy 0 -m 125 --saveWorkspace -n _paramFit_Test_allConstrainedNuisancesFrozen --freezeParameters allConstrainedNuisances $ASIMOV
-
-
-
 echo
 echo
 echo "CREATE IMPACTS JSON"
@@ -73,3 +63,16 @@ for POI in ${POIS[@]}; do
 done
 echo
 echo
+
+
+echo
+echo
+echo "BRAK"
+echo
+echo
+
+combine -M MultiDimFit --algo singles -d $WORKSPACE -v $VERBOSITY --redefineSignalPOIs $redefineSignalPOIs --setParameterRanges $SetParameterRanges --setParameters $SetParametersExplicit --robustFit 1 --cminDefaultMinimizerStrategy 0 -m 125 --saveWorkspace -n .snapshot $ASIMOV
+combine -M MultiDimFit higgsCombine.snapshot.MultiDimFit.mH125.root --algo singles -v $VERBOSITY --redefineSignalPOIs $redefineSignalPOIs --setParameterRanges $SetParameterRanges --setParameters $SetParametersExplicit --robustFit 1 --cminDefaultMinimizerStrategy 0 -m 125 --saveWorkspace -n .nominal $ASIMOV --snapshotName MultiDimFit
+combine -M MultiDimFit higgsCombine.snapshot.MultiDimFit.mH125.root --algo singles -v $VERBOSITY --redefineSignalPOIs $redefineSignalPOIs --setParameterRanges $SetParameterRanges --setParameters $SetParametersExplicit --robustFit 1 --cminDefaultMinimizerStrategy 0 -m 125 --saveWorkspace -n .freezeall $ASIMOV --snapshotName MultiDimFit --freezeParameters allConstrainedNuisances
+combine -M MultiDimFit higgsCombine.snapshot.MultiDimFit.mH125.root --algo singles -v $VERBOSITY --redefineSignalPOIs $redefineSignalPOIs --setParameterRanges $SetParameterRanges --setParameters $SetParametersExplicit --robustFit 1 --cminDefaultMinimizerStrategy 0 -m 125 --saveWorkspace -n .syst $ASIMOV --snapshotName MultiDimFit --freezeNuisanceGroups others,pdf,JEC,q2
+

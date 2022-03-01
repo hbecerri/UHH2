@@ -14,8 +14,8 @@ declare -a POIS=(
 export WORKSPACE=muon_2017_750_900.root
 export VERBOSITY=0
 
-#export SetParameters="rgx{r.+}=1,Ac=0.7"
-#export SetParametersExplicit="r_neg=1,Ac=0.7"
+#export SetParameters="rgx{r.+}=1,Ac=0.69"
+#export SetParametersExplicit="r_neg=1,Ac=0.69"
 #export SetParameterRanges="rgx{r.+}=0.5,2:Ac=-10,5"
 #export redefineSignalPOIs="Ac,r_neg"
 

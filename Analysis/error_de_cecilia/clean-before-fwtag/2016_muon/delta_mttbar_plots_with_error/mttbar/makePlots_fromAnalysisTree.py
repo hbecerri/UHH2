@@ -73,7 +73,7 @@ ROOT.gROOT.ForceStyle()
 stackList = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2016":[kRed], "Others":[kBlue], "WJetsToLNu_2016":[kGreen]}
 stackList_2017_muon = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2017":[kRed], "Others":[kBlue], "WJetsToLNu_2017":[kGreen]}
 stackList_2018_ele = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2018":[kRed], "Others":[kBlue], "WJetsToLNu_2018":[kGreen]}
-stackList_2017_ele = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2017v2":[kRed], "Others":[kBlue], "WJetsToLNu_2017v2":[kGreen]} 
+stackList_2017_ele = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2017":[kRed], "Others":[kBlue], "WJetsToLNu_2017":[kGreen]} 
 stackList_2016_ele = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2016":[kRed], "Others":[kBlue], "WJetsToLNu_2016":[kGreen]}
 stackList_2018_muon = { "TTToOthers":[kRed+2],"TTToSemiLeptonic_2018":[kRed], "Others":[kBlue], "WJetsToLNu_2018":[kGreen]}
  
@@ -248,12 +248,12 @@ histograms = {
 #sample_names = ["QCD","ST","DYJets","WJets","TTbar"]
 #sample_names = ["TTToSemiLeptonic_2016_2"]
 #sample_names = ["DYJetsToLL_M-50_HT_2016", "QCD_HT_2016", "WJetsToLNu_2016", "ST_2016", "WW_WZ_ZZ_2016", "TTToSemiLeptonic_2016","TTTo2L2Nu_2016", "TTToHadronic_2016"]
-sample_names = ["DYJetsToLL_M-50_HT_2016", "QCD_HT_2016", "ST_2016",  "WJetsToLNu_2016","TTToSemiLeptonic_2016","TTToOthers"]
-sample_names_2017_muon = ["DYJetsToLL_M-50_HT_2017", "QCD_HT_2017", "ST_2017",  "WJetsToLNu_2017","TTToSemiLeptonic_2017","TTToOthers"]
-sample_names_2018_muon = ["DYJetsToLL_M-50_HT_2018", "QCD_HT_2018", "ST_2018",  "WJetsToLNu_2018","TTToSemiLeptonic_2018","TTToOthers"]
-sample_names_2016_ele = ["DYJetsToLL_M-50_HT_2016", "QCD_HT_2016", "ST_2016",  "WJetsToLNu_2016","TTToSemiLeptonic_2016","TTToOthers"]
-sample_names_2017_ele = ["DYJetsToLL_M-50_HT_2017v2", "QCD_HT_2017v2", "ST_2017v2",  "WJetsToLNu_2017v2","TTToSemiLeptonic_2017v2","TTToOthers"]
-sample_names_2018_ele = ["DYJetsToLL_M-50_HT_2018", "QCD_HT_2018", "ST_2018",  "WJetsToLNu_2018","TTToSemiLeptonic_2018","TTToOthers"]
+sample_names = ["DYJetsToLL_M-50_HT_2016", "QCD_HT_2016", "ST_2016",  "WJetsToLNu_2016","TTToSemiLeptonic_2016"]
+sample_names_2017_muon = ["DYJetsToLL_M-50_HT_2017", "QCD_HT_2017", "ST_2017",  "WJetsToLNu_2017","TTToSemiLeptonic_2017"]
+sample_names_2018_muon = ["DYJetsToLL_M-50_HT_2018", "QCD_HT_2018", "ST_2018",  "WJetsToLNu_2018","TTToSemiLeptonic_2018"]
+sample_names_2016_ele = ["DYJetsToLL_M-50_HT_2016", "QCD_HT_2016", "ST_2016",  "WJetsToLNu_2016","TTToSemiLeptonic_2016"]
+sample_names_2017_ele = ["DYJetsToLL_M-50_HT_2017", "QCD_HT_2017", "ST_2017",  "WJetsToLNu_2017","TTToSemiLeptonic_2017"]
+sample_names_2018_ele = ["DYJetsToLL_M-50_HT_2018", "QCD_HT_2018", "ST_2018",  "WJetsToLNu_2018","TTToSemiLeptonic_2018"]
 '''  
 for sample in sample_names:
         	print sample, histName
@@ -261,7 +261,7 @@ for sample in sample_names:
         	print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir,sample)
 		tree_MC[sample]=_file[sample].Get("AnalysisTree")
                 tree_MC_up[sample]=_file[sample].Get("AnalysisTree")   
- 	        tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)*0.86")
+ 	        tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btag*muonrecSF_nominal*0.86")
                 hist1_[sample] = tree_MC[sample].GetHistogram()
 
                 if(sample == "DYJetsToLL_M-50_HT_2016" or sample == "QCD_HT_2016" or sample == "ST_2016"):
@@ -285,7 +285,7 @@ for sample in sample_names:
                     hist1_[sample].SetYTitle(histograms[histName][1])
                 stack.Add(hist1_[sample])
 
-                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)*1.")
+                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_MuonTrigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btag*muonrecSF_nominal*1.")
                 hist1_up[sample] = tree_MC_up[sample].GetHistogram()
                 stack_up.Add(hist1_up[sample])
 
@@ -295,7 +295,7 @@ for sample in sample_names_2017_muon:
                 print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir_2017_muon,sample)
                 tree_MC[sample]=_file[sample].Get("AnalysisTree")
                 tree_MC_up[sample]=_file[sample].Get("AnalysisTree")
-                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)*1.0")
+                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btag*muonrecSF_nominal*1.0")
                 hist1_[sample] = tree_MC[sample].GetHistogram()
 
                 if(sample == "DYJetsToLL_M-50_HT_2017" or sample == "QCD_HT_2017" or sample == "ST_2017"):
@@ -312,7 +312,7 @@ for sample in sample_names_2017_muon:
                     hist1_[sample].SetYTitle(histograms[histName][1])
                 stack.Add(hist1_[sample])
 
-                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && Mttbar < 900 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)*1.15")
+                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && Mttbar < 900 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btag*muonrecSF_nominal*1.15")
                 hist1_up[sample] = tree_MC_up[sample].GetHistogram()
                 stack_up.Add(hist1_up[sample])
 
@@ -323,7 +323,7 @@ for sample in sample_names_2018_muon:
                 print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir_2018_muon,sample)
                 tree_MC[sample]=_file[sample].Get("AnalysisTree")
                 tree_MC_up[sample]=_file[sample].Get("AnalysisTree")
-                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)*1.0")
+                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btag*muonrecSF_nominal*1.0")
                 hist1_[sample] = tree_MC[sample].GetHistogram()
 
                 if(sample == "DYJetsToLL_M-50_HT_2018" or sample == "QCD_HT_2018" or sample == "ST_2018"):
@@ -339,7 +339,7 @@ for sample in sample_names_2018_muon:
                     hist1_[sample].SetYTitle(histograms[histName][1])
                 stack.Add(hist1_[sample])
 
-                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btagdisc_central*muonrecSF_nominal*(weight_HT_HT)*1.15")
+                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*weight_sfmu_HighPtID*weight_sfmu_Trigger*weight_pu*weight_toptagSF_*weight_pt_rew_nolimit*weight_btag*muonrecSF_nominal*1.15")
                 hist1_up[sample] = tree_MC_up[sample].GetHistogram()
                 stack_up.Add(hist1_up[sample])
 '''
@@ -350,7 +350,7 @@ for sample in sample_names_2016_ele:
                 print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir_2016_ele,sample)
                 tree_MC[sample]=_file[sample].Get("AnalysisTree")
                 tree_MC_up[sample]=_file[sample].Get("AnalysisTree")
-                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 &&  rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*0.86")
+                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 &&  rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btag)*(weight_sfelec_Rec)*0.86")
                 hist1_[sample] = tree_MC[sample].GetHistogram()
 
                 if(sample == "DYJetsToLL_M-50_HT_2016" or sample == "QCD_HT_2016" or sample == "ST_2016"):
@@ -366,7 +366,7 @@ for sample in sample_names_2016_ele:
                     hist1_[sample].SetYTitle(histograms[histName][1])
                 stack.Add(hist1_[sample])
 
-                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*1.06")
+                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btag)*(weight_sfelec_Rec)*1.06")
                 hist1_up[sample] = tree_MC_up[sample].GetHistogram()
                 stack_up.Add(hist1_up[sample])
 
@@ -376,13 +376,13 @@ for sample in sample_names_2017_ele:
                 print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir_2017_ele,sample)
                 tree_MC[sample]=_file[sample].Get("AnalysisTree")
                 tree_MC_up[sample]=_file[sample].Get("AnalysisTree")
-                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*0.95")
+                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btag)*(weight_sfelec_Rec)*0.95")
                 hist1_[sample] = tree_MC[sample].GetHistogram()
 
-                if(sample == "DYJetsToLL_M-50_HT_2017v2" or sample == "QCD_HT_2017v2" or sample == "ST_2017v2"):
+                if(sample == "DYJetsToLL_M-50_HT_2017" or sample == "QCD_HT_2017" or sample == "ST_2017"):
                     hist1_[sample].SetFillColor(stackList["Others"][0])
                     hist1_[sample].SetLineColor(stackList["Others"][0])
-                    if(sample == "ST_2017v2"):
+                    if(sample == "ST_2017"):
                         legendR.AddEntry(hist1_[sample],"Others",'f')
 
                 else:
@@ -392,7 +392,7 @@ for sample in sample_names_2017_ele:
                     hist1_[sample].SetYTitle(histograms[histName][1])
                 stack.Add(hist1_[sample])
 
-                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*1.15")
+                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btag)*(weight_sfelec_Rec)*1.15")
                 hist1_up[sample] = tree_MC_up[sample].GetHistogram()
                 stack_up.Add(hist1_up[sample])
 
@@ -402,7 +402,7 @@ for sample in sample_names_2018_ele:
                 print "%s/uhh2.AnalysisModuleRunner.MC.%s.root"%(_fileDir_2018_ele,sample)
                 tree_MC[sample]=_file[sample].Get("AnalysisTree")
                 tree_MC_up[sample]=_file[sample].Get("AnalysisTree")
-                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*0.86")
+                tree_MC[sample].Draw("%s>>h2_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btag)*(weight_sfelec_Rec)*0.86")
                 hist1_[sample] = tree_MC[sample].GetHistogram()
 
                 if(sample == "DYJetsToLL_M-50_HT_2018" or sample == "QCD_HT_2018" or sample == "ST_2018"):
@@ -418,7 +418,7 @@ for sample in sample_names_2018_ele:
                     hist1_[sample].SetYTitle(histograms[histName][1])
                 stack.Add(hist1_[sample])
 
-                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btagdisc_central)*(weight_sfelec_Rec)*(weight_HT_HT)*1.05")
+                tree_MC_up[sample].Draw("%s>>h3_%s(%i,%i,%f)"%(histName,sample,histograms[histName][2],histograms[histName][3][0],histograms[histName][3][1]),"(ttagN == 0 && wtagN ==0 && btagN >= 1 && rec_chi2<30)*weight*(weight_sfelec_TightID)*(weight_pu)*(weight_sfelec_Trigger)*(weight_toptagSF_)*(weight_pt_rew_nolimit)*(weight_btag)*(weight_sfelec_Rec)*1.05")
                 hist1_up[sample] = tree_MC_up[sample].GetHistogram()
                 stack_up.Add(hist1_up[sample])
 
@@ -510,16 +510,16 @@ gDirectory.WriteObject(hist1_["QCD_HT_2016"],"QCD")
 gDirectory.WriteObject(hist1_["ST_2016"],"ST")
 gDirectory.WriteObject(hist1_["WJetsToLNu_2016"],"WJetsToNuLu")
 gDirectory.WriteObject(hist1_["TTToSemiLeptonic_2016"],"TTToSemiLeptonic")
-gDirectory.WriteObject(hist1_["TTToOthers"],"TTToOthers")
+#gDirectory.WriteObject(hist1_["TTToOthers"],"TTToOthers")
 
 
 file_out = TFile('electron_2017.root', 'recreate')
 file_out.cd('')
-gDirectory.WriteObject(hist1_["DYJetsToLL_M-50_HT_2017v2"],"DY")
-gDirectory.WriteObject(hist1_["QCD_HT_2017v2"],"QCD")
+gDirectory.WriteObject(hist1_["DYJetsToLL_M-50_HT_2017"],"DY")
+gDirectory.WriteObject(hist1_["QCD_HT_2017"],"QCD")
 gDirectory.WriteObject(hist1_["ST_2017"],"ST")
-gDirectory.WriteObject(hist1_["WJetsToLNu_2017v2"],"WJetsToNuLu")
-gDirectory.WriteObject(hist1_["TTToSemiLeptonic_2017v2"],"TTToSemiLeptonic")
+gDirectory.WriteObject(hist1_["WJetsToLNu_2017"],"WJetsToNuLu")
+gDirectory.WriteObject(hist1_["TTToSemiLeptonic_2017"],"TTToSemiLeptonic")
 
 
 file_out = TFile('electron_2018.root', 'recreate')

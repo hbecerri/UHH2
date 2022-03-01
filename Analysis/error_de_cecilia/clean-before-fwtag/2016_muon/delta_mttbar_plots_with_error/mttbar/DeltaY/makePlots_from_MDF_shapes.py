@@ -51,7 +51,7 @@ if not HasCMSStyle:
 
 ROOT.gROOT.ForceStyle()
 
-stackList = { "TTToSemiLeptonic":[kRed], "WJetsToNuLu":[kGreen], "ST":[kBlue], "DY":[kBlue], "vv":[kBlue], "QCD":[kBlue], "TTToOthers":[kRed+2]}
+stackList = { "TTToSemiLeptonic":[kRed], "WJetsToNuLu":[kGreen], "ST":[kBlue], "DY":[kBlue], "vv":[kBlue], "QCD":[kBlue]}
 
 print stackList
 
@@ -178,7 +178,7 @@ histograms = {
               "DeltaY": ["DeltaY", "Events", 8, [-2,2]], 
 }
 
-sample_names = [ "DY", "QCD", "ST", "WJetsToNuLu", "TTToSemiLeptonic", "TTToOthers"]
+sample_names = [ "DY", "QCD", "ST", "WJetsToNuLu", "TTToSemiLeptonic"]
 legend_index = 0
 _file = {}
 sum_=0
@@ -272,10 +272,6 @@ errorban.SetLineColor(kGray+2)
 errorban.SetFillColor(kGray+2)
 errorban.SetFillStyle(3245)
 errorban.SetMarkerSize(0)
-
-for jj in range(1,errorban.GetNbinsX() + 1):
-    errorban.SetBinError(jj, math.sqrt(errorban.GetBinError(jj)*errorban.GetBinError(jj)*3000))
-    temp.SetBinError(jj, math.sqrt(temp.GetBinError(jj)*temp.GetBinError(jj)*3000)) 
 errorban.Draw("E2,SAME")
 
 ratio.Divide(temp)

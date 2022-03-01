@@ -11,11 +11,11 @@ var_gen='TMath::Abs(0.5*TMath::Log((GenParticles.m_energy[2] + GenParticles.m_pt
 
 declare -a StringArray=("DeltaY")
 
-for var in ${StringArray[@]}; do
-        echo ${var}
-	python script/Input_file.py ${var}
-        python script/Get_UF_OF.py ${var}
-done
+#for var in ${StringArray[@]}; do
+#        echo ${var}
+#	python script/Input_file.py ${var}
+#        python script/Get_UF_OF.py ${var}
+#done
 
 for var in ${StringArray[@]}; do
         root -l -b -q "script/all_unfolding_data.C(\"${var}\",\"${var_gen}\")"
